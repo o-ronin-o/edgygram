@@ -1,5 +1,6 @@
 
 import Backend.TestContentDatabase;
+import Frontend.NewsFeedWindow;
 import com.google.gson.Gson;
 
 import java.util.*;
@@ -9,9 +10,9 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) {
-       // Gson gson = new Gson();
-        //TestClass t = new TestClass(23,"meow");
-        //String gsonString = gson.toJson(t);
-        //System.out.println("gsonString: " + gsonString);
+//        Gson gson = new Gson();
+//        NewsFeedWindow n=new NewsFeedWindow();
+//        String gsonString = gson.toJson(n);
+//        System.out.println("gsonString: " + gsonString);
     }
 }

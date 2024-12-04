@@ -9,14 +9,23 @@ public abstract class Content {
     private String authorId;
     private String content;
     private String timeStamp;
+    private String picPath;
     private static final AtomicInteger counter = new AtomicInteger(0);
     private static final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
-    public Content(String contentId, String authorId, String content, LocalDateTime timeStamp) {
+    public Content(String contentId, String authorId, String content, LocalDateTime timeStamp,String picPath) {
         this.contentId = contentId;
         this.authorId = authorId;
         this.content = content;
         this.timeStamp = timeStamp.format(formatter);
+        this.picPath = picPath;
+    }
+
+    public String getPicPath() {
+        return picPath;
+    }
+    public void setPicPath(String picPath){
+        this.picPath = picPath;
     }
 
     public String getContentId() {
@@ -50,6 +59,8 @@ public abstract class Content {
         this.timeStamp = timeStamp.format(formatter);
     }
 
-
+    public String getPostString(String timeStamp,String content ){
+        return  timeStamp+" Posted\n"+ content;
+    }
 
 }
