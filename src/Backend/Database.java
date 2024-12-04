@@ -8,7 +8,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public abstract class Database<T>{
-    private Gson gson=new GsonBuilder().setPrettyPrinting().create();
+    protected Gson gson=new GsonBuilder().setPrettyPrinting().create();
     protected String fileName;
 
     public Database(String fileName) {
