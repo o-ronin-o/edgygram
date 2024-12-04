@@ -23,13 +23,13 @@ public class ContentDatabase extends Database<Content> {
     @Override
     public boolean add(Content item) {
         if (item instanceof Post) {
-            ArrayList<Post> posts = loadSpecific(postsFileName, new TypeToken<ArrayList<Post>>() {}.getType());
-            posts.add((Post) item);
+            ArrayList<Content> posts = loadSpecific(postsFileName, new TypeToken<ArrayList<Post>>() {}.getType());
+            posts.add(  item);
             saveSpecific(posts, postsFileName);
             System.out.println("Added Post: " + item.getContentId());
         } else if (item instanceof Story) {
-            ArrayList<Story> stories = loadSpecific(storiesFileName, new TypeToken<ArrayList<Story>>() {}.getType());
-            stories.add((Story) item);
+            ArrayList<Content> stories = loadSpecific(storiesFileName, new TypeToken<ArrayList<Story>>() {}.getType());
+            stories.add( item);
             saveSpecific(stories, storiesFileName);
             scheduleRemoval((Story) item, 24); // Schedule removal in 24 hours
             System.out.println("Added Story: " + item.getContentId());
@@ -40,21 +40,13 @@ public class ContentDatabase extends Database<Content> {
     @Override
     public void remove(Content item) {
         if (item instanceof Post) {
-            ArrayList<Post> posts = loadSpecific(postsFileName, new TypeToken<ArrayList<Post>>() {}.getType());
-           for(Content c : posts) {
-               if (c.getContentId().equals(item.getContentId())) {
-                   posts.remove(c);
-               }
-           }
+            ArrayList<Content> posts = loadSpecific(postsFileName, new TypeToken<ArrayList<Post>>() {}.getType());
+            posts.removeIf(c -> c.getContentId().equals(item.getContentId()));
+            System.out.println("Removing Post: " + item.getContentId());
             saveSpecific(posts, postsFileName);
-            System.out.println("Removed Post: " + item.getContentId());
-        } else if (item instanceof Story) {
-            ArrayList<Story> stories = loadSpecific(storiesFileName, new TypeToken<ArrayList<Story>>() {}.getType());
-            for(Content c : stories) {
-                if (c.getContentId().equals(item.getContentId())) {
-                    stories.remove(c);
-                }
-            }
+           } else if (item instanceof Story) {
+            ArrayList<Content> stories = loadSpecific(storiesFileName, new TypeToken<ArrayList<Story>>() {}.getType());
+            stories.removeIf(c -> c.getContentId().equals(item.getContentId()));
             saveSpecific(stories, storiesFileName);
             System.out.println("Removed Story: " + item.getContentId());
         }
