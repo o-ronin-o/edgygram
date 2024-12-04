@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "contentType": "Post",
+    "contentId": "CID-1",
+    "authorId": "meow",
+    "content": "This is a post",
+    "timeStamp": "2024-12-04T18:50:04.9537562"
+  },
+  {
+    "contentType": "Post",
+    "contentId": "CID-1",
+    "authorId": "meow",
+    "content": "This is a post",
+    "timeStamp": "2024-12-04T18:57:20.7472602"
+  }
+]
