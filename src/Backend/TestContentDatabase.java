@@ -10,6 +10,7 @@ public class TestContentDatabase {
         return "CID-" + counter.incrementAndGet();
     }
     public static void main(String[] args) {
+
 //        // Create a ContentDatabase instance
 //        ContentDatabase contentDatabase = new ContentDatabase();
 //
@@ -48,4 +49,5 @@ public class TestContentDatabase {
 //        contentDatabase.getAll().forEach(content -> System.out.println(content.getContent()));
 //    }
 
-}}
+
+      }
