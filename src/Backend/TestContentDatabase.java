@@ -17,9 +17,15 @@ public class TestContentDatabase {
         Post post = new Post(generateID(),"meow", "This is a post", LocalDateTime.now(), "Text");
         System.out.println("Adding Post...");
         contentDatabase.add(post);
+        post = new Post(generateID(),"meow", "This is a post", LocalDateTime.now(), "Text");
+        System.out.println("Adding Post...");
+        contentDatabase.add(post);
 
         // Add a Story to the ContentDatabase
         Story story = new Story(generateID(),"Author2", "This is a story", LocalDateTime.now(), "Image");
+        System.out.println("Adding Story...");
+        contentDatabase.add(story);
+        story = new Story(generateID(),"Author2", "This is a story", LocalDateTime.now(), "Image");
         System.out.println("Adding Story...");
         contentDatabase.add(story);
 
@@ -46,6 +52,7 @@ public class TestContentDatabase {
         // Display all Content after removal
         System.out.println("\nAll Content after removal:");
         contentDatabase.getAll().forEach(content -> System.out.println(content.getContent()));
+        return;
     }
 
 }

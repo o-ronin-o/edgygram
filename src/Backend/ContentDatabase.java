@@ -23,14 +23,16 @@ public class ContentDatabase extends Database<Content> {
     @Override
     public boolean add(Content item) {
         if (item instanceof Post) {
-            ArrayList<Content> posts = loadSpecific(postsFileName, new TypeToken<ArrayList<Post>>() {}.getType());
-            posts.add(  item);
-            saveSpecific(posts, postsFileName);
+            fileName=postsFileName;
+            ArrayList<Content> posts=load(new TypeToken<ArrayList<Post>>() {}.getType());
+            posts.add(item);
+            save(posts);
             System.out.println("Added Post: " + item.getContentId());
         } else if (item instanceof Story) {
-            ArrayList<Content> stories = loadSpecific(storiesFileName, new TypeToken<ArrayList<Story>>() {}.getType());
+            fileName=storiesFileName;
+            ArrayList<Content> stories = load(new TypeToken<ArrayList<Post>>() {}.getType());
             stories.add( item);
-            saveSpecific(stories, storiesFileName);
+            save(stories);
             scheduleRemoval((Story) item, 24); // Schedule removal in 24 hours
             System.out.println("Added Story: " + item.getContentId());
         }
@@ -40,14 +42,16 @@ public class ContentDatabase extends Database<Content> {
     @Override
     public void remove(Content item) {
         if (item instanceof Post) {
-            ArrayList<Content> posts = loadSpecific(postsFileName, new TypeToken<ArrayList<Post>>() {}.getType());
+            fileName=postsFileName;
+            ArrayList<Content> posts = load(new TypeToken<ArrayList<Post>>() {}.getType());
             posts.removeIf(c -> c.getContentId().equals(item.getContentId()));
             System.out.println("Removing Post: " + item.getContentId());
-            saveSpecific(posts, postsFileName);
+            save(posts);
            } else if (item instanceof Story) {
-            ArrayList<Content> stories = loadSpecific(storiesFileName, new TypeToken<ArrayList<Story>>() {}.getType());
+            fileName=storiesFileName;
+            ArrayList<Content> stories = load( new TypeToken<ArrayList<Story>>() {}.getType());
             stories.removeIf(c -> c.getContentId().equals(item.getContentId()));
-            saveSpecific(stories, storiesFileName);
+            save(stories);
             System.out.println("Removed Story: " + item.getContentId());
         }
     }
@@ -55,46 +59,35 @@ public class ContentDatabase extends Database<Content> {
     @Override
     public ArrayList<Content> getAll() {
         ArrayList<Content> allContent = new ArrayList<>();
-        allContent.addAll(loadSpecific(postsFileName, new TypeToken<ArrayList<Post>>() {}.getType()));
-        allContent.addAll(loadSpecific(storiesFileName, new TypeToken<ArrayList<Story>>() {}.getType()));
+        fileName=postsFileName;
+        allContent.addAll(load( new TypeToken<ArrayList<Post>>() {}.getType()));
+        fileName=storiesFileName;
+        allContent.addAll(load( new TypeToken<ArrayList<Story>>() {}.getType()));
         return allContent;
     }
 
-    public ArrayList<Post> getAllPosts() {
-        return loadSpecific(postsFileName, new TypeToken<ArrayList<Post>>() {}.getType());
+    public ArrayList<Content> getAllPosts() {
+        fileName = postsFileName;
+        return load(new TypeToken<ArrayList<Post>>() {}.getType());
     }
 
-    public ArrayList<Story> getAllStories() {
-        return loadSpecific(storiesFileName, new TypeToken<ArrayList<Story>>() {}.getType());
+
+    public ArrayList<Content> getAllStories() {
+        fileName=storiesFileName;
+        return load(new TypeToken<ArrayList<Story>>() {}.getType());
     }
 // بتمسح بعد المده اللي انت عايزها كل اللي عليك تديلها اوبجيكت الستوري
     public void scheduleRemoval(Story story, int delayInHours) {
         ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
         scheduler.schedule(() -> {
-            ArrayList<Story> stories = loadSpecific(storiesFileName, new TypeToken<ArrayList<Story>>() {}.getType());
+            fileName=storiesFileName;
+            ArrayList<Content> stories = load( new TypeToken<ArrayList<Content>>() {}.getType());
             if (stories.removeIf(s -> s.getContentId().equals(story.getContentId()))) {
-                saveSpecific(stories, storiesFileName);
+                save(stories);
                 System.out.println("Removed Story: " + story.getContentId());
             }
         }, delayInHours, TimeUnit.HOURS);
         scheduler.shutdown();
     }
-//اضطريت اعمل لود وسيف مختلفين عن بتوع السوبر كلاس 
-    private <T> ArrayList<T> loadSpecific(String fileName, Type type) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            ArrayList<T> list = gson.fromJson(reader, type);
-            return (list == null) ? new ArrayList<>() : list;
-        } catch (IOException e) {
-            System.out.println("File not found: " + fileName);
-            return new ArrayList<>();
-        }
-    }
 
-    private <T> void saveSpecific(ArrayList<T> list, String fileName) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-            gson.toJson(list, writer);
-        } catch (IOException e) {
-            System.out.println("Error saving to file: " + fileName);
-        }
-    }
 }
