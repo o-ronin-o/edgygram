@@ -12,7 +12,7 @@ public class User {
     private String status;
     private ArrayList<User> friends;
 
-    public User(String id, String username, String password, String email, LocalDate dateOfBirth, String status) {
+    public User(String id, String username, String password, String email, String dateOfBirth, String status) {
         this.id = id;
         this.username = username;
         this.password = password;
