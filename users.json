@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "username": "Alice",
+    "password": "password123",
+    "email": "alice@example.com",
+    "dateOfBirth": "1995-01-10",
+    "status": "Active",
+    "profilePicture": "defaultProfile.jpeg",
+    "coverPicture": "defaultCover.jpeg"
+  },
+  {
+    "id": "2",
+    "username": "Bob",
+    "password": "password123",
+    "email": "bob@example.com",
+    "dateOfBirth": "1996-02-15",
+    "status": "Active",
+    "profilePicture": "defaultProfile.jpeg",
+    "coverPicture": "defaultCover.jpeg"
+  },
+  {
+    "id": "3",
+    "username": "Charlie",
+    "password": "password123",
+    "email": "charlie@example.com",
+    "dateOfBirth": "1997-03-20",
+    "status": "Active",
+    "profilePicture": "defaultProfile.jpeg",
+    "coverPicture": "defaultCover.jpeg"
+  },
+  {
+    "id": "4",
+    "username": "David",
+    "password": "password123",
+    "email": "david@example.com",
+    "dateOfBirth": "1998-04-25",
+    "status": "Active",
+    "profilePicture": "defaultProfile.jpeg",
+    "coverPicture": "defaultCover.jpeg"
+  }
+]
