@@ -17,7 +17,7 @@ public abstract class Content {
         this.contentId = contentId;
         this.authorId = authorId;
         this.content = content;
-        this.timeStamp = timeStamp.format(formatter);
+        this.timeStamp = timeStamp.format(DateTimeFormatter.ISO_DATE_TIME);
         this.picPath = picPath;
     }
 
