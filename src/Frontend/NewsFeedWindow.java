@@ -1,67 +1,92 @@
 package Frontend;
-import Backend.*;
+
 import javax.swing.*;
 import java.awt.*;
-import java.time.LocalDateTime;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class NewsFeedWindow extends JFrame {
 
     private JPanel Container;
-    private JButton Search;
     private JButton refreshButton;
     private JTextField WriteAPost;
     private JLabel Posts;
     private JLabel Stories;
-    private JLabel Friends_Suggestions;
-    private JScrollPane lolPane;
+    private JScrollPane Friends;
     private JScrollPane postScrollPane;
+    private JScrollPane FriendsSuggestions;
+    private JButton LogOut;
+    private JButton Profile;
+    private JTextField SearchTextField;
     private JList<String> FriendsList; // Declare JList for friends
-    private JScrollPane friendsScrollPane;
-    private JPanel friendsPanel;
     private JList<String> postList;
+    private JList<String>  FriendsSuggestionsList;
 
     public NewsFeedWindow(){
 
-
-          Content c = new Post("meme","momo"," mama mama mamamamamamamamamamamama",LocalDateTime.now(),"baba","post");
-          setTitle("News Feed");
-          setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-          setSize(700,700);
-          setVisible(true);
-          setContentPane(Container);
-          ImageIcon img1=new ImageIcon("C:\\Users\\Hazem\\Desktop\\Edgygram\\Zamalek_SC_logo.svg.png");
-          Image ScaledImage1 =img1.getImage().getScaledInstance(200,300,Image.SCALE_SMOOTH);
-          //Posts.setIcon(new ImageIcon(ScaledImage1));
-          //Posts.setText("ay haga");
+        //  Content c = new Post("meme","momo"," mama mama mamamamamamamamamamamama",LocalDateTime.now(),"baba","post");
 
           ImageIcon img2=new ImageIcon("C:\\Users\\Hazem\\Desktop\\Edgygram\\Zamalek_SC_logo.svg.png");
           Image ScaledImage2 =img2.getImage().getScaledInstance(100,200,Image.SCALE_SMOOTH);
           Stories.setIcon(new ImageIcon(ScaledImage2));
           Stories.setText("Zamalek");
 
+          // Implementation of friends
         String[] friendsData = {"Friend 1", "Friend 2", "Friend 3", "Friend 4", "Friend 5"};
         FriendsList = new JList<>(friendsData);
-        String[] content = {c.getPostString(c.getTimeStamp(),c.getContent())};
-        postList = new JList<>(content);
-        // Wrap JList in JScrollPane
-        postScrollPane.setViewportView(postList);
-        System.out.println(c.getPostString(c.getTimeStamp(),c.getContent()));
-        // Set the JList as the viewport view of the JScrollPane (lolPane)
-        lolPane.setViewportView(FriendsList);
+        Friends.setViewportView(FriendsList);
+        Friends.revalidate();
+        Friends.repaint();
 
-        // Revalidate and repaint the container to ensure changes are visible
-        lolPane.revalidate();
-        lolPane.repaint();
-//        friendsScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-//        friendsScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-//        friendsScrollPane.setPreferredSize(new Dimension(200, 300));
+        // Implementation of friends Sugguestions
+        String[] FriendsSuggestionsData = {"friend 1","friend 2","friend 3"};
+        FriendsSuggestionsList = new JList<>(FriendsSuggestionsData);
+        FriendsSuggestions.setViewportView(FriendsSuggestionsList);
+        FriendsSuggestions.revalidate();
+        FriendsSuggestions.repaint();
 
-        // Add the JScrollPane containing JList to the Container panel
+        //   String[] content = {c.getPostString(c.getTimeStamp(),c.getContent())};
+        //   postList = new JList<>(content);
+        //   Wrap JList in JScrollPane
+        //   postScrollPane.setViewportView(postList);
+        //   System.out.println(c.getPostString(c.getTimeStamp(),c.getContent()));
+        //   Set the JList as the viewport view of the JScrollPane (FriendsPane)
 
+        // refresh button action
+        refreshButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        // profile button action
+        Profile.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        // logout button action
+        LogOut.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+    }
+    public void display()
+    {
+        setTitle("News Feed");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800,800);
+        setContentPane(Container);
         setVisible(true);
     }
 
     public static void main(String[] args) {
-        new NewsFeedWindow();
+      NewsFeedWindow n=new NewsFeedWindow();
+      n.display();
     }
 }
