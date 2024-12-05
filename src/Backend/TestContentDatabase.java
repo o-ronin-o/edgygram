@@ -9,6 +9,7 @@ public class TestContentDatabase {
     public static String generateID() {
         return "CID-" + counter.incrementAndGet();
     }
+
     public static void main(String[] args) {
 
 //        // Create a ContentDatabase instance
@@ -50,4 +51,9 @@ public class TestContentDatabase {
 //    }
 
 
+<<<<<<< HEAD
+    }
+}
+=======
       }}
+>>>>>>> main
