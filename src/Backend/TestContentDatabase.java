@@ -49,5 +49,5 @@ public class TestContentDatabase {
 //        contentDatabase.getAll().forEach(content -> System.out.println(content.getContent()));
 //    }
 
-            }
-      }
+
+      }}

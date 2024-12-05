@@ -1,7 +1,9 @@
 package Backend;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class User {
     private String id;
@@ -12,8 +14,9 @@ public class User {
     private String status;
     private String profilePicture;
     private String coverPicture;
+    private static final AtomicInteger counter = new AtomicInteger(0);
 
-    public User(String id, String username, String password, String email, LocalDate dateOfBirth, String status) {
+    public User(String id, String username, String password, String email, LocalDate dateOfBirth, String status, String profilePicture, String CoverPicture) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -59,6 +62,18 @@ public class User {
     public String getId() {
         return id;
     }
+    public String getprofilePicture() {
+        return profilePicture;
+    }
+    public String getCoverPicture() {
+        return CoverPicture;
+    }
+    public void setCoverPicture(String coverPicture) {
+        CoverPicture = coverPicture;
+    }
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
 
     public String getCoverPicture() {
         return coverPicture;
@@ -68,11 +83,11 @@ public class User {
         this.coverPicture = coverPicture;
     }
 
-    public String getProfilePicture() {
-        return profilePicture;
+    public static String generateID() {
+        return "CID-" + counter.incrementAndGet();
     }
-
-    public void setProfilePicture(String profilePicture) {
-        this.profilePicture = profilePicture;
+    public Content makePost(String username,String text, String picPath){
+       Content cc = new Post(generateID(),getId(),text, LocalDateTime.now(),picPath,"post");
+        return cc;
     }
 }
