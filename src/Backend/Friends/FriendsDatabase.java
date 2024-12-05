@@ -44,12 +44,11 @@ public class FriendsDatabase extends Database<HashMap<String,FriendData>> {
         return loadHashMap(new TypeToken<HashMap<String, FriendData>>() {}.getType());
     }
     public void saveAll(HashMap<String, FriendData> data) {
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-            gson.toJson(data, writer);
-            writer.close();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            gson.toJson(data, writer); // Save the entire map
+            writer.flush(); // Ensure all data is written
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Failed to save friends data.", e);
         }
     }
 }

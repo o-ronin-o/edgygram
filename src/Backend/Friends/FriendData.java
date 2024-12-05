@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class FriendData {
     private ArrayList<String> friends;
     private ArrayList<String> blockedUsers;
-    private ArrayList<FriendRequest> PendingRequests;
+    private ArrayList<FriendRequest> pendingRequests;
 
     public FriendData() {
         friends = new ArrayList<>();
         blockedUsers = new ArrayList<>();
-        PendingRequests = new ArrayList<>();
+        pendingRequests = new ArrayList<>();
     }
 
     public ArrayList<String> getFriends() {
@@ -30,10 +30,10 @@ public class FriendData {
     }
 
     public ArrayList<FriendRequest> getPendingRequests() {
-        return PendingRequests;
+        return pendingRequests;
     }
 
     public void setPendingRequests(ArrayList<FriendRequest> pendingRequests) {
-        PendingRequests = pendingRequests;
+        this.pendingRequests = pendingRequests;
     }
 }

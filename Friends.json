@@ -1,0 +1,36 @@
+{
+  "1": {
+    "friends": [
+      "2"
+    ],
+    "blockedUsers": [],
+    "pendingRequests": []
+  },
+  "2": {
+    "friends": [
+      "3",
+      "1"
+    ],
+    "blockedUsers": [],
+    "pendingRequests": []
+  },
+  "3": {
+    "friends": [
+      "2"
+    ],
+    "blockedUsers": [
+      "4"
+    ],
+    "pendingRequests": []
+  },
+  "4": {
+    "friends": [],
+    "blockedUsers": [],
+    "pendingRequests": [
+      {
+        "SenderId": "2",
+        "ReceiverId": "4"
+      }
+    ]
+  }
+}

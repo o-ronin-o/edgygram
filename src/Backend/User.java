@@ -1,7 +1,9 @@
 package Backend;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class User {
     private String id;
@@ -10,16 +12,19 @@ public class User {
     private String email;
     private String dateOfBirth;
     private String status;
-    private ArrayList<User> friends;
+    private String profilePicture;
+    private String coverPicture;
+    private static final AtomicInteger counter = new AtomicInteger(0);
 
-    public User(String id, String username, String password, String email, LocalDate dateOfBirth, String status) {
+    public User(String id, String username, String password, String email, LocalDate dateOfBirth, String status, String profilePicture, String CoverPicture) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.dateOfBirth = String.valueOf(dateOfBirth);
         this.status = status;
-        this.friends = new ArrayList<>();
+        profilePicture = "defaultProfile.jpeg";
+        coverPicture = "defaultCover.jpeg";
     }
 
     public String getUsername() {
@@ -54,23 +59,35 @@ public class User {
         this.status = status;
     }
 
-    public ArrayList<User> getFriends() {
-        return friends;
-    }
-
     public String getId() {
         return id;
     }
-
-    public void addFriend(User user) {
-        friends.add(user);
+    public String getprofilePicture() {
+        return profilePicture;
     }
-    public void removeFriend(User user) {
-        for (User friend : friends) {
-            if (friend.getId().equals(user.getId())) {
-                friends.remove(friend);
-                return;
-            }
-        }
+    public String getCoverPicture() {
+        return CoverPicture;
+    }
+    public void setCoverPicture(String coverPicture) {
+        CoverPicture = coverPicture;
+    }
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
+    public String getCoverPicture() {
+        return coverPicture;
+    }
+
+    public void setCoverPicture(String coverPicture) {
+        this.coverPicture = coverPicture;
+    }
+
+    public static String generateID() {
+        return "CID-" + counter.incrementAndGet();
+    }
+    public Content makePost(String username,String text, String picPath){
+       Content cc = new Post(generateID(),getId(),text, LocalDateTime.now(),picPath,"post");
+        return cc;
     }
 }
