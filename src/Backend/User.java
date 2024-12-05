@@ -1,10 +1,8 @@
 package Backend;
 
-<<<<<<< Updated upstream
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-=======
->>>>>>> Stashed changes
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -19,11 +17,7 @@ public class User {
     private String coverPicture;
     private static final AtomicInteger counter = new AtomicInteger(0);
 
-<<<<<<< Updated upstream
     public User(String id, String username, String password, String email, LocalDate dateOfBirth, String status, String profilePicture, String CoverPicture) {
-=======
-    public User() {
->>>>>>> Stashed changes
         this.id = id;
         this.username = username;
         this.password = password;
