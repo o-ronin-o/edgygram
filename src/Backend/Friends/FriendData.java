@@ -36,4 +36,8 @@ public class FriendData {
     public void setPendingRequests(ArrayList<FriendRequest> pendingRequests) {
         this.pendingRequests = pendingRequests;
     }
+
+    public String getName() {
+        return null;
+    }
 }
