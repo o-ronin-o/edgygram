@@ -13,8 +13,7 @@ public class User {
     private String dateOfBirth;
     private String status;
     private String profilePicture;
-    private String CoverPicture;
-    private ArrayList<User> friends;
+    private String coverPicture;
     private static final AtomicInteger counter = new AtomicInteger(0);
 
     public User(String id, String username, String password, String email, LocalDate dateOfBirth, String status, String profilePicture, String CoverPicture) {
@@ -24,9 +23,8 @@ public class User {
         this.email = email;
         this.dateOfBirth = String.valueOf(dateOfBirth);
         this.status = status;
-        this.profilePicture = profilePicture;
-        this.CoverPicture = CoverPicture;
-        this.friends = new ArrayList<>();
+        profilePicture = "defaultProfile.jpeg";
+        coverPicture = "defaultCover.jpeg";
     }
 
     public String getUsername() {
@@ -61,10 +59,6 @@ public class User {
         this.status = status;
     }
 
-    public ArrayList<User> getFriends() {
-        return friends;
-    }
-
     public String getId() {
         return id;
     }
@@ -81,17 +75,12 @@ public class User {
         this.profilePicture = profilePicture;
     }
 
-    public void addFriend(User user) {
-        friends.add(user);
+    public String getCoverPicture() {
+        return coverPicture;
     }
 
-    public void removeFriend(User user) {
-        for (User friend : friends) {
-            if (friend.getId().equals(user.getId())) {
-                friends.remove(friend);
-                return;
-            }
-        }
+    public void setCoverPicture(String coverPicture) {
+        this.coverPicture = coverPicture;
     }
 
     public static String generateID() {
