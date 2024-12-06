@@ -5,6 +5,8 @@ import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -19,8 +21,7 @@ public class ProfileWindow extends JFrame {
     private JTextArea posts;
     private JScrollPane postScrollPane;
     private JList postList;
-    ProfileWindow() {
-
+    ProfileWindow(User user) {
         //setting up the databases
         JDateChooser dateChooser = new JDateChooser();
         dateChooser.setDateFormatString("yyyy-MM-dd");
@@ -36,37 +37,58 @@ public class ProfileWindow extends JFrame {
         panel1.setForeground(Color.white);
         setVisible(true);
         setContentPane(panel1);
-        ImageIcon img = new ImageIcon("\\Downloads\\download.jpg");
-        Image scaledImage = img.getImage().getScaledInstance(100, 200, Image.SCALE_SMOOTH);
-
+        revalidate();
+        repaint();
 
         //setting up the profile photo
-        profilePhoto.setIcon(new ImageIcon(scaledImage));
-        profilePhoto.setText("wawa");
+        if (user.getprofilePicture() != null && !user.getprofilePicture().isEmpty()) {
+            ImageIcon img = new ImageIcon(user.getprofilePicture());
+            System.out.println(user.getprofilePicture());
+            System.out.println(user.getBio());
+
+            Image scaledImage = img.getImage().getScaledInstance(100, 200, Image.SCALE_SMOOTH);
+            profilePhoto.setIcon(new ImageIcon(scaledImage));
+        }
+        else{
+            System.out.println("not found");
+        }
+        profilePhoto.setText(user.getUsername());
         setForeground(Color.WHITE);
-
-
         profilePhoto.setHorizontalAlignment(SwingConstants.LEFT);
         profilePhoto.setVerticalAlignment(SwingConstants.TOP);
-
+        profilePhoto.setBorder(new RoundedBorder(20));
+        revalidate();
+        repaint();
         //setting up cover photo
-        ImageIcon ProfileImg = new ImageIcon("\\Downloads\\cat.jpg");
+        ImageIcon ProfileImg = new ImageIcon(user.getCoverPicture());
         Image scaledImage2 = ProfileImg.getImage().getScaledInstance(1000, 200, Image.SCALE_SMOOTH);
         coverPhoto.setIcon(new ImageIcon(scaledImage2));
-
+        revalidate();
+        repaint();
         //setting up the Bio
-        bio.setText("Threesome? No thanks… If I wanted to disappoint two people in the same room, I’d have dinner with my parents.");
+        System.out.println(user.getBio());
+        System.out.println("User bio: " + user.getBio());
+        if (user.getBio() == null || user.getBio().isEmpty()) {
+            System.out.println("Bio is empty or null!");
+        } else {
+            bio.setText(user.getBio());
+        }
+
+        bio.setText(user.getBio());
         bio.setEditable(false);
         bio.setLineWrap(true);
         bio.setWrapStyleWord(true);
         bio.setBackground(Color.decode("#24292e"));
         bio.setForeground(Color.white);
-
+        revalidate();
+        repaint();
         //setting up the button
         editProfile.setBackground(Color.decode("#2b3137"));
         editProfile.setForeground(Color.white);
         editProfile.setText("Edit Profile");
         editProfile.setBorder(new RoundedBorder(20));
+        revalidate();
+        repaint();
         //setting up the Posts thread
         Content c = new Post("meme","momo"," mama mama mamamamamamamamamamamama", LocalDateTime.now(),"baba","post");
 
@@ -74,16 +96,20 @@ public class ProfileWindow extends JFrame {
         JPanel postPanel = new JPanel();
         postPanel.setBackground(Color.decode("#24292e"));
         postPanel.setLayout(new BoxLayout(postPanel, BoxLayout.Y_AXIS));
-        addPost(postPanel,c.getPostString(c.getTimeStamp(),c.getContent()),"\\Downloads\\cat.jpg");
-        addPost(postPanel,c.getPostString(c.getTimeStamp(),c.getContent()),"\\Downloads\\cat.jpg");
-        addPost(postPanel,c.getPostString(c.getTimeStamp(),c.getContent()),"\\Downloads\\cat.jpg");
+        for(Content post : content.getAll()){
+            if(post instanceof Post){
+                addPost(postPanel, user.getUsername()+post.getPostString(post.getTimeStamp(),post.getContent()),post.getPicPath());
+            }
+        }
 
         postScrollPane.setViewportView(postPanel);
         postScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         postScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         postScrollPane.setBackground(Color.decode("#24292e"));
-
-
+        postPanel.setBorder(new RoundedBorder(20));
+        postScrollPane.setBorder(new RoundedBorder(20));
+        revalidate();
+        repaint();
         // {c.getPostString(c.getTimeStamp(),c.getContent())};
 //        ArrayList<String> content = new ArrayList<>();
 //        content.add(c.getPostString(c.getTimeStamp(),c.getContent()));
@@ -97,7 +123,13 @@ public class ProfileWindow extends JFrame {
 //        postScrollPane.repaint();
 
 
-         }
+        editProfile.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new EditProfileWindow(user);
+            }
+        });
+    }
          public void addPost(JPanel postPanel, String text , String imagePath){
                 // a jpanel for each post
                 JPanel singlePostPanel = new JPanel();
@@ -128,7 +160,8 @@ public class ProfileWindow extends JFrame {
              postPanel.add(singlePostPanel);
     }
     public static void main(String[] args) {
-        new ProfileWindow();
+//        User u = new User("omk", "omk", "ommmk", "ommmk@gmail.com", "06/10/2024", "offline", "D:\\Downloads\\cat.jpg", "D:\\Downloads\\cat.jpg","debug");
+//        new ProfileWindow(u);
     }
 }
 

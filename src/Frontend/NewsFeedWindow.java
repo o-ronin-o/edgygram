@@ -65,11 +65,11 @@ public class NewsFeedWindow extends JFrame {
         });
 
         // logout button action
-        User u= new User();
+        //User u= new User();
         LogOut.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                 u.setStatus("Offline");
+                // u.setStatus("Offline");
                 JOptionPane.showMessageDialog(null, "You have been logged out!");
                 System.exit(0);
             }

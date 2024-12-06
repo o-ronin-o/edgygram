@@ -1,10 +1,11 @@
 package Frontend;
 
+import Backend.Database;
+import Backend.User;
+import Backend.UserDatabase;
 import Backend.login;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -17,6 +18,7 @@ public class LoginWindow extends JFrame {
     private JPasswordField passwordField;
 
     public LoginWindow(){
+
         setVisible(true);
         setContentPane(loginpanel);
         setTitle("Login");
@@ -38,7 +40,10 @@ public class LoginWindow extends JFrame {
                 throw new RuntimeException(ex);
             }
             if(l.checkEmailandPassword(Usertext.getText(), pass, Usertext.getText())){
-                setVisible(false);
+                new ProfileWindow(l.getUser(Usertext.getText()));
+                dispose();
+
+
             }
             else {
                 JOptionPane.showMessageDialog(loginpanel,"Invalid login credentials");
@@ -57,6 +62,5 @@ public class LoginWindow extends JFrame {
         LoginWindow l=new LoginWindow();
     }
 }
-
-
+//مظبوط
 
