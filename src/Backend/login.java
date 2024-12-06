@@ -42,4 +42,27 @@ public class login {
         }
         return false;
     }
+    public User getUser(String useremail){
+        FileReader f= null;
+        try{
+            f = new FileReader("users.json");
+            Type loginlists=new TypeToken<ArrayList<User>>(){}.getType();
+            List<User> list= new ArrayList<>(gson.fromJson(f,loginlists));
+            for(int i=0;i<list.size();i++){
+                if(  useremail.equals(list.get(i).getEmail())||useremail.equals(list.get(i).getUsername())) {
+                    list.get(i).setStatus("Online");
+                    User user=list.get(i);
+                    System.out.println("username: "+ user.getUsername());
+                    return user;
+                }
+            }
+            f.close();
+
+        }catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
 }

@@ -38,5 +38,25 @@
     "status": "Active",
     "profilePicture": "defaultProfile.jpeg",
     "coverPicture": "defaultCover.jpeg"
+  },
+  {
+    "id": "962284186",
+    "username": "ronin",
+    "password": "44e126af785edb5e890888f64e29ac666e3db2f3e7b3b7384ae3264e96f1ff82",
+    "email": "omarelkatan@gmail.com",
+    "dateOfBirth": "06/10/2003",
+    "status": "offline",
+    "coverPicture": "defaultCover.jpeg"
+  },
+  {
+    "id": "168944730",
+    "username": "toxicmvher",
+    "password": "24a9c3d2380ff2561e8fc0c0a3ca23e24b9fa8a310d6187b9ee1f45fb53fe6cc",
+    "email": "yomama@gmail.com",
+    "bio": "bugger",
+    "dateOfBirth": "06/10/2024",
+    "status": "Online",
+    "profilePicture": "C:\\Users\\FAZAIRI\\OneDrive\\Desktop\\الجدول.jpeg",
+    "coverPicture": "D:\\Downloads\\cat.jpg"
   }
 ]
