@@ -19,14 +19,18 @@ public class FriendsDatabase extends Database<HashMap<String,FriendData>> {
     }
 
     @Override
-    public void remove(HashMap<String, FriendData> item) {
-
-    }
+    public void remove(HashMap<String, FriendData> item) {}
 
     @Override
     public ArrayList<HashMap<String, FriendData>> getAll() {
         return null;
     }
+
+    @Override
+    public HashMap<String, FriendData> getById(String id) {
+        return null;
+    }
+
     public HashMap<String, FriendData> loadHashMap(Type type) {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             File file = new File(fileName);
@@ -46,7 +50,7 @@ public class FriendsDatabase extends Database<HashMap<String,FriendData>> {
     public void saveAll(HashMap<String, FriendData> data) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             gson.toJson(data, writer); // Save the entire map
-            writer.flush(); // Ensure all data is written
+            writer.flush(); //make sure all data is written
         } catch (IOException e) {
             throw new RuntimeException("Failed to save friends data.", e);
         }

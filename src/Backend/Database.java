@@ -53,4 +53,7 @@ public abstract class Database<T>{
         return load(new TypeToken<ArrayList<Story>>() {}.getType());
     }
 
+
+    public abstract T getById(String id);
+
 }

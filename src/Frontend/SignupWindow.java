@@ -111,8 +111,18 @@ public class SignupWindow extends JFrame {
                     throw new RuntimeException(ex);
                 }
 
-                User u = new User(UID, UsernameField.getText(), pass, emailField.getText(), Dob, "offline", "D:\\Downloads\\cat.jpg", "D:\\Downloads\\cat.jpg","debug");
-
+                //User u = new User(UID, UsernameField.getText(), pass, emailField.getText(), Dob, "offline", "D:\\Downloads\\cat.jpg", "D:\\Downloads\\cat.jpg","debug");
+                User u= new User.UserBuilder()
+                        .Id(UID)
+                        .username(UsernameField.getText())
+                        .password(pass)
+                        .email(emailField.getText())
+                        .dateOfBirth(Dob)
+                        .status("offline")
+                        .profilePicture("defaultProfile.jpeg")
+                        .coverPicture("defaultCover.jpeg")
+                        .bio("")
+                        .build();
                 if (UDB.add(u)) {
 
                     LoginWindow lW = new LoginWindow();
