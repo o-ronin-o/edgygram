@@ -34,6 +34,7 @@ public class NewsFeedWindow extends JFrame {
     private JList<JPanel> friendsList;
     private JList<String> postList;
     private JList<String>  FriendsSuggestionsList;
+
     private static final AtomicInteger counter = new AtomicInteger(0);
 
     public NewsFeedWindow(User user){
@@ -42,9 +43,11 @@ public class NewsFeedWindow extends JFrame {
 //          Image ScaledImage2 =img2.getImage().getScaledInstance(100,200,Image.SCALE_SMOOTH);
 //          Stories.setIcon(new ImageIcon(ScaledImage2));
 //          Stories.setText("Zamalek");
-        Database<Content> content = new ContentDatabase();
-        ArrayList<Content> posts = content.getAllPosts();
-        ArrayList<Content> stories = content.getAllStories();
+        Database<User> userDatabase = new UserDatabase();
+        FriendsManagement friendsManagement = new FriendsManagement(userDatabase, new FriendsDatabase());
+        Database<Content> contentDatabase = new ContentDatabase();
+        ArrayList<Content> posts = friendsManagement.getFriendsPosts(user);
+        ArrayList<Content> stories = friendsManagement.getFriendsStories(user);
         setContentPane(Container);
         setTitle("NewsFeed");
         setVisible(true);
@@ -53,7 +56,7 @@ public class NewsFeedWindow extends JFrame {
         pack();
         Container.setBackground(Color.decode("#24292e"));
         // Implementation of friends
-        FriendsManagement friendsManagement = new FriendsManagement(new UserDatabase(), new FriendsDatabase());
+
         ArrayList<User> friend = friendsManagement.getFriends(user);
         ArrayList<String> friendsData = friendsManagement.displayList(friend);
         //create list of panels
@@ -70,13 +73,16 @@ public class NewsFeedWindow extends JFrame {
         Friends.setViewportView(friendsList);
         Friends.revalidate();
         Friends.repaint();
+
+
         //setting up the posts scrollpane
         JPanel postPanel = new JPanel();
         postPanel.setBackground(Color.decode("#24292e"));
         postPanel.setLayout(new BoxLayout(postPanel, BoxLayout.Y_AXIS));
         for(Content post : posts){
             if(post instanceof Post){
-                addPost(postPanel, user.getUsername()+" "+post.getPostString(post.getTimeStamp(),post.getContent()),post.getPicPath());
+                User author =userDatabase.getById(post.getAuthorId());
+                addPost(postPanel, author.getUsername()+" "+post.getPostString(post.getTimeStamp(),post.getContent()),post.getPicPath());
             }
         }
 
@@ -95,7 +101,8 @@ public class NewsFeedWindow extends JFrame {
         StoryPanel.setLayout(new BoxLayout(StoryPanel, BoxLayout.X_AXIS));
         for(Content story : stories){
             if(story instanceof Story){
-                addStory(StoryPanel, user.getUsername()+story.getStoryString(story.getContent()),story.getPicPath());
+                User author =userDatabase.getById(story.getAuthorId());
+                addStory(StoryPanel, author.getUsername()+" "+story.getStoryString(story.getContent()),story.getPicPath());
             }
         }
 
@@ -187,32 +194,11 @@ public class NewsFeedWindow extends JFrame {
         });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // Implementation of friends Sugguestions
-//        String[] FriendsSuggestionsData = {"friend 1","friend 2","friend 3"};
-//        FriendsSuggestionsList = new JList<>(FriendsSuggestionsData);
-//        FriendsSuggestions.setViewportView(FriendsSuggestionsList);
-//        FriendsSuggestions.revalidate();
-//        FriendsSuggestions.repaint();
-
         refreshButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                refreshFriendsList();
+                new NewsFeedWindow(user);
+                dispose();
             }
         });
 
@@ -220,7 +206,7 @@ public class NewsFeedWindow extends JFrame {
         Profile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new ProfileWindow(user);
             }
         });
 
@@ -228,9 +214,17 @@ public class NewsFeedWindow extends JFrame {
         LogOut.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                user.setStatus("Offline");
-                JOptionPane.showMessageDialog(null, "You have been logged out!");
-                System.exit(0);
+                JOptionPane.showMessageDialog(NewsFeedWindow.this,"Logging Out");
+                user.setStatus("offline");
+            ArrayList<User> users= userDatabase.getAll();
+        for (User userr : users) {
+                if (userr.getId().equals(user.getId())) {
+                    userr.setStatus(user.getStatus());
+                    break;
+                }
+            }
+        userDatabase.save(users);
+        System.exit(1);
             }
         });
         manageFriendsButton.addActionListener(new ActionListener() {

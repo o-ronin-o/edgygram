@@ -8,14 +8,14 @@
   },
   {
     "contentId": "CID-2",
-    "authorId": "user456",
+    "authorId": "2",
     "content": "Another Story with a different content. This one has a different flavor.",
     "timeStamp": "2024-12-05T14:30:00",
     "picPath": "D:\\Downloads\\cat.jpg"
   },
   {
     "contentId": "CID-3",
-    "authorId": "user789",
+    "authorId": "2",
     "content": "Here’s a Story about a thrilling tale about the adventures of a brave knight.",
     "timeStamp": "2024-12-06T09:45:00",
     "picPath": "D:\\Downloads\\cat.jpg"
