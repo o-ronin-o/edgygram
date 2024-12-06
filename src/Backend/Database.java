@@ -43,4 +43,5 @@ public abstract class Database<T>{
     public abstract boolean add(T item);
     public abstract void remove(T item);
     public abstract ArrayList<T> getAll();
+    public abstract T getById(String id);
 }

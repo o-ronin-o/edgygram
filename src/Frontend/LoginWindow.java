@@ -40,7 +40,9 @@ public class LoginWindow extends JFrame {
                 throw new RuntimeException(ex);
             }
             if(l.checkEmailandPassword(Usertext.getText(), pass, Usertext.getText())){
-                new ProfileWindow(l.getUser(Usertext.getText()));
+               User user= l.getUser(Usertext.getText());
+               l.updateStatus(user,1);
+                new ProfileWindow(user);
                 dispose();
 
 

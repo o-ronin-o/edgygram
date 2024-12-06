@@ -1,21 +1,22 @@
 package Backend.Friends;
 
-import Backend.User;
-import Backend.UserDatabase;
+import Backend.*;
 import Backend.Friends.FriendRequestManagement;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FriendsManagement {
-    private UserDatabase userDatabase;
+    private Database<User> userDatabase;
     private FriendsDatabase friendsDatabase;
+    private Database<Content> contentDatabase;
     private HashMap<String,FriendData> friendsMap;
 
-    public FriendsManagement(UserDatabase userDatabase, FriendsDatabase friendsDatabase) {
+    public FriendsManagement(Database<User> userDatabase, FriendsDatabase friendsDatabase) {
         this.userDatabase = userDatabase;
         this.friendsDatabase = friendsDatabase;
         friendsMap = friendsDatabase.loadFriendData();
+        contentDatabase= new ContentDatabase();
     }
 
     public ArrayList<User> suggestFriends(User user){
@@ -140,4 +141,43 @@ public class FriendsManagement {
         return friendsList;
     }
 
+    public ArrayList<Content> getFriendsPosts(User user){
+        ArrayList<User> friends=getFriends(user);
+        if (friends.isEmpty())  // if user Has no friends
+            return new ArrayList<>();
+            ArrayList<String> friendsId=new ArrayList<>();
+        //get friends ids
+        for(User userFriend:friends){
+            friendsId.add(userFriend.getId());
+        }
+        ContentDatabase database=(ContentDatabase) contentDatabase;
+        ArrayList<Content> allPosts= database.getAllPosts();
+        ArrayList<Content> friendsPosts=new ArrayList();
+        //iterate over all posts if the author id is in the list of friends id add post
+        for(Content post:allPosts){
+            if(friendsId.contains(post.getAuthorId()))
+                friendsPosts.add(post);
+        }
+        return friendsPosts;
+    }
+
+    public ArrayList<Content> getFriendsStories(User user ){
+        ArrayList<User> friends=getFriends(user);
+        if (friends.isEmpty())  // if user Has no friends
+            return new ArrayList<>();
+        ArrayList<String> friendsId=new ArrayList<>();
+        //get friends ids
+        for(User userFriend:friends){
+            friendsId.add(userFriend.getId());
+        }
+        ContentDatabase database=(ContentDatabase) contentDatabase;
+        ArrayList<Content> allStories= database.getAllStories();
+        ArrayList<Content> friendsStories=new ArrayList();
+        //iterate over all posts if the author id is in the list of friends id add post
+        for(Content storie:allStories){
+            if(friendsId.contains(storie.getAuthorId()))
+                friendsStories.add(storie);
+        }
+        return friendsStories;
+    }
 }
