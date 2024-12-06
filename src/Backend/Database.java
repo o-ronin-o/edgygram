@@ -53,6 +53,14 @@ public abstract class Database<T>{
         fileName= "Stories.json";
         return load(new TypeToken<ArrayList<Story>>() {}.getType());
     }
+    public void saveAllPosts(ArrayList<T> list){
+        fileName = "Posts.json";
+        save(list);
+    }
+    public void saveAllStories(ArrayList<T> list){
+        fileName = "Stories.json";
+        save(list);
+    }
 
     public abstract T getById(String id);
 }
