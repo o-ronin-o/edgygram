@@ -17,7 +17,7 @@ public class User {
     private String coverPicture;
     private static final AtomicInteger counter = new AtomicInteger(0);
 
-    public User(String id, String username, String password, String email, LocalDate dateOfBirth, String status, String profilePicture, String CoverPicture) {
+    public User(String id, String username, String password, String email, LocalDate dateOfBirth, String status) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -65,12 +65,6 @@ public class User {
     }
     public String getprofilePicture() {
         return profilePicture;
-    }
-    public String getCoverPicture() {
-        return CoverPicture;
-    }
-    public void setCoverPicture(String coverPicture) {
-        CoverPicture = coverPicture;
     }
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;

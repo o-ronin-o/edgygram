@@ -5,7 +5,7 @@
     "password": "password123",
     "email": "alice@example.com",
     "dateOfBirth": "1995-01-10",
-    "status": "Active",
+    "status": "online",
     "profilePicture": "defaultProfile.jpeg",
     "coverPicture": "defaultCover.jpeg"
   },
@@ -15,7 +15,7 @@
     "password": "password123",
     "email": "bob@example.com",
     "dateOfBirth": "1996-02-15",
-    "status": "Active",
+    "status": "online",
     "profilePicture": "defaultProfile.jpeg",
     "coverPicture": "defaultCover.jpeg"
   },
@@ -25,7 +25,7 @@
     "password": "password123",
     "email": "charlie@example.com",
     "dateOfBirth": "1997-03-20",
-    "status": "Active",
+    "status": "offline",
     "profilePicture": "defaultProfile.jpeg",
     "coverPicture": "defaultCover.jpeg"
   },
@@ -35,7 +35,167 @@
     "password": "password123",
     "email": "david@example.com",
     "dateOfBirth": "1998-04-25",
-    "status": "Active",
+    "status": "offline",
+    "profilePicture": "defaultProfile.jpeg",
+    "coverPicture": "defaultCover.jpeg"
+  },
+  {
+    "id": "5",
+    "username": "Eve",
+    "password": "password123",
+    "email": "eve@example.com",
+    "dateOfBirth": "1995-05-05",
+    "status": "online",
+    "profilePicture": "defaultProfile.jpeg",
+    "coverPicture": "defaultCover.jpeg"
+  },
+  {
+    "id": "6",
+    "username": "Frank",
+    "password": "password123",
+    "email": "frank@example.com",
+    "dateOfBirth": "1996-06-10",
+    "status": "offline",
+    "profilePicture": "defaultProfile.jpeg",
+    "coverPicture": "defaultCover.jpeg"
+  },
+  {
+    "id": "7",
+    "username": "Grace",
+    "password": "password123",
+    "email": "grace@example.com",
+    "dateOfBirth": "1997-07-15",
+    "status": "online",
+    "profilePicture": "defaultProfile.jpeg",
+    "coverPicture": "defaultCover.jpeg"
+  },
+  {
+    "id": "8",
+    "username": "Hank",
+    "password": "password123",
+    "email": "hank@example.com",
+    "dateOfBirth": "1998-08-20",
+    "status": "online",
+    "profilePicture": "defaultProfile.jpeg",
+    "coverPicture": "defaultCover.jpeg"
+  },
+  {
+    "id": "9",
+    "username": "Ivy",
+    "password": "password123",
+    "email": "ivy@example.com",
+    "dateOfBirth": "1999-09-25",
+    "status": "offline",
+    "profilePicture": "defaultProfile.jpeg",
+    "coverPicture": "defaultCover.jpeg"
+  },
+  {
+    "id": "10",
+    "username": "Jack",
+    "password": "password123",
+    "email": "jack@example.com",
+    "dateOfBirth": "2000-10-30",
+    "status": "online",
+    "profilePicture": "defaultProfile.jpeg",
+    "coverPicture": "defaultCover.jpeg"
+  },
+  {
+    "id": "11",
+    "username": "Kim",
+    "password": "password123",
+    "email": "kim@example.com",
+    "dateOfBirth": "2001-11-15",
+    "status": "offline",
+    "profilePicture": "defaultProfile.jpeg",
+    "coverPicture": "defaultCover.jpeg"
+  },
+  {
+    "id": "12",
+    "username": "Leo",
+    "password": "password123",
+    "email": "leo@example.com",
+    "dateOfBirth": "1994-12-10",
+    "status": "online",
+    "profilePicture": "defaultProfile.jpeg",
+    "coverPicture": "defaultCover.jpeg"
+  },
+  {
+    "id": "13",
+    "username": "Mia",
+    "password": "password123",
+    "email": "mia@example.com",
+    "dateOfBirth": "1993-01-20",
+    "status": "online",
+    "profilePicture": "defaultProfile.jpeg",
+    "coverPicture": "defaultCover.jpeg"
+  },
+  {
+    "id": "14",
+    "username": "Nina",
+    "password": "password123",
+    "email": "nina@example.com",
+    "dateOfBirth": "1992-02-25",
+    "status": "offline",
+    "profilePicture": "defaultProfile.jpeg",
+    "coverPicture": "defaultCover.jpeg"
+  },
+  {
+    "id": "15",
+    "username": "Oscar",
+    "password": "password123",
+    "email": "oscar@example.com",
+    "dateOfBirth": "1991-03-30",
+    "status": "offline",
+    "profilePicture": "defaultProfile.jpeg",
+    "coverPicture": "defaultCover.jpeg"
+  },
+  {
+    "id": "16",
+    "username": "Pam",
+    "password": "password123",
+    "email": "pam@example.com",
+    "dateOfBirth": "1990-04-10",
+    "status": "online",
+    "profilePicture": "defaultProfile.jpeg",
+    "coverPicture": "defaultCover.jpeg"
+  },
+  {
+    "id": "17",
+    "username": "Quinn",
+    "password": "password123",
+    "email": "quinn@example.com",
+    "dateOfBirth": "1989-05-15",
+    "status": "online",
+    "profilePicture": "defaultProfile.jpeg",
+    "coverPicture": "defaultCover.jpeg"
+  },
+  {
+    "id": "18",
+    "username": "Rita",
+    "password": "password123",
+    "email": "rita@example.com",
+    "dateOfBirth": "1988-06-20",
+    "status": "offline",
+    "profilePicture": "defaultProfile.jpeg",
+    "coverPicture": "defaultCover.jpeg"
+  },
+  {
+    "id": "19",
+    "username": "Sam",
+    "password": "password123",
+    "email": "sam@example.com",
+    "dateOfBirth": "1987-07-25",
+    "status": "online",
+    "profilePicture": "defaultProfile.jpeg",
+    "coverPicture": "defaultCover.jpeg"
+  },
+  {
+    "id": "20",
+    "username": "Tina",
+    "password": "password123",
+    "email": "tina@example.com",
+    "dateOfBirth": "1986-08-30",
+    "status": "offline",
     "profilePicture": "defaultProfile.jpeg",
     "coverPicture": "defaultCover.jpeg"
   }
