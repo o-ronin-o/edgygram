@@ -3,8 +3,6 @@ package Frontend;
 import Backend.*;
 import Backend.Friends.FriendData;
 import Backend.Friends.FriendsDatabase;
-import Backend.Friends.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -26,39 +24,21 @@ public class NewsFeedWindow extends JFrame {
     private JButton LogOut;
     private JButton Profile;
     private JTextField SearchTextField;
-    private JButton manageFriendsButton;
-    private JList<JPanel> friendsList;
+    private JList<String> FriendsList;
     private JList<String> postList;
     private JList<String>  FriendsSuggestionsList;
 
-    public NewsFeedWindow(User user){
+    public NewsFeedWindow(){
 
 //          ImageIcon img2=new ImageIcon("C:\\Users\\Hazem\\Desktop\\Edgygram\\Zamalek_SC_logo.svg.png");
 //          Image ScaledImage2 =img2.getImage().getScaledInstance(100,200,Image.SCALE_SMOOTH);
 //          Stories.setIcon(new ImageIcon(ScaledImage2));
 //          Stories.setText("Zamalek");
-        setContentPane(Container);
-        setTitle("NewsFeed");
-        setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800,600);
-        pack();
+
           // Implementation of friends
-        FriendsManagement friendsManagement = new FriendsManagement(new UserDatabase(), new FriendsDatabase());
-        ArrayList<User> friend = friendsManagement.getFriends(user);
-        ArrayList<String> friendsData = friendsManagement.displayList(friend);
-            //create list of panels
-        DefaultListModel<JPanel> friendsListModel = new DefaultListModel<>();
-        for(String data : friendsData){
-            String[] friendsArray=data.split(",");
-            JPanel friendPanel = createfriendPanel(friendsArray[0],friendsArray[1],friendsArray[2]);
-            friendsListModel.addElement(friendPanel);
-        }
-        // Create the JList and set custom render to handle displaying Jpanel
-        friendsList = new JList<>(friendsListModel);
-        friendsList.setCellRenderer(new CustomRender());
-        friendsList.setBackground(new Color(34, 34, 34));
-        Friends.setViewportView(friendsList);
+        String[] friendsData = {"Friend 1", "Friend 2", "Friend 3", "Friend 4", "Friend 5"};
+        FriendsList = new JList<>(friendsData);
+        Friends.setViewportView(FriendsList);
         Friends.revalidate();
         Friends.repaint();
 
@@ -85,18 +65,13 @@ public class NewsFeedWindow extends JFrame {
         });
 
         // logout button action
+        //User u= new User();
         LogOut.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                 user.setStatus("Offline");
+                // u.setStatus("Offline");
                 JOptionPane.showMessageDialog(null, "You have been logged out!");
                 System.exit(0);
-            }
-        });
-        manageFriendsButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new ManageFriendsWindow(NewsFeedWindow.this, user);
             }
         });
     }
@@ -127,7 +102,7 @@ private void refreshFriendsList() {
             }
         }
         // Update the JList for friends
-      //  friendsList.setModel(friendsModel);
+        FriendsList.setModel(friendsModel);
         Friends.revalidate();
         Friends.repaint();
         JOptionPane.showMessageDialog(null, "Friends list refreshed!");
@@ -137,24 +112,7 @@ private void refreshFriendsList() {
     }
 }
     public static void main(String[] args) {
-        UserDatabase userDatabase= new UserDatabase();
-        ArrayList<User> users=userDatabase.getAll();
-        new NewsFeedWindow(users.get(1));
-    }
-    public JPanel createfriendPanel(String photoPath,String username ,String state){
-        JPanel panel = new JPanel();
-        panel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        ImageIcon image = new ImageIcon(photoPath);
-        Image img=image.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
-        image=new ImageIcon(img);
-        JLabel imageLabel = new JLabel(image);
-        JLabel usernameLabel = new JLabel(username);
-        usernameLabel.setForeground(Color.white);
-        JLabel stateLabel = new JLabel(state);
-        stateLabel.setForeground(state.toLowerCase().equals("online")?Color.GREEN:Color.red);
-        panel.add(imageLabel);
-        panel.add(usernameLabel);
-        panel.add(stateLabel);
-        return panel;
+      NewsFeedWindow n=new NewsFeedWindow();
+      n.display();
     }
 }

@@ -11,7 +11,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
@@ -82,8 +81,8 @@ public class SignupWindow extends JFrame {
 
                 ArrayList<User> list = UDB.getAll();
 
-                Integer intUIDmax=Integer.MAX_VALUE;
-                Random random=new Random();
+                Integer intUIDmax = Integer.MAX_VALUE;
+                Random random = new Random();
                 Integer intUID = random.nextInt(intUIDmax);
                 if (list == null || list.isEmpty()) {
                     intUID = random.nextInt(intUIDmax);
@@ -112,12 +111,12 @@ public class SignupWindow extends JFrame {
                     throw new RuntimeException(ex);
                 }
 
-                User u = new User(UID, UsernameField.getText(), pass, emailField.getText(), LocalDate.now(), "offline");
+                User u = new User(UID, UsernameField.getText(), pass, emailField.getText(), Dob, "offline", "D:\\Downloads\\cat.jpg", "D:\\Downloads\\cat.jpg","debug");
 
                 if (UDB.add(u)) {
-                    setVisible(false);
-                    LoginWindow lW = new LoginWindow();
 
+                    LoginWindow lW = new LoginWindow();
+                    dispose();
                 }
 
 
@@ -125,8 +124,10 @@ public class SignupWindow extends JFrame {
         });
     }
 
+
     private void createUIComponents() {
 
         datechooser1 = new JDateChooser();
     }
+
 }

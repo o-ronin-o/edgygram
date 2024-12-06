@@ -60,7 +60,7 @@ public abstract class Content {
     }
 
     public String getPostString(String timeStamp,String content ){
-        return  timeStamp+" Posted\n"+ content;
+        return " Posted at"+ timeStamp+"\n"+ content;
     }
 
 }

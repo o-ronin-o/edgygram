@@ -58,9 +58,9 @@ public class ContentDatabase extends Database<Content> {
 
     @Override
     public ArrayList<Content> getAll() {
-        ArrayList<Content> allContent = new ArrayList<>();
         fileName=postsFileName;
-        allContent.addAll(load( new TypeToken<ArrayList<Post>>() {}.getType()));
+        ArrayList<Content> allContent = new ArrayList<>(load(new TypeToken<ArrayList<Post>>() {
+        }.getType()));
         fileName=storiesFileName;
         allContent.addAll(load( new TypeToken<ArrayList<Story>>() {}.getType()));
         return allContent;
