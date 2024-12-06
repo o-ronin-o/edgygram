@@ -62,5 +62,8 @@ public abstract class Content {
     public String getPostString(String timeStamp,String content ){
         return " Posted at"+ timeStamp+"\n"+ content;
     }
+    public String getStoryString(String content ){
+        return  content;
+    }
 
 }

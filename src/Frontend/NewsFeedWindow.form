@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Frontend.NewsFeedWindow">
-  <grid id="27dc6" binding="Container" layout-manager="GridLayoutManager" row-count="7" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="Container" layout-manager="GridLayoutManager" row-count="11" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="20" width="700" height="700"/>
@@ -12,91 +12,17 @@
     </properties>
     <border type="none"/>
     <children>
-      <component id="7afb0" class="javax.swing.JLabel" binding="Stories">
-        <constraints>
-          <grid row="2" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Stories"/>
-        </properties>
-      </component>
-      <component id="fa4fb" class="javax.swing.JTextField" binding="WriteAPost">
-        <constraints>
-          <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-        </constraints>
-        <properties>
-          <name value=""/>
-          <text value="       Write a post"/>
-        </properties>
-      </component>
-      <scrollpane id="77e82" binding="postScrollPane">
-        <constraints>
-          <grid row="3" column="1" row-span="3" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="600" height="800"/>
-            <maximum-size width="600" height="800"/>
-          </grid>
-        </constraints>
-        <properties>
-          <background color="-1"/>
-        </properties>
-        <border type="none"/>
-        <children/>
-      </scrollpane>
-      <scrollpane id="8d0fd" binding="FriendsSuggestions">
-        <constraints>
-          <grid row="2" column="4" row-span="3" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties/>
-        <border type="none"/>
-        <children/>
-      </scrollpane>
-      <component id="d98bd" class="javax.swing.JButton" binding="LogOut">
-        <constraints>
-          <grid row="5" column="4" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Logout"/>
-        </properties>
-      </component>
-      <component id="79fb" class="javax.swing.JButton" binding="refreshButton" default-binding="true">
-        <constraints>
-          <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Refresh"/>
-        </properties>
-      </component>
-      <component id="b38c5" class="javax.swing.JButton" binding="Profile">
-        <constraints>
-          <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Profile"/>
-        </properties>
-      </component>
       <scrollpane id="d54a8" binding="Friends">
         <constraints>
-          <grid row="3" column="0" row-span="2" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="0" row-span="7" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="none"/>
         <children/>
       </scrollpane>
-      <component id="25149" class="javax.swing.JTextField" binding="SearchTextField">
-        <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-        </constraints>
-        <properties>
-          <text value="           Search"/>
-        </properties>
-      </component>
       <component id="7b19b" class="javax.swing.JButton" binding="manageFriendsButton" default-binding="true">
         <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-14540254"/>
@@ -104,16 +30,66 @@
           <text value="Manage Friends"/>
         </properties>
       </component>
-      <vspacer id="c198">
+      <component id="25149" class="javax.swing.JTextField" binding="SearchTextField">
         <constraints>
-          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
         </constraints>
-      </vspacer>
-      <vspacer id="1b19d">
+        <properties>
+          <text value="           Search"/>
+        </properties>
+      </component>
+      <component id="79fb" class="javax.swing.JButton" binding="refreshButton" default-binding="true">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
-      </vspacer>
+        <properties>
+          <text value="Refresh"/>
+        </properties>
+      </component>
+      <component id="b38c5" class="javax.swing.JButton" binding="Profile">
+        <constraints>
+          <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Profile"/>
+        </properties>
+      </component>
+      <scrollpane id="2e79e" binding="postsScrollPane">
+        <constraints>
+          <grid row="2" column="1" row-span="9" col-span="5" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="500" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children/>
+      </scrollpane>
+      <component id="cb7e9" class="javax.swing.JTextArea" binding="postTextArea">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="50"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <scrollpane id="dd213" binding="storiesScrollPane">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children/>
+      </scrollpane>
+      <component id="d98bd" class="javax.swing.JButton" binding="LogOut">
+        <constraints>
+          <grid row="1" column="4" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Logout"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>
