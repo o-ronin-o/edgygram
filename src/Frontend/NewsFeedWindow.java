@@ -137,7 +137,7 @@ public class NewsFeedWindow extends JFrame {
                            JOptionPane.YES_NO_OPTION ,
                            JOptionPane.QUESTION_MESSAGE);
                    if(i == JOptionPane.YES_OPTION){
-                       fileChooser.setDialogTitle("Select Cover File");
+                       fileChooser.setDialogTitle("Select File");
                        fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
                            public boolean accept(File file) {
 
@@ -166,9 +166,11 @@ public class NewsFeedWindow extends JFrame {
                        System.out.println("no pic selected");
                        addPost(postPanel, user.getUsername()+" Posted At: "+ LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME) +"\n"+postTextArea.getText(),null);
                    }
+                   ContentDatabase newContentDatabase= (ContentDatabase) contentDatabase;
                     JOptionPane.showMessageDialog(Container,"Post added yummy ;-)");
+                   ArrayList<Content> posts=newContentDatabase.getAllPosts();
                     posts.add(posty);
-                    content.saveAllPosts(posts);
+                    newContentDatabase.saveAllPosts(posts);
 
                 }
             }
@@ -270,8 +272,10 @@ public class NewsFeedWindow extends JFrame {
                 }
                 addStory(StoryPanel,Storyy.getContent(),Storyy.getPicPath());
                 stories.add(Storyy);
-                content.saveAllStories(stories);
-
+                ContentDatabase newContentDatabase= (ContentDatabase) contentDatabase;
+                ArrayList<Content> allStories=newContentDatabase.getAllStories();
+                stories.addAll(allStories);
+                newContentDatabase.saveAllStories(stories);
             }
         });
     }

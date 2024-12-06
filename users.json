@@ -83,7 +83,7 @@
     "email": "hank@example.com",
     "bio": "",
     "dateOfBirth": "1998-08-20",
-    "status": "offline",
+    "status": "online",
     "profilePicture": "defaultProfile.jpeg",
     "coverPicture": "defaultCover.jpeg"
   },
