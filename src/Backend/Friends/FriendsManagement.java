@@ -23,12 +23,41 @@ public class FriendsManagement {
         ArrayList<User> suggestedUsers = new ArrayList<>();
         FriendData friendData=friendsMap.getOrDefault(user.getId(),new FriendData());
         ArrayList<String> userFriends = friendData.getFriends();
+        FriendRequestManagement friendRequestManagement= new FriendRequestManagement(userDatabase,friendsDatabase);
+        // هنجيب الفريند ريكويست لليوزر
+        ArrayList<FriendRequest> pendingRequests = friendRequestManagement.getFriendRequests(user);
+        ArrayList<String> pendingRequestIds = new ArrayList<>();
+        System.out.println(pendingRequests.size());
+        for (FriendRequest request : pendingRequests) {
+            // هنحط الايدي بتاع الي باعت او الي جاله فريند ريكويست
+            System.out.println("user id "+user.getId()+" request sender id "+request.getSenderId());
+            if (request.getSenderId().equals(user.getId())) {
+                pendingRequestIds.add(request.getReceiverId());
+                System.out.println("request sender found ");
+            } else if (request.getReceiverId().equals(user.getId())) {
+                pendingRequestIds.add(request.getSenderId());
+                System.out.println("request receiver found ");
+            }
+        }
         //هنلف علي كل اليوزرز
         for(User suggestion:allUsers){
             String suggestionId = suggestion.getId();
             //هنسكيب لو هو هو نفس اليوزر او فريند عنده او عامله بلوك
-            if(user.getId().equals(suggestionId)|| userFriends.contains(suggestionId)||friendData.getBlockedUsers().contains(suggestionId)){
+            if(user.getId().equals(suggestionId)|| userFriends.contains(suggestionId)||friendData.getBlockedUsers().contains(suggestionId)|| pendingRequestIds.contains(suggestionId)){
                 continue;
+            }
+            ArrayList<FriendRequest> suggestionRequests = friendRequestManagement.getFriendRequests(suggestion);
+            for (FriendRequest request : pendingRequests) {
+                // هنحط الايدي بتاع الي باعت او الي جاله فريند ريكويست
+                System.out.println("user id "+user.getId()+" request sender id "+request.getSenderId());
+                if (request.getSenderId().equals(user.getId())) {
+                    System.out.println("request sender found ");
+                    continue;
+
+                } else if (request.getReceiverId().equals(user.getId())) {
+                    System.out.println("request receiver found ");
+                    continue;
+                }
             }
             // هتجيب الفريندس داتا بتاعت اليوزر المقتلاح دلوقتي
             FriendData suggestionFriendData=friendsMap.getOrDefault(suggestionId,new FriendData());
@@ -88,5 +117,27 @@ public class FriendsManagement {
         return false;
     }
 
+    public ArrayList<User> getFriends(User user){
+        //returns all friend of user
+        ArrayList<User> friends = new ArrayList<>();
+        FriendData friendData=friendsMap.getOrDefault(user.getId(),new FriendData());
+        ArrayList<String> friendsId=friendData.getFriends();
+        ArrayList<User> allUsers= userDatabase.getAll();
+        for(User friend:allUsers){
+            if(friendsId.contains(friend.getId())){
+                friends.add(friend);
+
+            }
+        }
+        return friends;
+    }
+    public ArrayList<String> displayList(ArrayList<User> friends){
+        //puts every user in the arraylist in the needed format
+        ArrayList<String> friendsList = new ArrayList<>();
+        for(User user:friends){
+            friendsList.add(user.getprofilePicture()+","+user.getUsername()+","+user.getStatus());
+        }
+        return friendsList;
+    }
 
 }
