@@ -14,6 +14,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
+
 
 public class NewsFeedWindow extends JFrame {
 
@@ -28,9 +30,11 @@ public class NewsFeedWindow extends JFrame {
     private JTextArea postTextArea;
     private JScrollPane postsScrollPane;
     private JScrollPane storiesScrollPane;
+    private JButton addStoryButton;
     private JList<JPanel> friendsList;
     private JList<String> postList;
     private JList<String>  FriendsSuggestionsList;
+    private static final AtomicInteger counter = new AtomicInteger(0);
 
     public NewsFeedWindow(User user){
 
@@ -103,6 +107,8 @@ public class NewsFeedWindow extends JFrame {
         storiesScrollPane.setBorder(new RoundedBorder(20));
         revalidate();
         repaint();
+
+
         //setting up post text area
         JFileChooser fileChooser = new JFileChooser();
         postTextArea.setBackground(Color.decode("#24292e"));
@@ -116,7 +122,9 @@ public class NewsFeedWindow extends JFrame {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER && e.isShiftDown()) {
                     postTextArea.append("\n");
                 } else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+
                     e.consume();
+                    Content posty = new Post("CID-" + counter.incrementAndGet(),user.getId(),postTextArea.getText(),LocalDateTime.now(),null,"Post");
                     int i =JOptionPane.showConfirmDialog(Container,"Sometimes picture spices up the post ya know,\nWanna add a pic?",
                            "adding wa pic",
                            JOptionPane.YES_NO_OPTION ,
@@ -140,6 +148,7 @@ public class NewsFeedWindow extends JFrame {
                            addPost(postPanel,
                                    user.getUsername()+" Posted At: "+ LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME) +"\n"+postTextArea.getText(),
                                    fileChooser.getSelectedFile().getAbsolutePath());
+                           posty.setPicPath(fileChooser.getSelectedFile().getAbsolutePath());
                        }
                        else{
                            System.out.println("no file selected");
@@ -151,7 +160,8 @@ public class NewsFeedWindow extends JFrame {
                        addPost(postPanel, user.getUsername()+" Posted At: "+ LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME) +"\n"+postTextArea.getText(),null);
                    }
                     JOptionPane.showMessageDialog(Container,"Post added yummy ;-)");
-
+                    posts.add(posty);
+                    content.saveAllPosts(posts);
 
                 }
             }
@@ -227,6 +237,47 @@ public class NewsFeedWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new ManageFriendsWindow(NewsFeedWindow.this, user);
+            }
+        });
+        addStoryButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String userInput = JOptionPane.showInputDialog(Container, "Enter the text of the story:", "Text Input", JOptionPane.PLAIN_MESSAGE);
+                Content Storyy = new Story("CID-" + counter.incrementAndGet(),user.getId(),"",LocalDateTime.now(),null,"Story");
+
+                if (userInput != null && !userInput.isEmpty()) {
+                    System.out.println("User input: " + userInput);
+                    Storyy.setPicPath(userInput);
+                } else {
+                    System.out.println("User canceled the input or entered nothing.");
+                }
+
+                fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
+                    @Override
+                    public boolean accept(File file) {
+                        // Accept only directories or image files
+                        return file.isDirectory() || file.getName().toLowerCase().matches(".*\\.(jpg|jpeg|png|gif)$");
+                    }
+
+                    @Override
+                    public String getDescription() {
+                        return "Image Files (*.jpg, *.jpeg, *.png, *.gif)";
+                    }
+                });
+
+                int result = fileChooser.showOpenDialog(null); // `null` means no parent frame
+
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    File selectedFile = fileChooser.getSelectedFile();
+                    System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+                    Storyy.setPicPath(selectedFile.getAbsolutePath());
+                  } else {
+                    System.out.println("No file selected.");
+                }
+                addStory(StoryPanel,Storyy.getContent(),Storyy.getPicPath());
+                stories.add(Storyy);
+                content.saveAllStories(stories);
+
             }
         });
     }
