@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.chrono.ChronoLocalDate;
+import java.util.ArrayList;
 
 public class ProfileWindow extends JFrame {
     private JPanel panel1;
@@ -30,7 +31,7 @@ public class ProfileWindow extends JFrame {
         //User omar = new User("4343","Ronin","yomama","omar@gmail.com",dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),"online","\\Downloads\\download.jpg","\\Downloads\\cat.jpg");
         //setting up the main frame
         setTitle("Profile");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(1000, 700);
         panel1.setBorder(BorderFactory.createEmptyBorder(0,0,10,10));
         panel1.setBackground(Color.decode("#24292e"));
@@ -96,8 +97,10 @@ public class ProfileWindow extends JFrame {
         JPanel postPanel = new JPanel();
         postPanel.setBackground(Color.decode("#24292e"));
         postPanel.setLayout(new BoxLayout(postPanel, BoxLayout.Y_AXIS));
-        for(Content post : content.getAll()){
-            if(post instanceof Post){
+        ContentDatabase newContentDatabase= (ContentDatabase) content;
+        ArrayList<Content> allcontent=newContentDatabase.getAllPosts();
+        for(Content post : allcontent){
+            if(post.getAuthorId().equals(user.getId())){
                 addPost(postPanel, user.getUsername()+post.getPostString(post.getTimeStamp(),post.getContent()),post.getPicPath());
             }
         }

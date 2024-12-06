@@ -1,60 +1,42 @@
 [
   {
+    "ContentType": "Story",
     "contentId": "CID-1",
-    "authorId": "user123",
-    "content": "This is a sample Story, just testing the application. Excited for more features!",
-    "timeStamp": "2024-12-05T12:00:00",
-    "picPath": "D:\\Downloads\\1674347782127.jpg"
+    "authorId": "2",
+    "content": "",
+    "timeStamp": "2024-12-06T21:19:00.2318257",
+    "picPath": "alooo"
   },
   {
+    "ContentType": "Story",
     "contentId": "CID-2",
     "authorId": "2",
-    "content": "Another Story with a different content. This one has a different flavor.",
-    "timeStamp": "2024-12-05T14:30:00",
-    "picPath": "D:\\Downloads\\cat.jpg"
+    "content": "",
+    "timeStamp": "2024-12-06T21:19:14.5974478",
+    "picPath": "E:\\records\\Cyberpunk 2077\\Cyberpunk 2077 Screenshot 2024.02.16 - 03.17.38.51.png"
   },
   {
-    "contentId": "CID-3",
-    "authorId": "2",
-    "content": "Here’s a Story about a thrilling tale about the adventures of a brave knight.",
-    "timeStamp": "2024-12-06T09:45:00",
-    "picPath": "D:\\Downloads\\cat.jpg"
-  },
-  {
-    "contentId": "CID-4",
-    "authorId": "user101",
-    "content": "Exciting times ahead! Planning a big move soon.",
-    "timeStamp": "2024-12-06T16:20:00",
-    "picPath": "defaultCover.jpeg"
-  },
-  {
-    "contentId": "CID-5",
-    "authorId": "user202",
-    "content": "Another day, another adventure! This time I explored new places.",
-    "timeStamp": "2024-12-07T08:00:00",
-    "picPath": "D:\\Downloads\\1674347782127.jpg"
-  },
-  {
-    "contentId": "CID-6",
-    "authorId": "user303",
-    "content": "This is a post about a great discovery in the world of science.",
-    "timeStamp": "2024-12-07T12:15:00",
-    "picPath": "D:\\Downloads\\1674347782127.jpg"
+    "ContentType": "Story",
+    "contentId": "CID-1",
+    "authorId": "8",
+    "content": "",
+    "timeStamp": "2024-12-06T21:41:58.6471277",
+    "picPath": "E:\\records\\Alan Wake 2\\Alan Wake 2 Screenshot 2024.01.27 - 07.47.10.45.png"
   },
   {
     "ContentType": "Story",
     "contentId": "CID-1",
     "authorId": "2",
     "content": "",
-    "timeStamp": "2024-12-06T20:55:02.5112242",
-    "picPath": "C:\\Users\\FAZAIRI\\OneDrive\\Desktop\\الجدول.jpeg"
+    "timeStamp": "2024-12-06T21:19:00.2318257",
+    "picPath": "alooo"
   },
   {
     "ContentType": "Story",
-    "contentId": "CID-1",
+    "contentId": "CID-2",
     "authorId": "2",
     "content": "",
-    "timeStamp": "2024-12-06T20:56:24.0120704",
-    "picPath": "C:\\Users\\FAZAIRI\\OneDrive\\Pictures\\Screenshot 2024-11-12 215638.png"
+    "timeStamp": "2024-12-06T21:19:14.5974478",
+    "picPath": "E:\\records\\Cyberpunk 2077\\Cyberpunk 2077 Screenshot 2024.02.16 - 03.17.38.51.png"
   }
 ]

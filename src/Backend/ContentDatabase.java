@@ -85,6 +85,14 @@ public class ContentDatabase extends Database<Content> {
         fileName=storiesFileName;
         return load(new TypeToken<ArrayList<Story>>() {}.getType());
     }
+    public void saveAllPosts(ArrayList<Content> list){
+        fileName = "Posts.json";
+        save(list);
+    }
+    public void saveAllStories(ArrayList<Content> list){
+        fileName = "Stories.json";
+        save(list);
+    }
 // بتمسح بعد المده اللي انت عايزها كل اللي عليك تديلها اوبجيكت الستوري
     public void scheduleRemoval(Story story, int delayInHours) {
         ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
