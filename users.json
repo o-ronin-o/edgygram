@@ -6,7 +6,7 @@
     "email": "alice@example.com",
     "bio": "",
     "dateOfBirth": "1995-01-10",
-    "status": "online",
+    "status": "offline",
     "profilePicture": "defaultProfile.jpeg",
     "coverPicture": "defaultCover.jpeg"
   },
@@ -17,7 +17,7 @@
     "email": "bob@example.com",
     "bio": "",
     "dateOfBirth": "1996-02-15",
-    "status": "online",
+    "status": "offline",
     "profilePicture": "defaultProfile.jpeg",
     "coverPicture": "defaultCover.jpeg"
   },
@@ -50,7 +50,7 @@
     "email": "eve@example.com",
     "bio": "",
     "dateOfBirth": "1995-05-05",
-    "status": "online",
+    "status": "offline",
     "profilePicture": "defaultProfile.jpeg",
     "coverPicture": "defaultCover.jpeg"
   },
@@ -72,7 +72,7 @@
     "email": "grace@example.com",
     "bio": "",
     "dateOfBirth": "1997-07-15",
-    "status": "online",
+    "status": "offline",
     "profilePicture": "defaultProfile.jpeg",
     "coverPicture": "defaultCover.jpeg"
   },
@@ -83,7 +83,7 @@
     "email": "hank@example.com",
     "bio": "",
     "dateOfBirth": "1998-08-20",
-    "status": "online",
+    "status": "offline",
     "profilePicture": "defaultProfile.jpeg",
     "coverPicture": "defaultCover.jpeg"
   },
@@ -105,7 +105,7 @@
     "email": "jack@example.com",
     "bio": "",
     "dateOfBirth": "2000-10-30",
-    "status": "online",
+    "status": "offline",
     "profilePicture": "defaultProfile.jpeg",
     "coverPicture": "defaultCover.jpeg"
   },
@@ -127,7 +127,7 @@
     "email": "yomama@gmail.com",
     "bio": "bugger",
     "dateOfBirth": "06/10/2024",
-    "status": "Online",
+    "status": "offline",
     "profilePicture": "defaultProfile.jpeg",
     "coverPicture": "defaultCover.jpeg"
   },
@@ -138,7 +138,7 @@
     "email": "dwad@gm.com",
     "bio": "",
     "dateOfBirth": "07/12/2004",
-    "status": "online",
+    "status": "offline",
     "profilePicture": "defaultProfile.jpeg",
     "coverPicture": "defaultCover.jpeg"
   }

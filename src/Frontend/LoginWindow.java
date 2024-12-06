@@ -42,7 +42,7 @@ public class LoginWindow extends JFrame {
             if(l.checkEmailandPassword(Usertext.getText(), pass, Usertext.getText())){
                User user= l.getUser(Usertext.getText());
                l.updateStatus(user,1);
-                new ProfileWindow(user);
+                new NewsFeedWindow(user);
                 dispose();
 
 
