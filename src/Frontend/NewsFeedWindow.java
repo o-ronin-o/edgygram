@@ -7,8 +7,10 @@ import Backend.Friends.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+import java.io.File;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,16 +19,15 @@ public class NewsFeedWindow extends JFrame {
 
     private JPanel Container;
     private JButton refreshButton;
-    private JTextField WriteAPost;
     private JLabel Posts;
-    private JLabel Stories;
     private JScrollPane Friends;
-    private JScrollPane postScrollPane;
-    private JScrollPane FriendsSuggestions;
     private JButton LogOut;
     private JButton Profile;
     private JTextField SearchTextField;
     private JButton manageFriendsButton;
+    private JTextArea postTextArea;
+    private JScrollPane postsScrollPane;
+    private JScrollPane storiesScrollPane;
     private JList<JPanel> friendsList;
     private JList<String> postList;
     private JList<String>  FriendsSuggestionsList;
@@ -37,12 +38,16 @@ public class NewsFeedWindow extends JFrame {
 //          Image ScaledImage2 =img2.getImage().getScaledInstance(100,200,Image.SCALE_SMOOTH);
 //          Stories.setIcon(new ImageIcon(ScaledImage2));
 //          Stories.setText("Zamalek");
+        Database<Content> content = new ContentDatabase();
+        ArrayList<Content> posts = content.getAllPosts();
+        ArrayList<Content> stories = content.getAllStories();
         setContentPane(Container);
         setTitle("NewsFeed");
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800,600);
         pack();
+        Container.setBackground(Color.decode("#24292e"));
         // Implementation of friends
         FriendsManagement friendsManagement = new FriendsManagement(new UserDatabase(), new FriendsDatabase());
         ArrayList<User> friend = friendsManagement.getFriends(user);
@@ -61,13 +66,138 @@ public class NewsFeedWindow extends JFrame {
         Friends.setViewportView(friendsList);
         Friends.revalidate();
         Friends.repaint();
+        //setting up the posts scrollpane
+        JPanel postPanel = new JPanel();
+        postPanel.setBackground(Color.decode("#24292e"));
+        postPanel.setLayout(new BoxLayout(postPanel, BoxLayout.Y_AXIS));
+        for(Content post : posts){
+            if(post instanceof Post){
+                addPost(postPanel, user.getUsername()+" "+post.getPostString(post.getTimeStamp(),post.getContent()),post.getPicPath());
+            }
+        }
+
+        postsScrollPane.setViewportView(postPanel);
+        postsScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        postsScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        postsScrollPane.setBackground(Color.decode("#24292e"));
+        postPanel.setBorder(new RoundedBorder(20));
+        postsScrollPane.setBorder(new RoundedBorder(20));
+        revalidate();
+        repaint();
+
+        //setting up the Stories scrollpane
+        JPanel StoryPanel = new JPanel();
+        StoryPanel.setBackground(Color.decode("#24292e"));
+        StoryPanel.setLayout(new BoxLayout(StoryPanel, BoxLayout.X_AXIS));
+        for(Content story : stories){
+            if(story instanceof Story){
+                addStory(StoryPanel, user.getUsername()+story.getStoryString(story.getContent()),story.getPicPath());
+            }
+        }
+
+        storiesScrollPane.setViewportView(StoryPanel);
+        storiesScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        storiesScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        storiesScrollPane.setBackground(Color.decode("#24292e"));
+        StoryPanel.setBorder(new RoundedBorder(20));
+        storiesScrollPane.setBorder(new RoundedBorder(20));
+        revalidate();
+        repaint();
+        //setting up post text area
+        JFileChooser fileChooser = new JFileChooser();
+        postTextArea.setBackground(Color.decode("#24292e"));
+        postTextArea.setBorder(new RoundedBorder(20));
+        postTextArea.setText("Add a Post...");
+        postTextArea.setForeground(Color.decode("#999999"));
+
+        postTextArea.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER && e.isShiftDown()) {
+                    postTextArea.append("\n");
+                } else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    e.consume();
+                    int i =JOptionPane.showConfirmDialog(Container,"Sometimes picture spices up the post ya know,\nWanna add a pic?",
+                           "adding wa pic",
+                           JOptionPane.YES_NO_OPTION ,
+                           JOptionPane.QUESTION_MESSAGE);
+                   if(i == JOptionPane.YES_OPTION){
+                       fileChooser.setDialogTitle("Select Cover File");
+                       fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
+                           public boolean accept(File file) {
+
+                               return file.isDirectory() || file.getName().toLowerCase().matches(".*\\.(jpg|jpeg|png|gif)$");
+                           }
+
+                           @Override
+                           public String getDescription() {
+                               return "Image Files (*.jpg, *.jpeg, *.png, *.gif)";
+                           }
+                       });
+                       int result = fileChooser.showOpenDialog(Container);
+                       if (result == JFileChooser.APPROVE_OPTION) {
+                           System.out.println("file selected");
+                           addPost(postPanel,
+                                   user.getUsername()+" Posted At: "+ LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME) +"\n"+postTextArea.getText(),
+                                   fileChooser.getSelectedFile().getAbsolutePath());
+                       }
+                       else{
+                           System.out.println("no file selected");
+                           addPost(postPanel, user.getUsername()+" Posted At: "+ LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME) +"\n"+postTextArea.getText(),null);
+                       }
+                   }
+                   else if (i == JOptionPane.NO_OPTION) {
+                       System.out.println("no pic selected");
+                       addPost(postPanel, user.getUsername()+" Posted At: "+ LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME) +"\n"+postTextArea.getText(),null);
+                   }
+                    JOptionPane.showMessageDialog(Container,"Post added yummy ;-)");
+
+
+                }
+            }
+        });
+        postTextArea.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                // When the text area gains focus, clear the placeholder text
+                if (postTextArea.getText().equals("Add a Post...")) {
+                    postTextArea.setText("");
+                    postTextArea.setForeground(Color.WHITE); // Set the text color back to black
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                // When the text area loses focus, if the text is empty, set the placeholder text again
+                if (postTextArea.getText().isEmpty()) {
+                    postTextArea.setText("Add a Post...");
+                    postTextArea.setForeground(Color.decode("#999999")); 
+                }
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // Implementation of friends Sugguestions
-        String[] FriendsSuggestionsData = {"friend 1","friend 2","friend 3"};
-        FriendsSuggestionsList = new JList<>(FriendsSuggestionsData);
-        FriendsSuggestions.setViewportView(FriendsSuggestionsList);
-        FriendsSuggestions.revalidate();
-        FriendsSuggestions.repaint();
+//        String[] FriendsSuggestionsData = {"friend 1","friend 2","friend 3"};
+//        FriendsSuggestionsList = new JList<>(FriendsSuggestionsData);
+//        FriendsSuggestions.setViewportView(FriendsSuggestionsList);
+//        FriendsSuggestions.revalidate();
+//        FriendsSuggestions.repaint();
 
         refreshButton.addActionListener(new ActionListener() {
             @Override
@@ -156,5 +286,63 @@ public class NewsFeedWindow extends JFrame {
         panel.add(usernameLabel);
         panel.add(stateLabel);
         return panel;
+    }
+    public void addStory(JPanel postPanel, String text , String imagePath){
+        // a jpanel for each post
+        JPanel singleStoryPanel = new JPanel();
+        singleStoryPanel.setLayout(new BorderLayout());
+        singleStoryPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+
+        // a jtextarea for text
+        JTextArea textArea = new JTextArea(text);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setEditable(false);
+        textArea.setFont(new Font("Arial", Font.PLAIN, 14));
+        textArea.setBackground(Color.decode("#24292e"));
+        textArea.setForeground(Color.white);
+
+        // creating a jlabel for images
+        ImageIcon Img = new ImageIcon(imagePath);
+        Image scaledImage = Img.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        JLabel imgLabel = new JLabel(new ImageIcon(scaledImage));
+
+        // now we add the component for the main singleStoryPanel
+        singleStoryPanel.add(textArea, BorderLayout.SOUTH);
+        singleStoryPanel.add(imgLabel, BorderLayout.CENTER);
+        singleStoryPanel.setBackground(Color.decode("#24292e"));
+
+        //now we add it to the post panel
+
+        postPanel.add(singleStoryPanel);
+    }
+    public void addPost(JPanel postPanel, String text , String imagePath){
+        // a jpanel for each post
+        JPanel singlePostPanel = new JPanel();
+        singlePostPanel.setLayout(new BorderLayout());
+        singlePostPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+
+        // a jtextarea for text
+        JTextArea textArea = new JTextArea(text);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setEditable(false);
+        textArea.setFont(new Font("Arial", Font.PLAIN, 14));
+        textArea.setBackground(Color.decode("#24292e"));
+        textArea.setForeground(Color.white);
+
+        // creating a jlabel for images
+        ImageIcon Img = new ImageIcon(imagePath);
+        Image scaledImage = Img.getImage().getScaledInstance(300, 200, Image.SCALE_SMOOTH);
+        JLabel imgLabel = new JLabel(new ImageIcon(scaledImage));
+
+        // now we add the component for the main singlePostPanel
+        singlePostPanel.add(textArea, BorderLayout.NORTH);
+        singlePostPanel.add(imgLabel, BorderLayout.CENTER);
+        singlePostPanel.setBackground(Color.decode("#24292e"));
+
+        //now we add it to the post panel
+
+        postPanel.add(singlePostPanel);
     }
 }

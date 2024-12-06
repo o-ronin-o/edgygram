@@ -13,4 +13,5 @@ public class Story extends Content{
     public String getContentType() {
         return ContentType;
     }
+
 }
