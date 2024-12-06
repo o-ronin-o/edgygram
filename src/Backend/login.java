@@ -16,10 +16,21 @@ public class login {
 
     Gson gson=new GsonBuilder().setPrettyPrinting().create();
 
-    public String updateStatus(int numb){
+    public void updateStatus(User user,int numb){
         if (numb ==1)
-            return "online";
-        return "offline";
+          user.setStatus("online");
+        else{
+            user.setStatus("offline");
+        }
+        Database<User> userDatabase= new UserDatabase();
+        ArrayList<User> users= userDatabase.getAll();
+        for (User userr : users) {
+            if (userr.getId().equals(user.getId())) {
+                userr.setStatus(user.getStatus());
+                break;
+            }
+        }
+        userDatabase.save(users);
     }
     public boolean checkEmailandPassword(String useremail,String password,String name){
         FileReader f= null;

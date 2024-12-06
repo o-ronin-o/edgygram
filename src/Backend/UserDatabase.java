@@ -52,4 +52,15 @@ public class UserDatabase extends Database<User> {
     public ArrayList<User> getAll(){
         return load(new TypeToken<ArrayList<User>>() {}.getType());
     }
+
+    @Override
+    public User getById(String id) {
+        ArrayList<User> users=getAll();
+        for(User user:users){
+            if(user.getId().equals(id)){
+                return user;
+            }
+        }
+        return null;
+    }
 }

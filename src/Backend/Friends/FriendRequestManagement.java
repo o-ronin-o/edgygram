@@ -1,5 +1,6 @@
 package Backend.Friends;
 
+import Backend.Database;
 import Backend.User;
 import Backend.UserDatabase;
 
@@ -8,11 +9,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FriendRequestManagement {
-    private UserDatabase userDatabase;
+    private Database<User> userDatabase;
     private FriendsDatabase friendsDatabase;
     private HashMap<String,FriendData> friendsMap;
 
-    public FriendRequestManagement(UserDatabase userDatabase, FriendsDatabase friendsDatabase) {
+    public FriendRequestManagement(Database<User> userDatabase, FriendsDatabase friendsDatabase) {
         this.userDatabase = userDatabase;
         this.friendsDatabase = friendsDatabase;
         this.friendsMap = friendsDatabase.loadFriendData();

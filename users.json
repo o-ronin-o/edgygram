@@ -2,8 +2,9 @@
   {
     "id": "1",
     "username": "Alice",
-    "password": "password123",
+    "password": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
     "email": "alice@example.com",
+    "bio": "",
     "dateOfBirth": "1995-01-10",
     "status": "online",
     "profilePicture": "defaultProfile.jpeg",
@@ -12,8 +13,9 @@
   {
     "id": "2",
     "username": "Bob",
-    "password": "password123",
+    "password": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
     "email": "bob@example.com",
+    "bio": "",
     "dateOfBirth": "1996-02-15",
     "status": "online",
     "profilePicture": "defaultProfile.jpeg",
@@ -22,8 +24,9 @@
   {
     "id": "3",
     "username": "Charlie",
-    "password": "password123",
+    "password": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
     "email": "charlie@example.com",
+    "bio": "",
     "dateOfBirth": "1997-03-20",
     "status": "offline",
     "profilePicture": "defaultProfile.jpeg",
@@ -32,8 +35,9 @@
   {
     "id": "4",
     "username": "David",
-    "password": "password123",
+    "password": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
     "email": "david@example.com",
+    "bio": "",
     "dateOfBirth": "1998-04-25",
     "status": "offline",
     "profilePicture": "defaultProfile.jpeg",
@@ -42,8 +46,9 @@
   {
     "id": "5",
     "username": "Eve",
-    "password": "password123",
+    "password": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
     "email": "eve@example.com",
+    "bio": "",
     "dateOfBirth": "1995-05-05",
     "status": "online",
     "profilePicture": "defaultProfile.jpeg",
@@ -52,8 +57,9 @@
   {
     "id": "6",
     "username": "Frank",
-    "password": "password123",
+    "password": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
     "email": "frank@example.com",
+    "bio": "",
     "dateOfBirth": "1996-06-10",
     "status": "offline",
     "profilePicture": "defaultProfile.jpeg",
@@ -62,8 +68,9 @@
   {
     "id": "7",
     "username": "Grace",
-    "password": "password123",
+    "password": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
     "email": "grace@example.com",
+    "bio": "",
     "dateOfBirth": "1997-07-15",
     "status": "online",
     "profilePicture": "defaultProfile.jpeg",
@@ -72,8 +79,9 @@
   {
     "id": "8",
     "username": "Hank",
-    "password": "password123",
+    "password": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
     "email": "hank@example.com",
+    "bio": "",
     "dateOfBirth": "1998-08-20",
     "status": "online",
     "profilePicture": "defaultProfile.jpeg",
@@ -82,8 +90,9 @@
   {
     "id": "9",
     "username": "Ivy",
-    "password": "password123",
+    "password": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
     "email": "ivy@example.com",
+    "bio": "",
     "dateOfBirth": "1999-09-25",
     "status": "offline",
     "profilePicture": "defaultProfile.jpeg",
@@ -92,131 +101,45 @@
   {
     "id": "10",
     "username": "Jack",
-    "password": "password123",
+    "password": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
     "email": "jack@example.com",
+    "bio": "",
     "dateOfBirth": "2000-10-30",
     "status": "online",
     "profilePicture": "defaultProfile.jpeg",
     "coverPicture": "defaultCover.jpeg"
   },
   {
-    "id": "11",
-    "username": "Kim",
-    "password": "password123",
-    "email": "kim@example.com",
-    "dateOfBirth": "2001-11-15",
-    "status": "offline",
-    "profilePicture": "defaultProfile.jpeg",
-    "coverPicture": "defaultCover.jpeg"
-  },
-  {
-    "id": "12",
-    "username": "Leo",
-    "password": "password123",
-    "email": "leo@example.com",
-    "dateOfBirth": "1994-12-10",
-    "status": "online",
-    "profilePicture": "defaultProfile.jpeg",
-    "coverPicture": "defaultCover.jpeg"
-  },
-  {
-    "id": "13",
-    "username": "Mia",
-    "password": "password123",
-    "email": "mia@example.com",
-    "dateOfBirth": "1993-01-20",
-    "status": "online",
-    "profilePicture": "defaultProfile.jpeg",
-    "coverPicture": "defaultCover.jpeg"
-  },
-  {
-    "id": "14",
-    "username": "Nina",
-    "password": "password123",
-    "email": "nina@example.com",
-    "dateOfBirth": "1992-02-25",
-    "status": "offline",
-    "profilePicture": "defaultProfile.jpeg",
-    "coverPicture": "defaultCover.jpeg"
-  },
-  {
-    "id": "15",
-    "username": "Oscar",
-    "password": "password123",
-    "email": "oscar@example.com",
-    "dateOfBirth": "1991-03-30",
-    "status": "offline",
-    "profilePicture": "defaultProfile.jpeg",
-    "coverPicture": "defaultCover.jpeg"
-  },
-  {
-    "id": "16",
-    "username": "Pam",
-    "password": "password123",
-    "email": "pam@example.com",
-    "dateOfBirth": "1990-04-10",
-    "status": "online",
-    "profilePicture": "defaultProfile.jpeg",
-    "coverPicture": "defaultCover.jpeg"
-  },
-  {
-    "id": "17",
-    "username": "Quinn",
-    "password": "password123",
-    "email": "quinn@example.com",
-    "dateOfBirth": "1989-05-15",
-    "status": "online",
-    "profilePicture": "defaultProfile.jpeg",
-    "coverPicture": "defaultCover.jpeg"
-  },
-  {
-    "id": "18",
-    "username": "Rita",
-    "password": "password123",
-    "email": "rita@example.com",
-    "dateOfBirth": "1988-06-20",
-    "status": "offline",
-    "profilePicture": "defaultProfile.jpeg",
-    "coverPicture": "defaultCover.jpeg"
-  },
-  {
-    "id": "19",
-    "username": "Sam",
-    "password": "password123",
-    "email": "sam@example.com",
-    "dateOfBirth": "1987-07-25",
-    "status": "online",
-    "profilePicture": "defaultProfile.jpeg",
-    "coverPicture": "defaultCover.jpeg"
-  },
-  {
-    "id": "20",
-    "username": "Tina",
-    "password": "password123",
-    "email": "tina@example.com",
-    "dateOfBirth": "1986-08-30",
-    "status": "offline",
-    "profilePicture": "defaultProfile.jpeg",
-    "coverPicture": "defaultCover.jpeg"
-  },
-  {
     "id": "962284186",
     "username": "ronin",
-    "password": "44e126af785edb5e890888f64e29ac666e3db2f3e7b3b7384ae3264e96f1ff82",
+    "password": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
     "email": "omarelkatan@gmail.com",
+    "bio": "",
     "dateOfBirth": "06/10/2003",
     "status": "offline",
+    "profilePicture": "defaultProfile.jpeg",
     "coverPicture": "defaultCover.jpeg"
   },
   {
     "id": "168944730",
     "username": "toxicmvher",
-    "password": "24a9c3d2380ff2561e8fc0c0a3ca23e24b9fa8a310d6187b9ee1f45fb53fe6cc",
+    "password": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
     "email": "yomama@gmail.com",
     "bio": "bugger",
     "dateOfBirth": "06/10/2024",
     "status": "Online",
-    "profilePicture": "C:\\Users\\FAZAIRI\\OneDrive\\Desktop\\الجدول.jpeg",
-    "coverPicture": "D:\\Downloads\\cat.jpg"
+    "profilePicture": "defaultProfile.jpeg",
+    "coverPicture": "defaultCover.jpeg"
+  },
+  {
+    "id": "2010503273",
+    "username": "mosalah",
+    "password": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+    "email": "dwad@gm.com",
+    "bio": "",
+    "dateOfBirth": "07/12/2004",
+    "status": "online",
+    "profilePicture": "defaultProfile.jpeg",
+    "coverPicture": "defaultCover.jpeg"
   }
 ]
