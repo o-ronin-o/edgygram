@@ -44,13 +44,15 @@ public abstract class Database<T>{
     public abstract boolean add(T item);
     public abstract void remove(T item);
     public abstract ArrayList<T> getAll();
-    public ArrayList<T> getAllPosts() {
+    public ArrayList<T> getAllPosts(){
         fileName = "Posts.json";
         return load(new TypeToken<ArrayList<Post>>() {}.getType());
     }
+
     public ArrayList<T> getAllStories() {
         fileName= "Stories.json";
         return load(new TypeToken<ArrayList<Story>>() {}.getType());
     }
 
+    public abstract T getById(String id);
 }

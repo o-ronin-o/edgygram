@@ -64,6 +64,17 @@ public class ContentDatabase extends Database<Content> {
         return allContent;
     }
 
+    @Override
+    public Content getById(String id) {
+        ArrayList<Content> allContent = getAll();
+        for (Content item : allContent) {
+            if (item.getContentId().equals(id)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
     public ArrayList<Content> getAllPosts() {
         fileName = postsFileName;
         return load(new TypeToken<ArrayList<Post>>() {}.getType());
