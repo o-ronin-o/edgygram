@@ -54,6 +54,7 @@ public class NotificationsWindow extends JFrame{
             panelModel.addElement(friendPanel);
         }
 
+
         requestsList=new JList<>(panelModel);
         requestsList.setCellRenderer(new CustomRender());
         requestsList.setBackground(new Color(34, 34, 34));

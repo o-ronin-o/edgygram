@@ -284,7 +284,7 @@ public class NewsFeedWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 NotificationsWindow notificationsWindow= new NotificationsWindow(user,NewsFeedWindow.this);
-}
+            }
         });
         SearchTextField.addActionListener(new ActionListener() {
             @Override
