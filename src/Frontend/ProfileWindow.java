@@ -100,6 +100,7 @@ public class ProfileWindow extends JFrame {
         ContentDatabase newContentDatabase= (ContentDatabase) content;
         ArrayList<Content> allcontent=newContentDatabase.getAllPosts();
         for(Content post : allcontent){
+           // هقولك حاجه هعمل برانش جديد اخد البرانش بتاعك فيه ماشي هاخده 
             if(post.getAuthorId().equals(user.getId())){
                 addPost(postPanel, user.getUsername()+post.getPostString(post.getTimeStamp(),post.getContent()),post.getPicPath());
             }

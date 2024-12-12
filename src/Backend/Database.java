@@ -9,11 +9,12 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public abstract class Database<T>{
-    protected Gson gson=new GsonBuilder().setPrettyPrinting().create();
+    protected Gson gson;
     protected String fileName;
 
     public Database(String fileName) {
         this.fileName = fileName;
+        this.gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
     }
 
     public void save(ArrayList<T> list){

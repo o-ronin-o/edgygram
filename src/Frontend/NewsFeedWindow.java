@@ -6,6 +6,7 @@ import Backend.Friends.FriendsDatabase;
 import Backend.Friends.*;
 
 import javax.swing.*;
+import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -39,13 +40,17 @@ public class NewsFeedWindow extends JFrame {
 
     public NewsFeedWindow(User user){
 
-//          ImageIcon img2=new ImageIcon("C:\\Users\\Hazem\\Desktop\\Edgygram\\Zamalek_SC_logo.svg.png");
-//          Image ScaledImage2 =img2.getImage().getScaledInstance(100,200,Image.SCALE_SMOOTH);
-//          Stories.setIcon(new ImageIcon(ScaledImage2));
-//          Stories.setText("Zamalek");
+
+//        UIManager.put("ScrollBar.thumb", new ColorUIResource(Color.decode("#24292e"))); // Scrollbar thumb
+//        UIManager.put("ScrollBar.thumbHighlight", new ColorUIResource(Color.decode("#24292e"))); // Thumb highlight
+//        UIManager.put("ScrollBar.thumbDarkShadow", new ColorUIResource(Color.decode("#5b5b5b"))); // Thumb shadow
+
+
+        SwingUtilities.updateComponentTreeUI(this);
+        //Setting up the databases
         Database<User> userDatabase = new UserDatabase();
         FriendsManagement friendsManagement = new FriendsManagement(userDatabase, new FriendsDatabase());
-        Database<Content> contentDatabase = new ContentDatabase();
+        ContentDatabase contentDatabase = new ContentDatabase();
         ArrayList<Content> posts = friendsManagement.getFriendsPosts(user);
         ArrayList<Content> stories = friendsManagement.getFriendsStories(user);
         setContentPane(Container);
@@ -53,8 +58,12 @@ public class NewsFeedWindow extends JFrame {
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800,600);
+        Container.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        Container.setBorder(new RoundedBorder(20));
         pack();
         Container.setBackground(Color.decode("#24292e"));
+
+
         // Implementation of friends
 
         ArrayList<User> friend = friendsManagement.getFriends(user);
@@ -69,10 +78,67 @@ public class NewsFeedWindow extends JFrame {
         // Create the JList and set custom render to handle displaying Jpanel
         friendsList = new JList<>(friendsListModel);
         friendsList.setCellRenderer(new CustomRender());
-        friendsList.setBackground(new Color(34, 34, 34));
+        friendsList.setBackground(Color.decode("#24292e"));
         Friends.setViewportView(friendsList);
+        Friends.setBackground(Color.decode("#24292e"));
+        Friends.setBorder(new RoundedBorder(20));
+       Friends.getVerticalScrollBar().setUI(new javax.swing.plaf.basic.BasicScrollBarUI() {
+            @Override
+            protected void configureScrollBarColors() {
+                thumbColor = Color.decode("#5b5b5b");
+                trackColor = Color.decode("#24292e");
+                trackHighlightColor = Color.decode("#24292e");
+                thumbDarkShadowColor = Color.decode("#5b5b5b");
+            }
+        });
+        Friends.getHorizontalScrollBar().setUI(new javax.swing.plaf.basic.BasicScrollBarUI() {
+            @Override
+            protected void configureScrollBarColors() {
+                thumbColor = Color.decode("#5b5b5b");
+                trackColor = Color.decode("#24292e");
+                trackHighlightColor = Color.decode("#24292e");
+                thumbDarkShadowColor = Color.decode("#5b5b5b");
+            }
+        });
         Friends.revalidate();
         Friends.repaint();
+
+        //setting up the manage friends button
+
+        manageFriendsButton.setBackground(Color.decode("#24292e"));
+        manageFriendsButton.setForeground(Color.decode("#FFFFFF"));
+        manageFriendsButton.setBorder(new RoundedBorder(10));
+
+        //setting up the Add Story button
+
+        addStoryButton.setBackground(Color.decode("#24292e"));
+        addStoryButton.setForeground(Color.decode("#FFFFFF"));
+        addStoryButton.setBorder(new RoundedBorder(10));
+
+        //setting up the Logout button
+
+        LogOut.setBackground(Color.decode("#24292e"));
+        LogOut.setForeground(Color.decode("#FFFFFF"));
+        LogOut.setBorder(new RoundedBorder(10));
+
+        //setting up the Refresh button
+
+        refreshButton.setBackground(Color.decode("#24292e"));
+        refreshButton.setForeground(Color.decode("#FFFFFF"));
+        refreshButton.setBorder(new RoundedBorder(10));
+
+        //setting up the Profile button
+
+        Profile.setBackground(Color.decode("#24292e"));
+        Profile.setForeground(Color.decode("#FFFFFF"));
+        Profile.setBorder(new RoundedBorder(10));
+
+        //setting up the Search bar button
+
+        addStoryButton.setBackground(Color.decode("#24292e"));
+        addStoryButton.setForeground(Color.decode("#FFFFFF"));
+        addStoryButton.setBorder(new RoundedBorder(10));
+
 
 
         //setting up the posts scrollpane
@@ -91,7 +157,27 @@ public class NewsFeedWindow extends JFrame {
         postsScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         postsScrollPane.setBackground(Color.decode("#24292e"));
         postPanel.setBorder(new RoundedBorder(20));
-        postsScrollPane.setBorder(new RoundedBorder(20));
+        postsScrollPane.setBorder(new RoundedBorder(5));
+        postsScrollPane.getVerticalScrollBar().setUI(new javax.swing.plaf.basic.BasicScrollBarUI() {
+            @Override
+            protected void configureScrollBarColors() {
+                thumbColor = Color.decode("#5b5b5b");
+                trackColor = Color.decode("#24292e");
+                trackHighlightColor = Color.decode("#24292e");
+            }
+
+        });
+        postsScrollPane.getHorizontalScrollBar().setUI(new javax.swing.plaf.basic.BasicScrollBarUI() {
+            @Override
+            protected void configureScrollBarColors() {
+                thumbColor = Color.decode("#5b5b5b");
+                trackColor = Color.decode("#24292e");
+
+            }
+        });
+
+
+
         revalidate();
         repaint();
 
@@ -112,6 +198,24 @@ public class NewsFeedWindow extends JFrame {
         storiesScrollPane.setBackground(Color.decode("#24292e"));
         StoryPanel.setBorder(new RoundedBorder(20));
         storiesScrollPane.setBorder(new RoundedBorder(20));
+        storiesScrollPane.getVerticalScrollBar().setUI(new javax.swing.plaf.basic.BasicScrollBarUI() {
+            @Override
+            protected void configureScrollBarColors() {
+                thumbColor = Color.decode("#5b5b5b");
+                trackColor = Color.decode("#24292e");
+                trackHighlightColor = Color.decode("#24292e");
+                thumbDarkShadowColor = Color.decode("#5b5b5b");
+                }
+        });
+        storiesScrollPane.getHorizontalScrollBar().setUI(new javax.swing.plaf.basic.BasicScrollBarUI() {
+            @Override
+            protected void configureScrollBarColors() {
+                thumbColor = Color.decode("#5b5b5b");
+                trackColor = Color.decode("#24292e");
+
+            }
+        });
+
         revalidate();
         repaint();
 
@@ -166,11 +270,11 @@ public class NewsFeedWindow extends JFrame {
                        System.out.println("no pic selected");
                        addPost(postPanel, user.getUsername()+" Posted At: "+ LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME) +"\n"+postTextArea.getText(),null);
                    }
-                   ContentDatabase newContentDatabase= (ContentDatabase) contentDatabase;
+
                     JOptionPane.showMessageDialog(Container,"Post added yummy ;-)");
-                   ArrayList<Content> posts=newContentDatabase.getAllPosts();
+                    ArrayList<Content> posts=contentDatabase.getAllPosts();
                     posts.add(posty);
-                    newContentDatabase.saveAllPosts(posts);
+                    contentDatabase.saveAllPosts(posts);
 
                 }
             }
@@ -272,10 +376,10 @@ public class NewsFeedWindow extends JFrame {
                 }
                 addStory(StoryPanel,Storyy.getContent(),Storyy.getPicPath());
                 stories.add(Storyy);
-                ContentDatabase newContentDatabase= (ContentDatabase) contentDatabase;
-                ArrayList<Content> allStories=newContentDatabase.getAllStories();
+
+                ArrayList<Content> allStories=contentDatabase.getAllStories();
                 stories.addAll(allStories);
-                newContentDatabase.saveAllStories(stories);
+                contentDatabase.saveAllStories(stories);
             }
         });
     }
@@ -324,7 +428,7 @@ public class NewsFeedWindow extends JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout(FlowLayout.LEFT));
         ImageIcon image = new ImageIcon(photoPath);
-        Image img=image.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+        Image img=image.getImage().getScaledInstance(25,40,Image.SCALE_SMOOTH);
         image=new ImageIcon(img);
         JLabel imageLabel = new JLabel(image);
         JLabel usernameLabel = new JLabel(username);
@@ -334,6 +438,7 @@ public class NewsFeedWindow extends JFrame {
         panel.add(imageLabel);
         panel.add(usernameLabel);
         panel.add(stateLabel);
+
         return panel;
     }
     public void addStory(JPanel postPanel, String text , String imagePath){
@@ -342,7 +447,7 @@ public class NewsFeedWindow extends JFrame {
         singleStoryPanel.setLayout(new BorderLayout());
         singleStoryPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
-        // a jtextarea for text
+        // a Jtextarea for text
         JTextArea textArea = new JTextArea(text);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
@@ -351,14 +456,14 @@ public class NewsFeedWindow extends JFrame {
         textArea.setBackground(Color.decode("#24292e"));
         textArea.setForeground(Color.white);
 
-        // creating a jlabel for images
+        // creating a Jlabel for images
         ImageIcon Img = new ImageIcon(imagePath);
         Image scaledImage = Img.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         JLabel imgLabel = new JLabel(new ImageIcon(scaledImage));
 
         // now we add the component for the main singleStoryPanel
         singleStoryPanel.add(textArea, BorderLayout.SOUTH);
-        singleStoryPanel.add(imgLabel, BorderLayout.CENTER);
+        singleStoryPanel.add(imgLabel, BorderLayout.NORTH);
         singleStoryPanel.setBackground(Color.decode("#24292e"));
 
         //now we add it to the post panel
