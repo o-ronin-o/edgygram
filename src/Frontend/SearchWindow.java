@@ -51,7 +51,7 @@ public class SearchWindow extends JFrame {
                     ArrayList<User> allUsers= userDatabase.getAll();
                     for(User userr: allUsers){
                         if(userr.getUsername().equals(suggested.get(index).getUsername())){
-                           // new UserSearchOptions(user,userr);
+                            new UserSearchOptions(user,userr);
                             dispose();
                             return;
                         }
