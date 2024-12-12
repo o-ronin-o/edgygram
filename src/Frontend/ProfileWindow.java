@@ -22,7 +22,7 @@ public class ProfileWindow extends JFrame {
     private JTextArea posts;
     private JScrollPane postScrollPane;
     private JList postList;
-    ProfileWindow(User user) {
+    ProfileWindow(User user,boolean displayEditButton) {
         //setting up the databases
         JDateChooser dateChooser = new JDateChooser();
         dateChooser.setDateFormatString("yyyy-MM-dd");
@@ -124,14 +124,16 @@ public class ProfileWindow extends JFrame {
 //        postScrollPane.setViewportView(posts);
 //        postScrollPane.revalidate();
 //        postScrollPane.repaint();
-
-
-        editProfile.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new EditProfileWindow(user);
-            }
-        });
+        editProfile.setVisible(false);
+        if(displayEditButton) {
+            editProfile.setVisible(true);
+            editProfile.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    new EditProfileWindow(user,ProfileWindow.this);
+                }
+            });
+        }
     }
          public void addPost(JPanel postPanel, String text , String imagePath){
                 // a jpanel for each post

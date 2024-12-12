@@ -25,7 +25,7 @@ public class SearchWindow extends JFrame {
         setVisible(true);
         setContentPane(container);
         SearchEngine searchEngine=new SearchEngine();
-        ArrayList<User> suggested= searchEngine.searchUser(searchInput);
+        ArrayList<User> suggested= searchEngine.searchUser(user,searchInput);
         ArrayList<String> suggestedUsers = searchEngine.getResultsInFormat(suggested);
         DefaultListModel<JPanel> panelModel = new DefaultListModel<>();
         System.out.println(suggestedUsers);
