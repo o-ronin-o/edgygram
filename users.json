@@ -11,17 +11,6 @@
     "coverPicture": "defaultCover.jpeg"
   },
   {
-    "id": "2",
-    "username": "Bob",
-    "password": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
-    "email": "bob@example.com",
-    "bio": "",
-    "dateOfBirth": "1996-02-15",
-    "status": "offline",
-    "profilePicture": "defaultProfile.jpeg",
-    "coverPicture": "defaultCover.jpeg"
-  },
-  {
     "id": "3",
     "username": "Charlie",
     "password": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
@@ -61,7 +50,7 @@
     "email": "frank@example.com",
     "bio": "",
     "dateOfBirth": "1996-06-10",
-    "status": "offline",
+    "status": "online",
     "profilePicture": "defaultProfile.jpeg",
     "coverPicture": "defaultCover.jpeg"
   },
@@ -138,6 +127,17 @@
     "email": "dwad@gm.com",
     "bio": "",
     "dateOfBirth": "07/12/2004",
+    "status": "online",
+    "profilePicture": "defaultProfile.jpeg",
+    "coverPicture": "defaultCover.jpeg"
+  },
+  {
+    "id": "2",
+    "username": "Bob",
+    "password": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+    "email": "bob@example.com",
+    "bio": "this is Bob ",
+    "dateOfBirth": "1996-02-15",
     "status": "offline",
     "profilePicture": "defaultProfile.jpeg",
     "coverPicture": "defaultCover.jpeg"

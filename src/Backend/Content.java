@@ -12,7 +12,7 @@ public abstract class Content {
     private String picPath;
     private static final AtomicInteger counter = new AtomicInteger(0);
     private static final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
-
+//
     public Content(String contentId, String authorId, String content, LocalDateTime timeStamp,String picPath) {
         this.contentId = contentId;
         this.authorId = authorId;
