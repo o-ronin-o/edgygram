@@ -109,6 +109,13 @@
     "blockedUsers": [],
     "pendingRequests": []
   },
+  "2010503273": {
+    "friends": [
+      "2"
+    ],
+    "blockedUsers": [],
+    "pendingRequests": []
+  },
   "1": {
     "friends": [
       "10",
@@ -123,7 +130,8 @@
   "2": {
     "friends": [
       "4",
-      "8"
+      "8",
+      "2010503273"
     ],
     "blockedUsers": [
       "9"
@@ -138,7 +146,12 @@
     "blockedUsers": [
       "4"
     ],
-    "pendingRequests": []
+    "pendingRequests": [
+      {
+        "SenderId": "1",
+        "ReceiverId": "3"
+      }
+    ]
   },
   "4": {
     "friends": [
@@ -150,6 +163,10 @@
     "pendingRequests": [
       {
         "SenderId": "1",
+        "ReceiverId": "4"
+      },
+      {
+        "SenderId": "8",
         "ReceiverId": "4"
       }
     ]
@@ -184,7 +201,8 @@
   "8": {
     "friends": [
       "2",
-      "9"
+      "9",
+      "1696255471"
     ],
     "blockedUsers": [],
     "pendingRequests": [
@@ -206,6 +224,13 @@
     "blockedUsers": [
       "2"
     ],
+    "pendingRequests": []
+  },
+  "1696255471": {
+    "friends": [
+      "8"
+    ],
+    "blockedUsers": [],
     "pendingRequests": []
   },
   "20": {
