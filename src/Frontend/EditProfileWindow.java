@@ -22,10 +22,10 @@ public class EditProfileWindow extends JFrame {
     private JButton changePasswordButton;
     private JButton doneButton;
 
-    public EditProfileWindow(User user) {
+    public EditProfileWindow(User user,ProfileWindow profileWindow) {
         //setting up the main frame
         setTitle("Edit Profile");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(400, 300);
         mainPanel.setBorder(BorderFactory.createEmptyBorder(0,0,10,10));
         mainPanel.setBackground(Color.decode("#24292e"));
@@ -161,7 +161,8 @@ public class EditProfileWindow extends JFrame {
                 Database<User> userDatabase = new UserDatabase();
                 userDatabase.remove(user);
                 userDatabase.add(user);
-                new ProfileWindow(user);
+                new ProfileWindow(user,true);
+                profileWindow.dispose();
                 dispose();
             }
         });
