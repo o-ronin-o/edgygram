@@ -208,7 +208,7 @@ public class NewsFeedWindow extends JFrame {
         Profile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ProfileWindow(user);
+                new ProfileWindow(user,true);
             }
         });
 
@@ -276,6 +276,13 @@ public class NewsFeedWindow extends JFrame {
                 ArrayList<Content> allStories=newContentDatabase.getAllStories();
                 stories.addAll(allStories);
                 newContentDatabase.saveAllStories(stories);
+            }
+        });
+        SearchTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String searchInput= SearchTextField.getText().toLowerCase();
+                new SearchWindow(user,searchInput,NewsFeedWindow.this);
             }
         });
     }

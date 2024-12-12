@@ -53,7 +53,7 @@ public class UserSearchOptions extends JFrame {
         viewProfieButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ProfileWindow(suggestion);
+                new ProfileWindow(suggestion,false);
                 dispose();
             }
         });

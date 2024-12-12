@@ -99,7 +99,7 @@ public class FriendRequestManagement {
         }
         return false;
     }
-    private boolean isBlocked(String blockerId, String toCheckId) {
+    public boolean isBlocked(String blockerId, String toCheckId) {
         FriendData blocked = friendsMap.getOrDefault(blockerId, new FriendData());
         return blocked.getBlockedUsers().contains(toCheckId);
     }
