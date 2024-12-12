@@ -1,9 +1,8 @@
 package Frontend;
 
-import Backend.Database;
-import Backend.SearchEngine;
-import Backend.User;
-import Backend.UserDatabase;
+import Backend.*;
+import Backend.Groups.GroupData;
+import Backend.Groups.GroupsDatabase;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,35 +10,33 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class SearchWindow extends JFrame {
+public class GroupsSearchWindow extends JFrame {
+    private static GroupsSearchWindow instance;
     private JPanel container;
-    private JScrollPane suggestionScroll;
+    private JScrollPane groupsScrollPane;
     private JList<JPanel> suggestionList;
-
-    public SearchWindow(User user, String searchInput, NewsFeedWindow newsFeedWindow) {
-        setTitle("Search Result");
+    public GroupsSearchWindow(User user,String searchInput,NewsFeedWindow newsFeedWindow) {
+        setTitle("Groups Search");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setSize(300,300);
         setLocationRelativeTo(newsFeedWindow);
+        setSize(300,400);
         setResizable(false);
         setVisible(true);
         setContentPane(container);
         SearchEngine searchEngine= SearchEngine.getInstance();
-        ArrayList<User> suggested= searchEngine.searchUser(user,searchInput);
-        ArrayList<String> suggestedUsers = searchEngine.getUserResultsInFormat(suggested);
+        ArrayList<GroupData> suggested= searchEngine.searchGroup(searchInput);
+        ArrayList<String> suggestedGroups= searchEngine.getGroupResultsInFormat(suggested);
         DefaultListModel<JPanel> panelModel = new DefaultListModel<>();
-        System.out.println(suggestedUsers);
-        if(suggestedUsers.isEmpty()){
+        System.out.println(suggestedGroups);
+        if(suggestedGroups.isEmpty()){
             JOptionPane.showMessageDialog(null, "No search result");
             return;
         }
-        for(String data: suggestedUsers) {
+        for(String data : suggestedGroups){
             String[] parts = data.split(",");
-            System.out.println(parts[0]+" "+parts[1]);
             JPanel suggestionPanel= createSuggestionPanel(parts[0],parts[1]);
             panelModel.addElement(suggestionPanel);
         }
-        // Create the JList and set custom render to handle displaying Jpanel
         suggestionList=new JList<>(panelModel);
         suggestionList.setCellRenderer(new CustomRender());
         suggestionList.setBackground(new Color(34, 34, 34));
@@ -47,23 +44,22 @@ public class SearchWindow extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 int index = suggestionList.getSelectedIndex();
                 if(index>=0){
-                    Database<User> userDatabase=new UserDatabase();
-                    ArrayList<User> allUsers= userDatabase.getAll();
-                    for(User userr: allUsers){
-                        if(userr.getUsername().equals(suggested.get(index).getUsername())){
-                            new UserSearchOptions(user,userr);
+                    GroupsDatabase groupsDatabase=new GroupsDatabase();
+                    ArrayList<GroupData> allGroups= groupsDatabase.getAll();
+                    for(GroupData group : allGroups){
+                        if(group.getGroupName().equals(suggested.get(index).getGroupName())){
+                            //new GroupSearchOptions();
                             dispose();
                             return;
                         }
                     }
                 }
-            }
-        });
-        // Set the JList inside the JScrollPane
-        suggestionScroll.setViewportView(suggestionList);
-        suggestionScroll.revalidate();
-        suggestionScroll.repaint();
 
+                }
+        });
+        groupsScrollPane.setViewportView(suggestionList);
+        groupsScrollPane.revalidate();
+        groupsScrollPane.repaint();
     }
     public JPanel createSuggestionPanel(String photoPath,String username){
         JPanel panel = new JPanel();
@@ -77,11 +73,5 @@ public class SearchWindow extends JFrame {
         panel.add(imageLabel);
         panel.add(usernameLabel);
         return panel;
-    }
-
-    public static void main(String[] args) {
-        UserDatabase userDatabase= new UserDatabase();
-        ArrayList<User> users=userDatabase.getAll();
-        new SearchWindow(users.get(0),"ank",new NewsFeedWindow(users.get(0)));
     }
 }
