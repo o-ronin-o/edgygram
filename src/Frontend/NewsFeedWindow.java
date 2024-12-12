@@ -31,6 +31,7 @@ public class NewsFeedWindow extends JFrame {
     private JScrollPane postsScrollPane;
     private JScrollPane storiesScrollPane;
     private JButton addStoryButton;
+    private JButton Notificationsbutton;
     private JList<JPanel> friendsList;
     private JList<String> postList;
     private JList<String>  FriendsSuggestionsList;
@@ -276,6 +277,12 @@ public class NewsFeedWindow extends JFrame {
                 ArrayList<Content> allStories=newContentDatabase.getAllStories();
                 stories.addAll(allStories);
                 newContentDatabase.saveAllStories(stories);
+            }
+        });
+        Notificationsbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                NotificationsWindow notificationsWindow= new NotificationsWindow(user);
             }
         });
     }
