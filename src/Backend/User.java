@@ -1,22 +1,35 @@
 package Backend;
 
 
+import com.google.gson.annotations.Expose;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class User {
+    @Expose
     private String id;
+    @Expose
     private String username;
+    @Expose
     private String password;
+    @Expose
     private String email;
+    @Expose
     private String bio;
+    @Expose
     private String dateOfBirth;
+    @Expose
     private String status;
+    @Expose
     private String profilePicture ;
+    @Expose
     private String coverPicture ;
+    @Expose
     private static final AtomicInteger counter = new AtomicInteger(0);
+
 
 //    public User(String id, String username, String password, String email, String dateOfBirth, String status, String profilePicture, String CoverPicture, String bio) {
 //        this.id = id;
@@ -81,7 +94,7 @@ public class User {
     }
 
     public String getId() {
-        return id;
+        return this.id;
     }
     public String getprofilePicture() {
         return this.profilePicture;

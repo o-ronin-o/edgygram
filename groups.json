@@ -1,0 +1,84 @@
+[
+  {
+    "groupId": "GID-1",
+    "groupName": "Tech Enthusiasts",
+    "groupDescription": "A group for technology lovers to share knowledge and ideas.",
+    "groupPicture": "Downloads/cat.jpg",
+    "groupMembers": [
+      {
+        "id": "1",
+        "username": "Alice",
+        "email": "alice@example.com",
+        "bio": "",
+        "dateOfBirth": "1995-01-10",
+        "status": "offline",
+        "profilePicture": "defaultProfile.jpeg",
+        "coverPicture": "defaultCover.jpeg"
+      },
+      {
+        "id": "2",
+        "username": "Bob",
+        "email": "bob@example.com",
+        "bio": "",
+        "dateOfBirth": "1996-02-15",
+        "status": "online",
+        "profilePicture": "defaultProfile.jpeg",
+        "coverPicture": "defaultCover.jpeg"
+      }
+    ],
+    "primaryAdminId": "1",
+    "Admins": [
+      {
+        "id": "1",
+        "username": "Alice",
+        "email": "alice@example.com",
+        "bio": "",
+        "dateOfBirth": "1995-01-10",
+        "status": "offline",
+        "profilePicture": "defaultProfile.jpeg",
+        "coverPicture": "defaultCover.jpeg"
+      }
+    ]
+  },
+  {
+    "groupId": "GID-2",
+    "groupName": "Art Lovers",
+    "groupDescription": "A group to share and discuss art.",
+    "groupPicture": "Downloads/art.jpg",
+    "groupMembers": [
+      {
+        "id": "3",
+        "username": "Charlie",
+        "email": "charlie@example.com",
+        "bio": "Loves painting and sketching",
+        "dateOfBirth": "1990-07-22",
+        "status": "online",
+        "profilePicture": "charlieProfile.jpg",
+        "coverPicture": "charlieCover.jpg"
+      },
+      {
+        "id": "4",
+        "username": "Dana",
+        "email": "dana@example.com",
+        "bio": "",
+        "dateOfBirth": "1988-03-14",
+        "status": "offline",
+        "profilePicture": "defaultProfile.jpeg",
+        "coverPicture": "defaultCover.jpeg"
+      }
+    ],
+    "primaryAdminId": "3",
+    "Admins": [
+      {
+        "id": "3",
+        "username": "Charlie",
+        "email": "charlie@example.com",
+        "bio": "Loves painting and sketching",
+        "dateOfBirth": "1990-07-22",
+        "status": "online",
+        "profilePicture": "charlieProfile.jpg",
+        "coverPicture": "charlieCover.jpg"
+      }
+    ]
+  }
+]

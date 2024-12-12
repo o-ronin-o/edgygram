@@ -1,16 +1,29 @@
 package Backend;
 
+import com.google.gson.annotations.Expose;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class Content {
+    @Expose
     private String contentId;
+    @Expose
+    private String groupId;
+    @Expose
     private String authorId;
+    @Expose
     private String content;
+    @Expose
     private String timeStamp;
+    @Expose
     private String picPath;
+    @Expose
+    private String authorName;
+    @Expose
     private static final AtomicInteger counter = new AtomicInteger(0);
+    @Expose
     private static final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
     public Content(String contentId, String authorId, String content, LocalDateTime timeStamp,String picPath) {
@@ -21,13 +34,35 @@ public abstract class Content {
         this.picPath = picPath;
     }
 
+    public Content(String contentId, String authorId, String content, LocalDateTime timeStamp,String picPath,String groupId,String authorName) {
+        this.contentId = contentId;
+        this.authorId = authorId;
+        this.content = content;
+        this.timeStamp = timeStamp.format(DateTimeFormatter.ISO_DATE_TIME);
+        this.picPath = picPath;
+        this.groupId = groupId;
+        this.authorName = authorName;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
+    }
     public String getPicPath() {
         return picPath;
     }
     public void setPicPath(String picPath){
         this.picPath = picPath;
     }
-
+    public String getAuthorName() {
+        return authorName;
+    }
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
     public String getContentId() {
         return this.contentId;
     }
@@ -43,9 +78,7 @@ public abstract class Content {
     public String getTimeStamp() {
         return timeStamp;
     }
-    public static String generateID() {
-        return "CID-" + counter.incrementAndGet();
-    }
+
 
     public void setAuthorId(String authorId) {
         this.authorId = authorId;

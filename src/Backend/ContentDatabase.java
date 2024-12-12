@@ -74,12 +74,10 @@ public class ContentDatabase extends Database<Content> {
         }
         return null;
     }
-
     public ArrayList<Content> getAllPosts() {
         fileName = postsFileName;
         return load(new TypeToken<ArrayList<Post>>() {}.getType());
     }
-
 
     public ArrayList<Content> getAllStories() {
         fileName=storiesFileName;
