@@ -50,7 +50,7 @@
     "email": "frank@example.com",
     "bio": "",
     "dateOfBirth": "1996-06-10",
-    "status": "online",
+    "status": "offline",
     "profilePicture": "defaultProfile.jpeg",
     "coverPicture": "defaultCover.jpeg"
   },
@@ -121,6 +121,17 @@
     "coverPicture": "defaultCover.jpeg"
   },
   {
+    "id": "2",
+    "username": "Bob",
+    "password": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+    "email": "bob@example.com",
+    "bio": "",
+    "dateOfBirth": "1996-02-15",
+    "status": "online",
+    "profilePicture": "defaultProfile.jpeg",
+    "coverPicture": "defaultCover.jpeg"
+  },
+  {
     "id": "2010503273",
     "username": "mosalah",
     "password": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
@@ -128,6 +139,7 @@
     "bio": "",
     "dateOfBirth": "07/12/2004",
     "status": "online",
+
     "profilePicture": "defaultProfile.jpeg",
     "coverPicture": "defaultCover.jpeg"
   },
@@ -139,6 +151,17 @@
     "bio": "this is Bob ",
     "dateOfBirth": "1996-02-15",
     "status": "offline",
+    "profilePicture": "E:\\records\\Cyberpunk 2077\\Cyberpunk 2077 Screenshot 2024.03.04 - 12.56.56.55.png",
+    "coverPicture": "defaultCover.jpeg"
+  },
+  {
+    "id": "1696255471",
+    "username": "yousef",
+    "password": "2fa565ec2c85848b747b80a903544d96fdbda3387700a927f891d8367c40eb49",
+    "email": "yousef@gmail.com",
+    "bio": "biooooooooooooo",
+    "dateOfBirth": "11/12/2024",
+    "status": "online",
     "profilePicture": "defaultProfile.jpeg",
     "coverPicture": "defaultCover.jpeg"
   }

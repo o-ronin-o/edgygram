@@ -19,5 +19,20 @@
     "authorId": "2",
     "content": "dq2hibdquidf",
     "timeStamp": "2024-12-06T21:36:08.1530266"
+  },
+  {
+    "contentType": "Post",
+    "contentId": "CID-1",
+    "authorId": "1696255471",
+    "content": "this is post",
+    "timeStamp": "2024-12-11T09:34:19.0241401"
+  },
+  {
+    "contentType": "Post",
+    "contentId": "CID-2",
+    "authorId": "1696255471",
+    "content": "photo test",
+    "timeStamp": "2024-12-11T09:34:39.3497671",
+    "picPath": "E:\\30411051500231.jpg"
   }
 ]

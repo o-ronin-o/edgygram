@@ -37,13 +37,16 @@ public class GroupWindow extends JFrame {
 
         postScrollPane = setupScrollPane(postScrollPane, group);
 
-
+        // setting up the buttons
         manageAdminsButton = setupButtons(manageAdminsButton);
         manageRequestsButton = setupButtons(manageRequestsButton);
         removeMemberButton = setupButtons(removeMemberButton);
         deleteGroupButton = setupButtons(deleteGroupButton);
 
         System.out.println(user.getId());
+
+        //checking the role of the user
+
         if(group.isAdmin(user)){
             if(group.isPrimaryAdmin(user)){
                 manageAdminsButton.setVisible(true);
@@ -61,6 +64,10 @@ public class GroupWindow extends JFrame {
         }
         JFileChooser fileChooser = new JFileChooser();
         JPanel postPanel = new JPanel();
+
+        // setting up the add post panel
+
+
 
         postTextArea.setBackground(Color.decode("#24292e"));
         postTextArea.setBorder(new RoundedBorder(20));
@@ -165,8 +172,8 @@ public class GroupWindow extends JFrame {
         postPanel.setBackground(Color.decode("#24292e"));
         postPanel.setLayout(new BoxLayout(postPanel, BoxLayout.Y_AXIS));
         for(Content post : group.getAllPosts()){
-                group.getById(post.getGroupId());
-                addPost(postPanel, post.getAuthorName()+" "+post.getPostString(post.getTimeStamp(),post.getContent()),post.getPicPath());
+                Content c = group.getById(post.getGroupId());
+                addPost(postPanel, c.getAuthorName()+" "+c.getPostString(post.getTimeStamp(),c.getContent()),c.getPicPath());
         }
 
         myScrollPane.setViewportView(postPanel);
