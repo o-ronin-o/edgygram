@@ -11,7 +11,6 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class GroupsSearchWindow extends JFrame {
-    private static GroupsSearchWindow instance;
     private JPanel container;
     private JScrollPane groupsScrollPane;
     private JList<JPanel> suggestionList;
@@ -48,7 +47,7 @@ public class GroupsSearchWindow extends JFrame {
                     ArrayList<GroupData> allGroups= groupsDatabase.getAll();
                     for(GroupData group : allGroups){
                         if(group.getGroupName().equals(suggested.get(index).getGroupName())){
-                            //new GroupSearchOptions();
+                            new GroupSearchOptions();
                             dispose();
                             return;
                         }

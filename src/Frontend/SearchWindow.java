@@ -78,7 +78,6 @@ public class SearchWindow extends JFrame {
         panel.add(usernameLabel);
         return panel;
     }
-
     public static void main(String[] args) {
         UserDatabase userDatabase= new UserDatabase();
         ArrayList<User> users=userDatabase.getAll();
