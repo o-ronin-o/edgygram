@@ -1,7 +1,10 @@
 package Backend.Groups;
 
+import Backend.Database;
 import Backend.User;
+import Backend.UserDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GroupManagement {
@@ -85,5 +88,17 @@ public class GroupManagement {
     }
     public HashMap<String, Group> listAllGroups() {
         return groupDatabase.loadGroupData();
+    }
+    public ArrayList<User> getMembersAsObject(Group group) {
+        ArrayList<String> membersId= group.getGroupMembers();
+        ArrayList<User> members = new ArrayList<>();
+        Database<User> userDatabase= new UserDatabase();
+        for (String memberId : membersId) {
+            User user = userDatabase.getById(memberId);  // get user by id
+            if (user != null) {
+                members.add(user);  // Add the User object to the list
+            }
+        }
+        return members;
     }
 }
