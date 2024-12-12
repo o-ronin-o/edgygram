@@ -6,11 +6,13 @@
     "groupPicture": "group1.jpg",
     "groupMembersId": [
       "1",
-      "3"
+      "3",
+      "4"
     ],
     "primaryAdmin": "1",
     "Admins": [
-      "1"
+      "1",
+      "3"
     ]
   }
 }
