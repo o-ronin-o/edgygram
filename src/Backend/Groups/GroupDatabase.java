@@ -11,54 +11,57 @@ import java.util.HashMap;
 public class GroupDatabase extends Database<HashMap<String, Group>> {
 
     public GroupDatabase() {
-        super("Groups.json");
+        super("Groups.json"); // Initialize with the file name for storing group data
     }
 
     @Override
     public boolean add(HashMap<String, Group> item) {
-        return false;
+        return false; // Adding an entire HashMap is not supported directly
     }
 
     @Override
     public void remove(HashMap<String, Group> item) {
-        // Implement remove logic if needed
+        // Remove logic can be implemented here if needed
     }
 
     @Override
     public ArrayList<HashMap<String, Group>> getAll() {
-        return null;
+        return null; // This method can be implemented to return all groups if necessary
     }
 
     @Override
     public HashMap<String, Group> getById(String id) {
-        return null;
+        return null; // This method can be implemented to get a group by its ID
     }
 
+    // Load the HashMap containing groups from the JSON file
     public HashMap<String, Group> loadHashMap(Type type) {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             File file = new File(fileName);
             if (!file.exists()) {
-                return new HashMap<>();
+                return new HashMap<>(); // Return an empty map if the file doesn't exist
             }
             HashMap<String, Group> map = gson.fromJson(reader, type);
-            return map == null ? new HashMap<>() : map;
+            return map == null ? new HashMap<>() : map; // Handle null case by returning an empty map
         } catch (IOException e) {
-            e.printStackTrace();
-            return new HashMap<>();
+            e.printStackTrace(); // Print error stack trace
+            return new HashMap<>(); // Return an empty map in case of an error
         }
     }
 
+    // Simplified method to load group data using a predefined type
     public HashMap<String, Group> loadGroupData() {
         return loadHashMap(new TypeToken<HashMap<String, Group>>() {}.getType());
     }
 
+    // Save all group data to the JSON file
     public void saveAll(HashMap<String, Group> data) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-            System.out.println("Saving the following data: " + data);  // Debugging line
-            gson.toJson(data, writer); // Save the entire map
-            writer.flush(); // Ensure all data is written
+            System.out.println("Saving the following data: " + data);  // Debugging: Print the data being saved
+            gson.toJson(data, writer);
+            writer.flush(); // Ensure all data is written to the file
         } catch (IOException e) {
-            throw new RuntimeException("Failed to save groups data.", e);
+            throw new RuntimeException("Failed to save groups data.", e); // Throw an error if saving fails
         }
     }
 }
