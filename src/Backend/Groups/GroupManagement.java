@@ -101,4 +101,14 @@ public class GroupManagement {
         }
         return members;
     }
+    public boolean isMember(String groupId, User user) {
+        HashMap<String, Group> groups = groupDatabase.loadGroupData();
+        Group group = groups.get(groupId);
+        if(group!=null) {
+            if(group.getGroupMembers().contains(user.getId())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

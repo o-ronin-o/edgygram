@@ -8,7 +8,6 @@ public class Post extends Content {
 
     @Expose
     private String contentType;
-
     public Post( String contentId ,String authorId, String content, LocalDateTime timeStamp,String picPath, String contentType) {
         super( contentId ,authorId, content, timeStamp,picPath);
         this.contentType = "Post";
