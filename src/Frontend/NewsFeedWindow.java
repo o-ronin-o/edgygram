@@ -32,6 +32,7 @@ public class NewsFeedWindow extends JFrame {
     private JScrollPane storiesScrollPane;
     private JButton addStoryButton;
     private JButton Notificationsbutton;
+    private JButton groupsManagementButton;
     private JButton searchUsersButton;
     private JButton searchGroupsButton;
     private JList<JPanel> friendsList;
@@ -141,6 +142,10 @@ public class NewsFeedWindow extends JFrame {
         addStoryButton.setForeground(Color.decode("#FFFFFF"));
         addStoryButton.setBorder(new RoundedBorder(10));
 
+        //setting up the group Management button
+        groupsManagementButton.setBackground(Color.decode("#24292e"));
+        groupsManagementButton.setForeground(Color.decode("#FFFFFF"));
+        groupsManagementButton.setBorder(new RoundedBorder(10));
         //setting up notfication button
         Notificationsbutton.setBackground(Color.decode("#24292e"));
         Notificationsbutton.setForeground(Color.decode("#FFFFFF"));
@@ -429,6 +434,12 @@ public class NewsFeedWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new SearchWindow(user,SearchTextField.getText(),NewsFeedWindow.this);
+            }
+        });
+        groupsManagementButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new GroupManagementWindow(user,NewsFeedWindow.this);
             }
         });
     }

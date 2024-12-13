@@ -38,6 +38,7 @@
           </grid>
         </constraints>
         <properties>
+          <focusable value="false"/>
           <text value="           Search"/>
         </properties>
       </component>
@@ -46,6 +47,7 @@
           <grid row="0" column="4" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <focusable value="false"/>
           <text value="Refresh"/>
         </properties>
       </component>
@@ -54,6 +56,7 @@
           <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <focusable value="false"/>
           <text value="Profile"/>
         </properties>
       </component>
@@ -89,6 +92,8 @@
         </constraints>
         <properties>
           <focusable value="false"/>
+
+          <text value="Logout"/>
           <text value="Search users"/>
         </properties>
       </component>
@@ -106,6 +111,7 @@
           <grid row="1" column="4" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <focusable value="false"/>
           <text value="Add Story"/>
         </properties>
       </component>
@@ -124,6 +130,15 @@
         <properties>
           <focusable value="false"/>
           <text value="Notifications"/>
+        </properties>
+      </component>
+      <component id="e79da" class="javax.swing.JButton" binding="groupsManagementButton" default-binding="true">
+        <constraints>
+          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <focusable value="false"/>
+          <text value="Groups management"/>
         </properties>
       </component>
     </children>

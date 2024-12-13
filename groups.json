@@ -1,84 +1,46 @@
-[
-  {
-    "groupId": "GID-1",
-    "groupName": "Tech Enthusiasts",
-    "groupDescription": "A group for technology lovers to share knowledge and ideas.",
-    "groupPicture": "Downloads/cat.jpg",
-    "groupMembers": [
-      {
-        "id": "1",
-        "username": "Alice",
-        "email": "alice@example.com",
-        "bio": "",
-        "dateOfBirth": "1995-01-10",
-        "status": "offline",
-        "profilePicture": "defaultProfile.jpeg",
-        "coverPicture": "defaultCover.jpeg"
-      },
-      {
-        "id": "2",
-        "username": "Bob",
-        "email": "bob@example.com",
-        "bio": "",
-        "dateOfBirth": "1996-02-15",
-        "status": "online",
-        "profilePicture": "defaultProfile.jpeg",
-        "coverPicture": "defaultCover.jpeg"
-      }
+{
+  "zo0EYK4oR": {
+    "groupId": "zo0EYK4oR",
+    "groupName": "to display",
+    "groupDescription": "just a test",
+    "groupPicture": "defaultProfile.jpeg",
+    "groupMembersId": [
+      "3"
     ],
-    "primaryAdminId": "1",
+    "primaryAdmin": "3",
     "Admins": [
-      {
-        "id": "1",
-        "username": "Alice",
-        "email": "alice@example.com",
-        "bio": "",
-        "dateOfBirth": "1995-01-10",
-        "status": "offline",
-        "profilePicture": "defaultProfile.jpeg",
-        "coverPicture": "defaultCover.jpeg"
-      }
-    ]
+      "3"
+    ],
+    "joinRequests": []
   },
-  {
-    "groupId": "GID-2",
-    "groupName": "Art Lovers",
-    "groupDescription": "A group to share and discuss art.",
-    "groupPicture": "Downloads/art.jpg",
-    "groupMembers": [
-      {
-        "id": "3",
-        "username": "Charlie",
-        "email": "charlie@example.com",
-        "bio": "Loves painting and sketching",
-        "dateOfBirth": "1990-07-22",
-        "status": "online",
-        "profilePicture": "charlieProfile.jpg",
-        "coverPicture": "charlieCover.jpg"
-      },
-      {
-        "id": "4",
-        "username": "Dana",
-        "email": "dana@example.com",
-        "bio": "",
-        "dateOfBirth": "1988-03-14",
-        "status": "offline",
-        "profilePicture": "defaultProfile.jpeg",
-        "coverPicture": "defaultCover.jpeg"
-      }
+  "VMmE99f5U": {
+    "groupId": "VMmE99f5U",
+    "groupName": "first real test",
+    "groupDescription": "zezo",
+    "groupPicture": "E:\\records\\Cyberpunk 2077\\Cyberpunk 2077 Screenshot 2024.02.25 - 03.02.21.66.png",
+    "groupMembersId": [
+      "3"
     ],
-    "primaryAdminId": "3",
+    "primaryAdmin": "3",
     "Admins": [
-      {
-        "id": "3",
-        "username": "Charlie",
-        "email": "charlie@example.com",
-        "bio": "Loves painting and sketching",
-        "dateOfBirth": "1990-07-22",
-        "status": "online",
-        "profilePicture": "charlieProfile.jpg",
-        "coverPicture": "charlieCover.jpg"
-      }
+      "3"
+    ],
+    "joinRequests": []
+  },
+  "wCYWaFQQG": {
+    "groupId": "wCYWaFQQG",
+    "groupName": "another profile",
+    "groupDescription": "dw",
+    "groupPicture": "E:\\records\\Dead Space (Remake)\\Dead Space (Remake) Screenshot 2024.07.23 - 15.03.42.95.png",
+    "groupMembersId": [
+      "8"
+    ],
+    "primaryAdmin": "8",
+    "Admins": [
+      "8"
+    ],
+    "joinRequests": [
+      "3"
     ]
   }
-]
+}
