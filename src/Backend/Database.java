@@ -14,7 +14,7 @@ public abstract class Database<T>{
 
     public Database(String fileName) {
         this.fileName = fileName;
-        this.gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
+        this.gson = new GsonBuilder().setPrettyPrinting().create();
     }
 
     public void save(ArrayList<T> list){

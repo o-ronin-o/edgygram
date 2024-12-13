@@ -27,7 +27,6 @@ public class GroupData extends Database<Content> {
     private final String postsFileName = "GroupsPosts.json";
     @Expose
     private static final AtomicInteger counter = new AtomicInteger(0);
-// shaklha kda
 
 
     public GroupData(String groupName, String groupDescription, String groupPicture, ArrayList<User> groupMembers,String groupId,User user) {
