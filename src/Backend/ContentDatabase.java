@@ -18,6 +18,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class ContentDatabase extends Database<Content> {
+    //singletion intiation
     static ContentDatabase contentDatabase ;
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
     private final String postsFileName = "Posts.json";
@@ -27,7 +28,7 @@ public class ContentDatabase extends Database<Content> {
         super(null);
 
     }
-
+    // use getinstance instead of new Contentdatabase
     public static ContentDatabase getInstance() {
         if(contentDatabase==null){
             contentDatabase=new ContentDatabase();
