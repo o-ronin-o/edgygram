@@ -42,7 +42,7 @@ public class testGroup {
             System.out.print("Enter group picture (optional): ");
             String groupPicture = scanner.nextLine();
 
-            Group newGroup = groupManagement.CreateGroup(groupName, groupDescription, groupPicture, user);
+            Group newGroup = groupManagement.createGroup(groupName, groupDescription, groupPicture, user);
             System.out.println("Group created successfully! Group ID: " + newGroup.getGroupId());
 
         } else if (choice == 2) {

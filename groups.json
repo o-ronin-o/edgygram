@@ -1,29 +1,46 @@
 {
-  "X7gKVCzbJ": {
-    "groupId": "X7gKVCzbJ",
-    "groupName": "testgroup",
-    "groupDescription": "this is a test group",
-    "groupPicture": "no",
+  "zo0EYK4oR": {
+    "groupId": "zo0EYK4oR",
+    "groupName": "to display",
+    "groupDescription": "just a test",
+    "groupPicture": "defaultProfile.jpeg",
     "groupMembersId": [
-      "2"
-    ],
-    "primaryAdmin": "2",
-    "Admins": [
-      "2"
-    ]
-  },
-  "group1": {
-    "groupId": "group1",
-    "groupName": "testGroup",
-    "groupDescription": "This is a test group",
-    "groupPicture": "group1.jpg",
-    "groupMembersId": [
-      "1",
       "3"
     ],
-    "primaryAdmin": "1",
+    "primaryAdmin": "3",
     "Admins": [
-      "1"
+      "3"
+    ],
+    "joinRequests": []
+  },
+  "VMmE99f5U": {
+    "groupId": "VMmE99f5U",
+    "groupName": "first real test",
+    "groupDescription": "zezo",
+    "groupPicture": "E:\\records\\Cyberpunk 2077\\Cyberpunk 2077 Screenshot 2024.02.25 - 03.02.21.66.png",
+    "groupMembersId": [
+      "3"
+    ],
+    "primaryAdmin": "3",
+    "Admins": [
+      "3"
+    ],
+    "joinRequests": []
+  },
+  "wCYWaFQQG": {
+    "groupId": "wCYWaFQQG",
+    "groupName": "another profile",
+    "groupDescription": "dw",
+    "groupPicture": "E:\\records\\Dead Space (Remake)\\Dead Space (Remake) Screenshot 2024.07.23 - 15.03.42.95.png",
+    "groupMembersId": [
+      "8"
+    ],
+    "primaryAdmin": "8",
+    "Admins": [
+      "8"
+    ],
+    "joinRequests": [
+      "3"
     ]
   }
 }

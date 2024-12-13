@@ -6,7 +6,6 @@ import Backend.Friends.FriendsDatabase;
 import Backend.Friends.*;
 
 import javax.swing.*;
-import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -33,6 +32,7 @@ public class NewsFeedWindow extends JFrame {
     private JScrollPane storiesScrollPane;
     private JButton addStoryButton;
     private JButton Notificationsbutton;
+    private JButton groupsManagementButton;
     private JList<JPanel> friendsList;
     private JList<String> postList;
     private JList<String>  FriendsSuggestionsList;
@@ -140,8 +140,10 @@ public class NewsFeedWindow extends JFrame {
         addStoryButton.setForeground(Color.decode("#FFFFFF"));
         addStoryButton.setBorder(new RoundedBorder(10));
 
-
-
+        //setting up the group Management button
+        groupsManagementButton.setBackground(Color.decode("#24292e"));
+        groupsManagementButton.setForeground(Color.decode("#FFFFFF"));
+        groupsManagementButton.setBorder(new RoundedBorder(10));
         //setting up the posts scrollpane
         JPanel postPanel = new JPanel();
         postPanel.setBackground(Color.decode("#24292e"));
@@ -395,6 +397,12 @@ public class NewsFeedWindow extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String searchInput= SearchTextField.getText().toLowerCase();
                 new SearchWindow(user,searchInput,NewsFeedWindow.this);
+            }
+        });
+        groupsManagementButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new GroupManagementWindow(user,NewsFeedWindow.this);
             }
         });
     }

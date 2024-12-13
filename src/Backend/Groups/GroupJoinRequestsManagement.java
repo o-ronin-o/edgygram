@@ -13,6 +13,7 @@ public class GroupJoinRequestsManagement {
     public GroupJoinRequestsManagement(Group group) {
         this.group = group;
         this.userDatabase = new UserDatabase();
+        this.groupDatabase = new GroupDatabase();
     }
     // send a join request
     public void sendJoinRequest(User user) {

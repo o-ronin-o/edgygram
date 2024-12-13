@@ -110,7 +110,6 @@
     "pendingRequests": []
   },
   "2010503273": {
-    "friends": [],
     "friends": [
       "2"
     ],
@@ -152,12 +151,7 @@
     "blockedUsers": [
       "4"
     ],
-    "pendingRequests": [
-      {
-        "SenderId": "1",
-        "ReceiverId": "3"
-      }
-    ]
+    "pendingRequests": []
   },
   "4": {
     "friends": [

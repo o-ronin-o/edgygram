@@ -5,6 +5,7 @@ import Backend.User;
 import Backend.UserDatabase;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class GroupManagement {
@@ -25,7 +26,7 @@ public class GroupManagement {
         }
         return instance;
     }
-    public Group CreateGroup(String groupName, String groupDescription, String groupPicture, User primaryAdmin) {
+    public Group createGroup(String groupName, String groupDescription, String groupPicture, User primaryAdmin) {
         //create a new group
         Group newGroup=new Group(groupName,groupDescription,groupPicture,primaryAdmin.getId());
         //load the groups data and add our group
@@ -112,4 +113,34 @@ public class GroupManagement {
         }
         return false;
     }
+    public ArrayList<String> convertToDisplayFormat(ArrayList<Group> groups){
+        ArrayList<String> displayFormat = new ArrayList<>();
+        for (Group group : groups) {
+            displayFormat.add(group.getGroupPicture()+","+group.getGroupName());
+        }
+        return displayFormat;
+    }
+    public ArrayList<Group> suggestGroups(User user) {
+        HashMap<String, Group> allGroups = groupDatabase.loadGroupData();
+        ArrayList<Group> groupList = new ArrayList<>(allGroups.values());
+
+        // Create a separate list to store groups to remove
+        ArrayList<Group> groupsToRemove = new ArrayList<>();
+
+        for (Group group : groupList) {
+            // Don't suggest if user is already a member or has requested to join
+            if (group.getGroupMembers().contains(user.getId()) || group.getJoinRequests().contains(user.getId())) {
+                groupsToRemove.add(group);
+            }
+        }
+
+        // Remove the groups from the original list
+        groupList.removeAll(groupsToRemove);
+        // Shuffle the list to suggest random groups
+        Collections.shuffle(groupList);
+        // Return a sublist with the desired number of suggestions, or all if fewer than requested
+        int suggestionsCount = Math.min(4, groupList.size());
+        return new ArrayList<>(groupList.subList(0, suggestionsCount));
+    }
+
 }
