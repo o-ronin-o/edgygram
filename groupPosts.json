@@ -1,12 +1,61 @@
-[
-  {
-    "contentType": "Post",
-    "contentId": "post-1734057481916",
-    "groupId": "X7gKVCzbJ",
-    "authorId": "2",
-    "content": "first post",
-    "timeStamp": "2024-12-13T04:38:01.9391623",
-    "picPath": "s",
-    "authorName": "Bob"
-  }
-]
+{
+  "zo0EYK4oR": [
+    {
+      "contentType": "Post",
+      "contentId": "post-1734057481916",
+      "authorId": "3",
+      "content": "Welcome to the group! Excited to have you here.",
+      "timeStamp": "2024-12-13T09:45:00.1234567",
+      "picPath": "defaultProfile.jpeg",
+      "authorName": "Alice"
+    },
+    {
+      "contentType": "Post",
+      "contentId": "post-2849104728391",
+      "authorId": "5",
+      "content": "Don\u0027t forget our group meeting tomorrow.",
+      "timeStamp": "2024-12-13T10:15:00.7890123",
+      "authorName": "John"
+    },
+    {
+      "contentType": "Post",
+      "contentId": "CID-1",
+      "groupId": "zo0EYK4oR",
+      "authorId": "2",
+      "content": "feownfewof",
+      "timeStamp": "2024-12-13T17:53:28.3556849",
+      "authorName": "Bob"
+    },
+    {
+      "contentType": "Post",
+      "contentId": "CID-1",
+      "groupId": "zo0EYK4oR",
+      "authorId": "2",
+      "content": "set the size of the windowAdd a Post...",
+      "timeStamp": "2024-12-13T18:07:13.3994417",
+      "authorName": "Bob"
+    }
+  ],
+  "VMmE99f5U": [
+    {
+      "contentType": "Post",
+      "contentId": "post-3928475632847",
+      "authorId": "3",
+      "content": "This is our first real test post in the group.",
+      "timeStamp": "2024-12-13T11:00:00.9876543",
+      "picPath": "E:\\records\\Cyberpunk 2077\\Cyberpunk 2077 Screenshot 2024.02.25 - 03.02.21.66.png",
+      "authorName": "Alice"
+    }
+  ],
+  "wCYWaFQQG": [
+    {
+      "contentType": "Post",
+      "contentId": "post-8475639201847",
+      "authorId": "8",
+      "content": "Another post for this group!",
+      "timeStamp": "2024-12-13T12:30:00.4567890",
+      "picPath": "E:\\records\\Dead Space (Remake)\\Dead Space (Remake) Screenshot 2024.07.23 - 15.03.42.95.png",
+      "authorName": "Emily"
+    }
+  ]
+}

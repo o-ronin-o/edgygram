@@ -1,6 +1,7 @@
 package Backend.Groups;
 
 import Backend.Database;
+import Backend.Post;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.*;
@@ -21,7 +22,7 @@ public class GroupDatabase extends Database<HashMap<String, Group>> {
 
     @Override
     public void remove(HashMap<String, Group> item) {
-        // Remove logic can be implemented here if needed
+
     }
 
     @Override
@@ -49,7 +50,7 @@ public class GroupDatabase extends Database<HashMap<String, Group>> {
         }
     }
 
-    // Simplified method to load group data using a predefined type
+
     public HashMap<String, Group> loadGroupData() {
         return loadHashMap(new TypeToken<HashMap<String, Group>>() {}.getType());
     }

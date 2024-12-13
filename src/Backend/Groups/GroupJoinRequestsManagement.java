@@ -3,6 +3,7 @@ package Backend.Groups;
 import Backend.User;
 import Backend.UserDatabase;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,9 +17,15 @@ public class GroupJoinRequestsManagement {
         this.groupDatabase = new GroupDatabase();
     }
     // send a join request
-    public void sendJoinRequest(User user) {
-        group.getJoinRequests().add(user.getId());
-        saveGroupData();
+    public boolean sendJoinRequest(User user) {
+        GroupManagement groupManagement= GroupManagement.getInstance();
+        if(!groupManagement.isMember(group.getGroupId(), user)) {
+            group.getJoinRequests().add(user.getId());
+            saveGroupData();
+            return true;
+        }
+            JOptionPane.showMessageDialog(null, "You are already a member in the group", "Error", JOptionPane.ERROR_MESSAGE);
+        return false;
     }
     // Approve a join request
     public boolean approveJoinRequest(String userId) {

@@ -1,7 +1,7 @@
 {
   "zo0EYK4oR": {
     "groupId": "zo0EYK4oR",
-    "groupName": "to display",
+    "groupName": "ONC",
     "groupDescription": "just a test",
     "groupPicture": "defaultProfile.jpeg",
     "groupMembersId": [
@@ -26,21 +26,5 @@
       "3"
     ],
     "joinRequests": []
-  },
-  "wCYWaFQQG": {
-    "groupId": "wCYWaFQQG",
-    "groupName": "another profile",
-    "groupDescription": "dw",
-    "groupPicture": "E:\\records\\Dead Space (Remake)\\Dead Space (Remake) Screenshot 2024.07.23 - 15.03.42.95.png",
-    "groupMembersId": [
-      "8"
-    ],
-    "primaryAdmin": "8",
-    "Admins": [
-      "8"
-    ],
-    "joinRequests": [
-      "3"
-    ]
   }
 }
