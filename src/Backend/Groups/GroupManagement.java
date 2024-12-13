@@ -83,6 +83,7 @@ public class GroupManagement {
             groupDatabase.saveAll(groups);
         }
     }
+    // for further additions
     public Group getGroupById(String groupId) {
         HashMap<String, Group> groups = groupDatabase.loadGroupData();
         return groups.get(groupId);
@@ -102,6 +103,8 @@ public class GroupManagement {
         }
         return members;
     }
+    // checks if it's a member
+    // مهم
     public boolean isMember(String groupId, User user) {
         HashMap<String, Group> groups = groupDatabase.loadGroupData();
         Group group = groups.get(groupId);
@@ -114,6 +117,7 @@ public class GroupManagement {
         }
         return displayFormat;
     }
+    // for further utilization
     public ArrayList<Group> suggestGroups(User user) {
         HashMap<String, Group> allGroups = groupDatabase.loadGroupData();
         ArrayList<Group> groupList = new ArrayList<>(allGroups.values());
