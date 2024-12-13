@@ -104,6 +104,7 @@ public class GroupManagement {
         return members;
     }
     // checks if it's a member
+    // مهم
     public boolean isMember(String groupId, User user) {
         HashMap<String, Group> groups = groupDatabase.loadGroupData();
         Group group = groups.get(groupId);
