@@ -114,15 +114,33 @@ public class Group {
         return false;
     }
     public boolean removeMember(User user) {
-        if (groupMembersId.contains(user.getId()) && !user.getId().equals(primaryAdmin)) {
-            groupMembersId.remove(user.getId());
-            if(Admins.contains(user.getId())) {
-                Admins.remove(user.getId());
-            }
-            return true;
+        if (!groupMembersId.contains(user.getId())) {
+            System.out.println("User not in group: " + user.getId());
+            return false; // User not in group
         }
-        return false;
+        // Check if the user is the primary admin
+        if (isPrimaryAdmin(user.getId())) {
+            System.out.println("Removing primary admin: " + user.getId());
+            Admins.remove(user.getId());
+            if (Admins.isEmpty()) {
+                setPrimaryAdminId(""); // No other admins, set primary admin to empty
+                System.out.println("No other admins available. Primary admin set to empty.");
+            } else {
+                setPrimaryAdminId(Admins.get(0)); // Reassign primary admin to the first available admin
+                System.out.println("Primary admin reassigned to: " + Admins.get(0));
+            }
+        }
+        // Remove the user from group members and admins
+        groupMembersId.remove(user.getId());
+        Admins.remove(user.getId());
+        // Debugging output
+        System.out.println("After removal - Primary admin: " + getPrimaryAdminId());
+        System.out.println("After removal - Admins: " + Admins);
+        System.out.println("After removal - Members: " + groupMembersId);
+
+        return true;
     }
+
     // Promote a user to admin
     public boolean promoteToAdmin(User user) {
         System.out.println("group members: "+groupMembersId +"and the user: "+user.getId());
@@ -139,6 +157,7 @@ public class Group {
     public boolean demoteFromAdmin(User user) {
         if (Admins.contains(user.getId()) && !user.getId().equals(primaryAdmin)) {
             Admins.remove(user.getId());
+            System.out.println(user.getUsername()+" removed from admin");
             return true;
         }
         return false;

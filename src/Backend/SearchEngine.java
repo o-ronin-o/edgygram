@@ -2,11 +2,14 @@ package Backend;
 
 import Backend.Friends.FriendRequestManagement;
 import Backend.Friends.FriendsDatabase;
+import Backend.Groups.Group;
 import Backend.Groups.GroupData;
+import Backend.Groups.GroupDatabase;
 import Backend.Groups.GroupsDatabase;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SearchEngine {
     private static SearchEngine instance; //Singleton instance
@@ -43,11 +46,12 @@ public class SearchEngine {
         }
         return users;
     }
-    public ArrayList<GroupData> searchGroup(String query) {
-        ArrayList<GroupData> groups = new ArrayList<>();
-        GroupsDatabase groupsDatabase = new GroupsDatabase();
-        ArrayList<GroupData> allGroups = groupsDatabase.getAll();
-        for (GroupData groupr : allGroups) {
+    public ArrayList<Group> searchGroup(String query) {
+        ArrayList<Group> groups = new ArrayList<>();
+        GroupDatabase groupDatabase = new GroupDatabase();
+        HashMap<String,Group> groupMap = groupDatabase.loadGroupData();
+        ArrayList<Group> allGroups = new ArrayList<>(groupMap.values());
+        for (Group groupr : allGroups) {
             if(groupr.getGroupName().toLowerCase().contains(query.toLowerCase())) {
                 groups.add(groupr);
             }
@@ -61,9 +65,9 @@ public class SearchEngine {
         }
         return results;
     }
-    public ArrayList<String> getGroupResultsInFormat(ArrayList<GroupData> groups) {
+    public ArrayList<String> getGroupResultsInFormat(ArrayList<Group> groups) {
         ArrayList<String> results = new ArrayList<>();
-        for(GroupData group : groups) {
+        for(Group group : groups) {
             results.add(group.getGroupPicture() + "," + group.getGroupName());
         }
         return results;
