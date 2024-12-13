@@ -3,6 +3,7 @@ package Backend.Groups;
 import Backend.User;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Group {
@@ -13,7 +14,7 @@ public class Group {
     private ArrayList<String> groupMembersId= new ArrayList<>();;
     private String primaryAdmin;
     private ArrayList<String> Admins= new ArrayList<>();;
-    private static final AtomicInteger counter = new AtomicInteger(0);
+    private ArrayList<String> joinRequests= new ArrayList<>();
 
     public Group( String groupName, String groupDescription, String groupPicture, String primaryAdmin) {
         this.groupId = generateGroupId();
@@ -25,7 +26,18 @@ public class Group {
         this.groupMembersId.add(primaryAdmin);
     }
     private String generateGroupId() {
-        return "group" + counter.incrementAndGet();
+        // Define the characters to use in the ID
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        Random random = new Random();
+        StringBuilder groupId = new StringBuilder();
+
+        // Generate 9 random characters
+        for (int i = 0; i < 9; i++) {
+            int index = random.nextInt(characters.length());
+            groupId.append(characters.charAt(index));
+        }
+
+        return groupId.toString();
     }
     public String getGroupId() {
         return groupId;
@@ -82,6 +94,15 @@ public class Group {
     public void setAdmins(ArrayList<String> admins) {
         Admins = admins;
     }
+
+    public ArrayList<String> getJoinRequests() {
+        return joinRequests;
+    }
+
+    public void setJoinRequests(ArrayList<String> joinRequests) {
+        this.joinRequests = joinRequests;
+    }
+
     public boolean addMember(User user) {
         if (groupMembersId.isEmpty()) {
             groupMembersId = new ArrayList<>();
@@ -132,4 +153,5 @@ public class Group {
     public boolean isAdmin(User user) {
         return Admins.contains(user);
     }
+
 }

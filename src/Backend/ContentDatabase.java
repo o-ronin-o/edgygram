@@ -1,10 +1,16 @@
 package Backend;
 
+import Backend.Friends.FriendsDatabase;
+import Backend.Friends.FriendsManagement;
+import Backend.Groups.Group;
+import Backend.Groups.GroupManagement;
+import Backend.Groups.GroupPostsDatabase;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -105,4 +111,27 @@ public class ContentDatabase extends Database<Content> {
         scheduler.shutdown();
     }
 
+    public ArrayList<Content> getAllPostsForUser(User user) {
+        FriendsManagement friendsManagement= new FriendsManagement(new UserDatabase(),new FriendsDatabase());
+        GroupManagement groupManagement = GroupManagement.getInstance();
+        GroupPostsDatabase groupPostsDatabaseDatabase = GroupPostsDatabase.getInstance();
+        HashMap<String, Group> allGroups = groupManagement.listAllGroups();
+
+        //load friends posts
+        ArrayList<Content> allContent = friendsManagement.getFriendsPosts(user);
+
+        // Load group posts for each group the user is a member of
+        for(Group group: allGroups.values()){
+            if(groupManagement.isMember(group.getGroupId(), user)){
+                // load all posts in group posts file
+                ArrayList<Post> posts= groupPostsDatabaseDatabase.getAll();
+                for(Post post: posts){
+                    if(post.getGroupId().equals(group.getGroupId())){
+                        allContent.add(post);
+                    }
+                }
+            }
+        }
+        return allContent;
+    }
 }

@@ -1,4 +1,17 @@
 {
+  "X7gKVCzbJ": {
+    "groupId": "X7gKVCzbJ",
+    "groupName": "testgroup",
+    "groupDescription": "this is a test group",
+    "groupPicture": "no",
+    "groupMembersId": [
+      "2"
+    ],
+    "primaryAdmin": "2",
+    "Admins": [
+      "2"
+    ]
+  },
   "group1": {
     "groupId": "group1",
     "groupName": "testGroup",

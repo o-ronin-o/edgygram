@@ -7,23 +7,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class Content {
-    @Expose
     private String contentId;
-    @Expose
     private String groupId;
-    @Expose
     private String authorId;
-    @Expose
     private String content;
-    @Expose
     private String timeStamp;
-    @Expose
     private String picPath;
-    @Expose
     private String authorName;
-    @Expose
     private static final AtomicInteger counter = new AtomicInteger(0);
-    @Expose
     private static final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
     public Content(String contentId, String authorId, String content, LocalDateTime timeStamp,String picPath) {

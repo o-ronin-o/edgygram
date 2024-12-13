@@ -6,9 +6,9 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 
-public class GroupPost extends Database<Post> {
-    private static GroupPost instance;
-    private GroupPost() {
+public class GroupPostsDatabase extends Database<Post> {
+    private static GroupPostsDatabase instance;
+    private GroupPostsDatabase() {
         super("groupPosts.json");
     }
     @Override
@@ -41,9 +41,9 @@ public class GroupPost extends Database<Post> {
         }
         return null;
     }
-    public static GroupPost getInstance() {
+    public static GroupPostsDatabase getInstance() {
         if (instance == null) {
-            instance = new GroupPost();
+            instance = new GroupPostsDatabase();
         }
         return instance;
     }

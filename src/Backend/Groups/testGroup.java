@@ -2,65 +2,96 @@ package Backend.Groups;
 
 import Backend.User;
 import Backend.UserDatabase;
+import Backend.ContentDatabase;
+import Backend.Post;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.time.LocalDateTime;
+import java.util.Scanner;
 
 public class testGroup {
     public static void main(String[] args) {
-        // Step 1: Create users
+        Scanner scanner = new Scanner(System.in);
+
+        // Initialize databases and managers
         UserDatabase userDatabase = new UserDatabase();
-        ArrayList<User> allUsers = userDatabase.getAll();
-        User adminUser = allUsers.get(0);
-        User regularUser = allUsers.get(1);
-        User anotherUser = allUsers.get(2);
+        GroupManagement groupManagement = GroupManagement.getInstance();
+        ContentDatabase contentDatabase = new ContentDatabase();
 
-//        // Step 2: Create an instance of GroupManagement (Singleton)
-       GroupManagement groupManagement = GroupManagement.getInstance();
-//        // Step 3: Create a group with adminUser as the primary admin
- //       Group newGroup = groupManagement.CreateGroup("testGroup", "This is a test group", "group1.jpg", adminUser);
-//
-//        System.out.println("Created Group: " + newGroup.getGroupName());
-//        System.out.println("id "+newGroup.getGroupId()+" desc "+newGroup.getGroupDescription());
-//        // Step 4: Add regularUser and anotherUser to the group
- //      groupManagement.addUsertoGroup("group1", regularUser);
- //       groupManagement.addUsertoGroup("group1", anotherUser);
-//        System.out.println(regularUser.getUsername()+" "+anotherUser.getUsername());
-//        // Step 5: Print all members of the group
-//        System.out.println("Members after addition:");
-//        printGroupMembers(newGroup);
-//
-//        // Step 6: Make regularUser an admin
- //      groupManagement.makeAdmin("group1", regularUser);
-//
-//        // Step 7: Print all admins after promoting
-//        System.out.println("Admins after promotion:");
-//        printGroupAdmins(newGroup);
-//
-//        // Step 8: Demote regularUser from admin
-  //     groupManagement.demoteAdmin("group1", regularUser);
-//
-//        // Step 9: Print all admins after demotion
-//        System.out.println("Admins after demotion:");
-//        printGroupAdmins(newGroup);
-//
-//        // Step 10: Remove anotherUser from the group
- //       groupManagement.removeUserFromGroup("group1", anotherUser);
-//
-//        // Step 11: Print all members after removal
-//        System.out.println("Members after removal:");
-//        printGroupMembers(newGroup);
-    }
+        System.out.print("Enter your user ID to log in: ");
+        String userId = scanner.nextLine();
+        User user = userDatabase.getById(userId);
 
-    private static void printGroupMembers(Group group) {
-        for (String user : group.getGroupMembers()) {
-            System.out.println(" - " + user + " (ID: " + user + ")");
+        if (user == null) {
+            System.out.println("User not found. Please register first.");
+            return;
         }
-    }
 
-    private static void printGroupAdmins(Group group) {
-        for (String admin : group.getAdmins()) {
-            System.out.println(" (ID: " + admin + ")");
+        System.out.println("Welcome, " + user.getUsername() + "!");
+        System.out.println("What do you want to do?");
+        System.out.println("1. Create a new group");
+        System.out.println("2. Open an existing group");
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+
+        if (choice == 1) {
+            // Create a new group
+            System.out.print("Enter group name: ");
+            String groupName = scanner.nextLine();
+            System.out.print("Enter group description: ");
+            String groupDescription = scanner.nextLine();
+            System.out.print("Enter group picture (optional): ");
+            String groupPicture = scanner.nextLine();
+
+            Group newGroup = groupManagement.CreateGroup(groupName, groupDescription, groupPicture, user);
+            System.out.println("Group created successfully! Group ID: " + newGroup.getGroupId());
+
+        } else if (choice == 2) {
+            // Open an existing group
+            System.out.print("Enter the Group ID: ");
+            String groupId = scanner.nextLine();
+            Group group = groupManagement.getGroupById(groupId);
+
+            if (group == null) {
+                System.out.println("Group not found. Please check the ID.");
+                return;
+            }
+
+            System.out.println("Group Name: " + group.getGroupName());
+            System.out.println("Group Description: " + group.getGroupDescription());
+
+            System.out.println("What do you want to do?");
+            System.out.println("1. Post in the group");
+            System.out.println("2. Exit");
+            int groupChoice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            if (groupChoice == 1) {
+                System.out.print("Enter your post content: ");
+                String content = scanner.nextLine();
+                System.out.print("Enter picture path (optional): ");
+                String picPath = scanner.nextLine();
+
+                // Create and add a new post
+                Post post = new Post(
+                        "post-" + System.currentTimeMillis(),
+                        user.getId(),
+                        content,
+                        LocalDateTime.now(),
+                        picPath,
+                        groupId,
+                        user.getUsername(),
+                        "Post"
+                );
+                GroupPostsDatabase groupPostsDatabase = GroupPostsDatabase.getInstance();
+                groupPostsDatabase.add(post);
+                System.out.println("Post added successfully to the group!");
+            } else {
+                System.out.println("Exiting the group.");
+            }
+        } else {
+            System.out.println("Invalid choice. Exiting.");
         }
+
+        scanner.close();
     }
 }
