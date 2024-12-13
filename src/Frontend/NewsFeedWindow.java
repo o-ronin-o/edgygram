@@ -320,6 +320,8 @@ public class NewsFeedWindow extends JFrame {
         SearchTextField.setForeground(Color.decode("#999999"));
         SearchTextField.setBorder(new RoundedBorder(20));
         SearchTextField.setText("Search...");
+        Container.revalidate();
+        Container.repaint();
 
         SearchTextField.addFocusListener(new FocusListener() {
             @Override
@@ -433,13 +435,28 @@ public class NewsFeedWindow extends JFrame {
         searchUsersButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(SearchTextField.getText().equals("Search...")|| SearchTextField.getText().equals("")) {
+                    JOptionPane.showMessageDialog(NewsFeedWindow.this,"serach is empty");
+                    return;
+                }
                 new SearchWindow(user,SearchTextField.getText(),NewsFeedWindow.this);
             }
         });
         groupsManagementButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 new GroupManagementWindow(user,NewsFeedWindow.this);
+            }
+        });
+        searchGroupsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(SearchTextField.getText().equals("Search...")|| SearchTextField.getText().equals("")) {
+                    JOptionPane.showMessageDialog(NewsFeedWindow.this,"serach is empty");
+                    return;
+                }
+                new GroupsSearchWindow(user,SearchTextField.getText(),NewsFeedWindow.this);
             }
         });
     }

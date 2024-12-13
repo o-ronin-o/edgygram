@@ -1,11 +1,11 @@
 package Frontend;
 
-import Backend.Database;
+import Backend.RoundedBorder;
 import Backend.User;
-import Backend.UserDatabase;
 import Backend.login;
 
 import javax.swing.*;
+import java.awt.*;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -16,16 +16,20 @@ public class LoginWindow extends JFrame {
     private JButton signUpButton;
     private JButton loginButton;
     private JPasswordField passwordField;
+    private JTextPane usernameTextPane;
+    private JTextPane passwordTextPane;
+    private JTextPane welcomeToEdgyGramTextPane;
 
     public LoginWindow(){
 
         setVisible(true);
         setContentPane(loginpanel);
         setTitle("Login");
-        setSize(600,300);
+        setSize(600,250);
         setLocationRelativeTo(null);
         login l= new login();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        welcomeToEdgyGramTextPane.setFont(new Font("Times New Roman", Font.BOLD, 23));
         loginButton.addActionListener(e -> {
             String pass = new String(passwordField.getPassword());
             try {
@@ -57,6 +61,25 @@ public class LoginWindow extends JFrame {
             SignupWindow s1= new SignupWindow();
         });
 
+        loginButton.setBackground(Color.decode("#24292e"));
+        loginButton.setForeground(Color.decode("#FFFFFF"));
+        loginButton.setBorder(new RoundedBorder(10));
+
+        signUpButton.setBackground(Color.decode("#24292e"));
+        signUpButton.setForeground(Color.decode("#FFFFFF"));
+        signUpButton.setBorder(new RoundedBorder(10));
+
+        usernameTextPane.setBorder(new RoundedBorder(4));
+        usernameTextPane.setBackground(Color.decode("#24292e"));
+        usernameTextPane.setForeground(Color.decode("#FFFFFF"));
+        usernameTextPane.setAlignmentX(Component.CENTER_ALIGNMENT);  // Centering text horizontally
+        usernameTextPane.setAlignmentY(Component.CENTER_ALIGNMENT);
+
+        passwordTextPane.setBorder(new RoundedBorder(4));
+        passwordTextPane.setBackground(Color.decode("#24292e"));
+        passwordTextPane.setForeground(Color.decode("#FFFFFF"));
+        passwordTextPane.setAlignmentX(Component.CENTER_ALIGNMENT);  // Centering text horizontally
+        passwordTextPane.setAlignmentY(Component.CENTER_ALIGNMENT);
     }
 
 

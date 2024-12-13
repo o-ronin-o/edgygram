@@ -46,25 +46,32 @@ public class GroupManagement {
         }
         return false;
     }
-    // Remove a user from a group
     public boolean removeUserFromGroup(String groupId, User user) {
         HashMap<String, Group> groups = groupDatabase.loadGroupData();
         Group group = groups.get(groupId);
-        if(group!=null) {
-            //if the user is the primary admin make another admin the primary admin
-            if(group.isPrimaryAdmin(user.getId())){
-                group.setPrimaryAdminId(group.getAdmins().get(0));
+
+        if (group != null) {
+            // Remove the user from the group
+            if (group.removeMember(user)) {
+                System.out.println("User removed successfully.");
+            } else {
+                System.out.println("Failed to remove user.");
             }
-            //if the user is an admin delete him from admin list
-            else if(group.isAdmin(user)) {
-                group.demoteFromAdmin(user);
-            }
-            group.removeMember(user);
+            // Save the updated group before checking for primary admin
             groupDatabase.saveAll(groups);
+            // remove group if the primary admin is empty
+            if (group.getPrimaryAdminId().equals("")) {
+                removeGroup(group);
+                return true;
+            }
             return true;
         }
+
         return false;
     }
+
+
+
     //make user admin
     public void makeAdmin(String groupId, User user) {
         HashMap<String, Group> groups = groupDatabase.loadGroupData();
@@ -142,5 +149,21 @@ public class GroupManagement {
         int suggestionsCount = Math.min(4, groupList.size());
         return new ArrayList<>(groupList.subList(0, suggestionsCount));
     }
+    // Remove a group
+    public boolean removeGroup(Group group) {
+        HashMap<String, Group> groups = groupDatabase.loadGroupData();
+        // Check if the group exists
+        if (groups.containsKey(group.getGroupId())) {
+            // Remove the group
+            groups.remove(group.getGroupId());
+            groupDatabase.saveAll(groups);
+            System.out.println("Group with ID " + group.getGroupId() + " has been removed.");
+            return true;
+        } else {
+            System.out.println("Group with ID " + group.getGroupId() + " does not exist.");
+            return false;
+        }
+    }
+
 
 }

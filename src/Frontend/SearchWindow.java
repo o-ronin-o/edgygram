@@ -17,6 +17,7 @@ public class SearchWindow extends JFrame {
     private JList<JPanel> suggestionList;
 
     public SearchWindow(User user, String searchInput, NewsFeedWindow newsFeedWindow) {
+        System.out.println("the search is "+searchInput);
         setTitle("Search Result");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(300,300);

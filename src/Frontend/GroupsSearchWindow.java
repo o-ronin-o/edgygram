@@ -1,7 +1,9 @@
 package Frontend;
 
 import Backend.*;
+import Backend.Groups.*;
 import Backend.Groups.GroupData;
+import Backend.Groups.GroupDatabase;
 import Backend.Groups.GroupsDatabase;
 
 import javax.swing.*;
@@ -9,6 +11,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class GroupsSearchWindow extends JFrame {
     private JPanel container;
@@ -23,7 +26,7 @@ public class GroupsSearchWindow extends JFrame {
         setVisible(true);
         setContentPane(container);
         SearchEngine searchEngine= SearchEngine.getInstance();
-        ArrayList<GroupData> suggested= searchEngine.searchGroup(searchInput);
+        ArrayList<Group> suggested= searchEngine.searchGroup(searchInput);
         ArrayList<String> suggestedGroups= searchEngine.getGroupResultsInFormat(suggested);
         DefaultListModel<JPanel> panelModel = new DefaultListModel<>();
         System.out.println(suggestedGroups);
@@ -43,11 +46,13 @@ public class GroupsSearchWindow extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 int index = suggestionList.getSelectedIndex();
                 if(index>=0){
-                    GroupsDatabase groupsDatabase=new GroupsDatabase();
-                    ArrayList<GroupData> allGroups= groupsDatabase.getAll();
-                    for(GroupData group : allGroups){
+                    GroupDatabase groupDatabase=new GroupDatabase();
+                    HashMap<String,Group> groupMap = groupDatabase.loadGroupData();
+                    ArrayList<Group> allGroups = new ArrayList<>(groupMap.values());
+                    for(Group group : allGroups){
                         if(group.getGroupName().equals(suggested.get(index).getGroupName())){
-                            new GroupSearchOptions();
+                            System.out.println("id: "+user.getId());
+                            new GroupSearchOptions(user,group,newsFeedWindow);
                             dispose();
                             return;
                         }
