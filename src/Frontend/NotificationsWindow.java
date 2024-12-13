@@ -28,7 +28,7 @@ public class NotificationsWindow extends JFrame{
         setLocationRelativeTo(newsFeedWindow);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(800,600);
-        Database<User> userDatabase=new UserDatabase();
+        Database<User> userDatabase= UserDatabase.getInstance();
         FriendRequestManagement friendRequestManagement=new FriendRequestManagement(userDatabase,new FriendsDatabase());
         ArrayList<FriendRequest> requests= friendRequestManagement.getFriendRequests(user);
         ArrayList<User> requestSendersUsers= new ArrayList<>();

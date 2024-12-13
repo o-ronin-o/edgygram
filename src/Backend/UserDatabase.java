@@ -9,10 +9,17 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 public class UserDatabase extends Database<User> {
-    public UserDatabase() {
+    static UserDatabase userDatabase;
+    private UserDatabase() {
         super("users.json");
     }
 
+    public static UserDatabase getInstance(){
+        if(userDatabase==null){
+            userDatabase=new UserDatabase();
+        }
+        return userDatabase;
+    }
     @Override
     public boolean add(User user) {
     ArrayList<User> users=getAll();
