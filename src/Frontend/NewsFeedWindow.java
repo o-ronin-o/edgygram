@@ -33,6 +33,8 @@ public class NewsFeedWindow extends JFrame {
     private JButton addStoryButton;
     private JButton Notificationsbutton;
     private JButton groupsManagementButton;
+    private JButton searchUsersButton;
+    private JButton searchGroupsButton;
     private JList<JPanel> friendsList;
     private JList<String> postList;
     private JList<String>  FriendsSuggestionsList;
@@ -144,6 +146,18 @@ public class NewsFeedWindow extends JFrame {
         groupsManagementButton.setBackground(Color.decode("#24292e"));
         groupsManagementButton.setForeground(Color.decode("#FFFFFF"));
         groupsManagementButton.setBorder(new RoundedBorder(10));
+        //setting up notfication button
+        Notificationsbutton.setBackground(Color.decode("#24292e"));
+        Notificationsbutton.setForeground(Color.decode("#FFFFFF"));
+        Notificationsbutton.setBorder(new RoundedBorder(10));
+
+        //setting up search buttons
+        searchUsersButton.setBackground(Color.decode("#24292e"));
+        searchUsersButton.setForeground(Color.decode("#FFFFFF"));
+        searchUsersButton.setBorder(new RoundedBorder(10));
+        searchGroupsButton.setBackground(Color.decode("#24292e"));
+        searchGroupsButton.setForeground(Color.decode("#FFFFFF"));
+        searchGroupsButton.setBorder(new RoundedBorder(10));
         //setting up the posts scrollpane
         JPanel postPanel = new JPanel();
         postPanel.setBackground(Color.decode("#24292e"));
@@ -301,7 +315,31 @@ public class NewsFeedWindow extends JFrame {
                 }
             }
         });
+        // Setting up the search text field
+        SearchTextField.setBackground(Color.decode("#24292e"));
+        SearchTextField.setForeground(Color.decode("#999999"));
+        SearchTextField.setBorder(new RoundedBorder(20));
+        SearchTextField.setText("Search...");
 
+        SearchTextField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                // Clear placeholder text when the field gains focus
+                if (SearchTextField.getText().equals("Search...")) {
+                    SearchTextField.setText("");
+                    SearchTextField.setForeground(Color.WHITE); // Normal text color
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                // Restore placeholder text if the field is empty when losing focus
+                if (SearchTextField.getText().isEmpty()) {
+                    SearchTextField.setText("Search...");
+                    SearchTextField.setForeground(Color.decode("#999999")); // Placeholder text color
+                }
+            }
+        });
 
         refreshButton.addActionListener(new ActionListener() {
             @Override
@@ -392,11 +430,10 @@ public class NewsFeedWindow extends JFrame {
                 NotificationsWindow notificationsWindow= new NotificationsWindow(user,NewsFeedWindow.this);
             }
         });
-        SearchTextField.addActionListener(new ActionListener() {
+        searchUsersButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String searchInput= SearchTextField.getText().toLowerCase();
-                new SearchWindow(user,searchInput,NewsFeedWindow.this);
+                new SearchWindow(user,SearchTextField.getText(),NewsFeedWindow.this);
             }
         });
         groupsManagementButton.addActionListener(new ActionListener() {

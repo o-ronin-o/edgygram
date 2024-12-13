@@ -12,7 +12,7 @@ public class GroupsDatabase extends Database<GroupData> {
     private String Groupsfilename = "groups.json";
 
     public GroupsDatabase() {
-        super(null);
+        super("groups.json");
     }
 
     @Override

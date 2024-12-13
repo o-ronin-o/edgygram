@@ -121,17 +121,6 @@
     "coverPicture": "defaultCover.jpeg"
   },
   {
-    "id": "2",
-    "username": "Bob",
-    "password": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
-    "email": "bob@example.com",
-    "bio": "",
-    "dateOfBirth": "1996-02-15",
-    "status": "online",
-    "profilePicture": "defaultProfile.jpeg",
-    "coverPicture": "defaultCover.jpeg"
-  },
-  {
     "id": "2010503273",
     "username": "mosalah",
     "password": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
