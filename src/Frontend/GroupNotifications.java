@@ -2,9 +2,7 @@ package Frontend;
 
 import Backend.Groups.Group;
 import Backend.Groups.GroupManagement;
-import Backend.Groups.GroupPostsDatabase;
 import Backend.User;
-import Backend.Post;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,7 +25,7 @@ public class GroupNotifications extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(800, 600);
 
-        // Using GroupManagement to get user groups and their notifications
+        // هنا بنجيب كل الجروبات اللي المستخدم مشترك فيها باستخدام GroupManagement
         GroupManagement groupManagement = GroupManagement.getInstance();
         ArrayList<Group> userGroups = groupManagement.getUserGroups(user);
 
@@ -38,6 +36,7 @@ public class GroupNotifications extends JFrame {
 
         DefaultListModel<JPanel> panelModel = new DefaultListModel<>();
 
+        // هنا بنضيف كل الإشعارات اللي اتجمعت للقائمة عشان تظهر للمستخدم
         for (String notification : notifications) {
             String[] notificationData = notification.split(",", 2);
             JPanel notificationPanel = newsFeedWindow.createfriendPanel(notificationData[0], notificationData[1], "");
@@ -62,42 +61,41 @@ public class GroupNotifications extends JFrame {
         NotificationsScroll.revalidate();
         NotificationsScroll.repaint();
     }
+
     private ArrayList<String> generateGroupNotifications(Group group, User user, GroupManagement groupManagement) {
         ArrayList<String> notifications = new ArrayList<>();
 
-        // Notify about new users added to the group
+        // هنا بنعمل إشعار لو في أعضاء جداد انضموا للجروب
         ArrayList<User> newMembers = groupManagement.getNewMembers(group, user);
         for (User member : newMembers) {
             if (!member.equals(user)) {
-                notifications.add(group.getGroupName() + "," + member.getUsername() + " was added to the group.");
+                notifications.add(group.getGroupName() + "," + member.getUsername() + " تم إضافته للجروب.");
             }
         }
 
-        // Notify about status changes (if user is admin or status has changed)
+        // لو المستخدم ده أدمن في الجروب، بنعمل إشعار بتحديث حالته
         if (group.isAdmin(user)) {
-            notifications.add(group.getGroupName() + ",Your status has been updated to Admin in the group.");
+            notifications.add(group.getGroupName() + ",تم تحديث حالتك إلى أدمن في الجروب.");
         }
 
-//        // Notify about new posts in the group
-//        GroupPostsDatabase groupPostsDatabase = GroupPostsDatabase.getInstance();
-//        ArrayList<Post> allPosts = groupPostsDatabase.getPostsForGroup(group.getGroupId());
-//        for (Post post : allPosts) {
-//            notifications.add(group.getGroupName() + ",A new post was added: " + post.getContentId());
-//        }
+        // ممكن تضيف إشعارات تانية هنا زي مثلاً لو في بوست جديد
 
         return notifications;
     }
+
     private void handleNotificationClick(String notification, User user, GroupManagement groupManagement) {
         String[] notificationData = notification.split(",", 2);
         String groupName = notificationData[0];
         String notificationMessage = notificationData[1];
-        // Find the group using GroupManagement
+
+        // هنا بندور على الجروب اللي جت منه الإشعار
         Group group = groupManagement.getGroupByName(groupName);
         if (group == null) {
-            JOptionPane.showMessageDialog(null, "Group not found!", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "الجروب مش موجود!", "خطأ", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        JOptionPane.showMessageDialog(null, notificationMessage, "Notification Details", JOptionPane.INFORMATION_MESSAGE);
+
+        // بنعرض رسالة فيها تفاصيل الإشعار للمستخدم
+        JOptionPane.showMessageDialog(null, notificationMessage, "تفاصيل الإشعار", JOptionPane.INFORMATION_MESSAGE);
     }
 }
-
