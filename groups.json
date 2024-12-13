@@ -19,13 +19,14 @@
     "groupDescription": "just a test",
     "groupPicture": "defaultProfile.jpeg",
     "groupMembersId": [
-      "3"
+      "3",
+      "1"
     ],
     "primaryAdmin": "3",
     "Admins": [
       "3"
     ],
-    "joinRequests": ["1","5"]
+    "joinRequests": []
   },
   "RFztMVeen": {
     "groupId": "RFztMVeen",

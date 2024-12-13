@@ -75,7 +75,16 @@ public class ViewRequestWindow extends JFrame {
                     int choice = JOptionPane.showConfirmDialog(null, "Do you want to accept the friend request from " + sender.getUsername() + "?", "Friend Request", JOptionPane.YES_NO_OPTION);
                     if (choice == JOptionPane.YES_OPTION) {
                         // Accept the friend request
+                        String notfication= user.getUsername()+" accepted your friend request ";
                         requestManagement.acceptFriendRequest(sender, user);
+                        ArrayList<User> allUsers= userDatabase.getAll();
+                        for(User user: allUsers){
+                            if(user.getUsername().equals(sender.getUsername())){
+                                user.addtNotfications(notfication);
+                                userDatabase.save(allUsers);
+                                break;
+                            }
+                        }
                     } else if (choice == JOptionPane.NO_OPTION) {
                         // Decline the friend request
                         requestManagement.declineFriendRequest(sender, user);

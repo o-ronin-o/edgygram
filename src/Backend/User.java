@@ -9,26 +9,18 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class User {
-    @Expose
     private String id;
-    @Expose
     private String username;
-    @Expose
     private String password;
-    @Expose
     private String email;
-    @Expose
     private String bio;
-    @Expose
     private String dateOfBirth;
-    @Expose
     private String status;
-    @Expose
     private String profilePicture ;
-    @Expose
     private String coverPicture ;
-    @Expose
     private static final AtomicInteger counter = new AtomicInteger(0);
+    @Expose
+    private ArrayList<String> notfications=new ArrayList<>();
 
 
 //    public User(String id, String username, String password, String email, String dateOfBirth, String status, String profilePicture, String CoverPicture, String bio) {
@@ -109,7 +101,22 @@ public class User {
         this.profilePicture = profilePicture;
     }
 
+    public ArrayList<String> getNotfications() {
+        return notfications;
+    }
 
+    public void addtNotfications(String notfication) {
+        notfications.add(notfication);
+    }
+    public void removeNotfications(String notfication) {
+        for(String noti: notfications) {
+            if(noti.equals(notfication)) {
+                notfications.remove(notfication);
+                break;
+            }
+        }
+
+    }
 
     public static String generateID() {
         return "CID-" + counter.incrementAndGet();

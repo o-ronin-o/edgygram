@@ -63,11 +63,20 @@ public class ManageJoinRequestWindow extends JFrame {
                     }
                     int choice = JOptionPane.showConfirmDialog(null, "Do you want to accept the request from " + sender.getUsername() + "?", "Join Request", JOptionPane.YES_NO_OPTION);
                     if(choice==JOptionPane.YES_OPTION){
-                        requestsManagement.approveJoinRequest(user.getId());
+                        requestsManagement.approveJoinRequest(sender.getId());
+                        String notfication="Your request to join "+group.getGroupId()+" has been approved" ;
+                        ArrayList<User> allUsers= userDatabase.getAll();
+                        for(User user: allUsers){
+                            if(user.getUsername().equals(sender.getUsername())){
+                                user.addtNotfications(notfication);
+                                userDatabase.save(allUsers);
+                                break;
+                            }
+                        }
                         JOptionPane.showMessageDialog(ManageJoinRequestWindow.this,"Request Accepted","Success",JOptionPane.INFORMATION_MESSAGE);
                     }
                     else if(choice==JOptionPane.NO_OPTION){
-                        requestsManagement.rejectJoinRequest(user.getId());
+                        requestsManagement.rejectJoinRequest(sender.getId());
                         JOptionPane.showMessageDialog(ManageJoinRequestWindow.this,"Request Rejected");
 
                     }

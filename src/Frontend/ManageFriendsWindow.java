@@ -68,6 +68,14 @@ public class ManageFriendsWindow extends JFrame {
                         if(friendsManagement.isFriend(user,userr)){
                             return;
                         }
+                        String notfication= user.getUsername()+" sent you a friend request";
+                        for(User user: allUsers){
+                            if(user.getUsername().equals(userr.getUsername())){
+                                user.addtNotfications(notfication);
+                                userDatabase.save(allUsers);
+                                break;
+                            }
+                        }
                         JOptionPane.showMessageDialog(newsFeedWindow,"Friend request sent","Success",JOptionPane.INFORMATION_MESSAGE );
                         return;
                     }
