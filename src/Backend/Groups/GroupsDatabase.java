@@ -33,7 +33,7 @@ public class GroupsDatabase extends Database<GroupData> {
         save(groups);
         return true;
     }
-    //
+    //used from ,not main one
 
     @Override
     public void remove(GroupData item) {
