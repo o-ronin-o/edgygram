@@ -9,11 +9,12 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 public class UserDatabase extends Database<User> {
+    //singletion intiation
     static UserDatabase userDatabase;
     private UserDatabase() {
         super("users.json");
     }
-
+    // use getinstance instead of new Contentdatabase
     public static UserDatabase getInstance(){
         if(userDatabase==null){
             userDatabase=new UserDatabase();
