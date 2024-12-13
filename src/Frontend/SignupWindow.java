@@ -77,7 +77,7 @@ public class SignupWindow extends JFrame {
             if (!flag1 || !flag2 || !flag3 || !flag4) {
                 JOptionPane.showMessageDialog(SignupPanel, "Invalid Field/s! Try again");
             } else {
-                UserDatabase UDB = new UserDatabase();
+                UserDatabase UDB =  UserDatabase.getInstance();
 
                 ArrayList<User> list = UDB.getAll();
 
