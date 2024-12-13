@@ -93,7 +93,7 @@ public class GroupManagement {
     public ArrayList<User> getMembersAsObject(Group group) {
         ArrayList<String> membersId = group.getGroupMembers();
         ArrayList<User> members = new ArrayList<>();
-        Database<User> userDatabase = new UserDatabase();
+        Database<User> userDatabase = UserDatabase.getInstance();
         for (String memberId : membersId) {
             User user = userDatabase.getById(memberId);
             if (user != null) {

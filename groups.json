@@ -1,4 +1,18 @@
 {
+  "k0rkDgjRw": {
+    "groupId": "k0rkDgjRw",
+    "groupName": "test",
+    "groupDescription": "this is test",
+    "groupPicture": "defaultProfile.jpeg",
+    "groupMembersId": [
+      "2010503273"
+    ],
+    "primaryAdmin": "2010503273",
+    "Admins": [
+      "2010503273"
+    ],
+    "joinRequests": []
+  },
   "zo0EYK4oR": {
     "groupId": "zo0EYK4oR",
     "groupName": "ONC",
@@ -10,6 +24,20 @@
     "primaryAdmin": "3",
     "Admins": [
       "3"
+    ],
+    "joinRequests": ["1","5"]
+  },
+  "RFztMVeen": {
+    "groupId": "RFztMVeen",
+    "groupName": "group",
+    "groupDescription": "test",
+    "groupPicture": "defaultProfile.jpeg",
+    "groupMembersId": [
+      "2010503273"
+    ],
+    "primaryAdmin": "2010503273",
+    "Admins": [
+      "2010503273"
     ],
     "joinRequests": []
   },

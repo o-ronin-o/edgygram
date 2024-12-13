@@ -41,7 +41,7 @@ public class GroupOptionsWindow extends JFrame {
         viewGroupButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               // new GroupWindow(group,user);
+                new GroupWindow(group,user);
                 dispose();
             }
         });
