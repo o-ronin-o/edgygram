@@ -19,7 +19,6 @@ public class User {
     private String profilePicture ;
     private String coverPicture ;
     private static final AtomicInteger counter = new AtomicInteger(0);
-    @Expose
     private ArrayList<String> notfications=new ArrayList<>();
 
 
@@ -108,15 +107,17 @@ public class User {
     public void addtNotfications(String notfication) {
         notfications.add(notfication);
     }
-    public void removeNotfications(String notfication) {
-        for(String noti: notfications) {
-            if(noti.equals(notfication)) {
-                notfications.remove(notfication);
+    public void removeNotfications(String notification) {
+        System.out.println("the sent notfication is "+notification);
+        for (int i = 0; i < notfications.size(); i++) {
+            System.out.println("comparing with"+notfications.get(i));
+            if (notfications.get(i).equals(notification)) {
+                notfications.remove(i);
                 break;
             }
         }
-
     }
+
 
     public static String generateID() {
         return "CID-" + counter.incrementAndGet();
@@ -135,6 +136,7 @@ public class User {
         private String status="offline";
         private String profilePicture="defaultProfile.jpeg" ;
         private String coverPicture="defaultCover.jpeg" ;
+        private ArrayList<String> notfications=new ArrayList<>();
 
         public UserBuilder Id(String id) {
             this.id = id;

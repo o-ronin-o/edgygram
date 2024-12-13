@@ -109,13 +109,26 @@
     "blockedUsers": [],
     "pendingRequests": []
   },
-  "2010503273": {
+  "1990775841": {
     "friends": [
-      "8",
-      "2"
+      "2010503273"
     ],
     "blockedUsers": [],
     "pendingRequests": []
+  },
+  "2010503273": {
+    "friends": [
+      "8",
+      "2",
+      "1990775841"
+    ],
+    "blockedUsers": [],
+    "pendingRequests": [
+      {
+        "SenderId": "3",
+        "ReceiverId": "2010503273"
+      }
+    ]
   },
   "1": {
     "friends": [
@@ -147,7 +160,12 @@
     "blockedUsers": [
       "4"
     ],
-    "pendingRequests": []
+    "pendingRequests": [
+      {
+        "SenderId": "2010503273",
+        "ReceiverId": "3"
+      }
+    ]
   },
   "4": {
     "friends": [

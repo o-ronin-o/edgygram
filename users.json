@@ -8,7 +8,8 @@
     "dateOfBirth": "1995-01-10",
     "status": "offline",
     "profilePicture": "defaultProfile.jpeg",
-    "coverPicture": "defaultCover.jpeg"
+    "coverPicture": "defaultCover.jpeg",
+    "notfications": []
   },
   {
     "id": "3",
@@ -19,7 +20,8 @@
     "dateOfBirth": "1997-03-20",
     "status": "online",
     "profilePicture": "defaultProfile.jpeg",
-    "coverPicture": "defaultCover.jpeg"
+    "coverPicture": "defaultCover.jpeg",
+    "notfications": []
   },
   {
     "id": "4",
@@ -30,7 +32,8 @@
     "dateOfBirth": "1998-04-25",
     "status": "offline",
     "profilePicture": "defaultProfile.jpeg",
-    "coverPicture": "defaultCover.jpeg"
+    "coverPicture": "defaultCover.jpeg",
+    "notfications": []
   },
   {
     "id": "5",
@@ -41,7 +44,8 @@
     "dateOfBirth": "1995-05-05",
     "status": "offline",
     "profilePicture": "defaultProfile.jpeg",
-    "coverPicture": "defaultCover.jpeg"
+    "coverPicture": "defaultCover.jpeg",
+    "notfications": []
   },
   {
     "id": "6",
@@ -52,7 +56,8 @@
     "dateOfBirth": "1996-06-10",
     "status": "online",
     "profilePicture": "defaultProfile.jpeg",
-    "coverPicture": "defaultCover.jpeg"
+    "coverPicture": "defaultCover.jpeg",
+    "notfications": []
   },
   {
     "id": "7",
@@ -63,7 +68,8 @@
     "dateOfBirth": "1997-07-15",
     "status": "offline",
     "profilePicture": "defaultProfile.jpeg",
-    "coverPicture": "defaultCover.jpeg"
+    "coverPicture": "defaultCover.jpeg",
+    "notfications": []
   },
   {
     "id": "8",
@@ -74,7 +80,8 @@
     "dateOfBirth": "1998-08-20",
     "status": "online",
     "profilePicture": "defaultProfile.jpeg",
-    "coverPicture": "defaultCover.jpeg"
+    "coverPicture": "defaultCover.jpeg",
+    "notfications": []
   },
   {
     "id": "9",
@@ -85,7 +92,8 @@
     "dateOfBirth": "1999-09-25",
     "status": "offline",
     "profilePicture": "defaultProfile.jpeg",
-    "coverPicture": "defaultCover.jpeg"
+    "coverPicture": "defaultCover.jpeg",
+    "notfications": []
   },
   {
     "id": "10",
@@ -96,7 +104,8 @@
     "dateOfBirth": "2000-10-30",
     "status": "offline",
     "profilePicture": "defaultProfile.jpeg",
-    "coverPicture": "defaultCover.jpeg"
+    "coverPicture": "defaultCover.jpeg",
+    "notfications": []
   },
   {
     "id": "962284186",
@@ -107,7 +116,8 @@
     "dateOfBirth": "06/10/2003",
     "status": "offline",
     "profilePicture": "defaultProfile.jpeg",
-    "coverPicture": "defaultCover.jpeg"
+    "coverPicture": "defaultCover.jpeg",
+    "notfications": []
   },
   {
     "id": "168944730",
@@ -118,7 +128,8 @@
     "dateOfBirth": "06/10/2024",
     "status": "offline",
     "profilePicture": "defaultProfile.jpeg",
-    "coverPicture": "defaultCover.jpeg"
+    "coverPicture": "defaultCover.jpeg",
+    "notfications": []
   },
   {
     "id": "2010503273",
@@ -129,7 +140,8 @@
     "dateOfBirth": "07/12/2004",
     "status": "online",
     "profilePicture": "defaultProfile.jpeg",
-    "coverPicture": "defaultCover.jpeg"
+    "coverPicture": "defaultCover.jpeg",
+    "notfications": []
   },
   {
     "id": "2",
@@ -140,6 +152,19 @@
     "dateOfBirth": "1996-02-15",
     "status": "online",
     "profilePicture": "defaultProfile.jpeg",
-    "coverPicture": "defaultCover.jpeg"
+    "coverPicture": "defaultCover.jpeg",
+    "notfications": []
+  },
+  {
+    "id": "1990775841",
+    "username": "test",
+    "password": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+    "email": "wadaw@fwa.com",
+    "bio": "",
+    "dateOfBirth": "03/12/2024",
+    "status": "online",
+    "profilePicture": "defaultProfile.jpeg",
+    "coverPicture": "defaultCover.jpeg",
+    "notfications": []
   }
 ]

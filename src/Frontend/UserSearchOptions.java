@@ -32,6 +32,15 @@ public class UserSearchOptions extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 FriendRequestManagement friendRequestManagement=new FriendRequestManagement(userDatabase,friendsDatabase);
                 friendRequestManagement.sendFriendRequest(user,suggestion);
+                ArrayList<User> allUsers= userDatabase.getAll();
+                String notfication= user.getUsername()+" sent you a friend request";
+                for(User userr: allUsers){
+                    if(userr.getUsername().equals(suggestion.getUsername())){
+                        userr.addtNotfications(notfication);
+                        userDatabase.save(allUsers);
+                        break;
+                    }
+                }
                 dispose();
             }
         });
