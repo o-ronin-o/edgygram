@@ -83,7 +83,7 @@ public class GroupManagement {
             groupDatabase.saveAll(groups);
         }
     }
-    // for further additions 
+    // for further additions
     public Group getGroupById(String groupId) {
         HashMap<String, Group> groups = groupDatabase.loadGroupData();
         return groups.get(groupId);
@@ -103,6 +103,7 @@ public class GroupManagement {
         }
         return members;
     }
+    // checks if it's a member
     public boolean isMember(String groupId, User user) {
         HashMap<String, Group> groups = groupDatabase.loadGroupData();
         Group group = groups.get(groupId);
