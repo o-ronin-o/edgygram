@@ -14,12 +14,10 @@ import java.util.HashMap;
 public class SearchEngine {
     private static SearchEngine instance; //Singleton instance
     private UserDatabase userDatabase;
-
     private SearchEngine() {
         this.userDatabase =  UserDatabase.getInstance();
     }
-
-    //public method to provide access to the singleton instance
+    //public method to provide access to the singleton instance.
     public static synchronized SearchEngine getInstance() {
         if (instance == null) {
             synchronized (SearchEngine.class) {
@@ -30,14 +28,13 @@ public class SearchEngine {
         }
         return instance;
     }
-
     public ArrayList<User> searchUser(User user, String query) {
         ArrayList<User> users = new ArrayList<>();
         ArrayList<User> allUsers = userDatabase.getAll();
         FriendRequestManagement friendRequestManagement = new FriendRequestManagement(userDatabase, new FriendsDatabase());
 
         for (User userr : allUsers) {
-            // Check if the username of the user contains the query and ensure no blocking exists between users
+            // Check if the username of the user contains the query and ensure no blocking exists between users.
             if (userr.getUsername().toLowerCase().contains(query.toLowerCase()) &&
                     !friendRequestManagement.isBlocked(userr.getId(), user.getId()) &&
                     !friendRequestManagement.isBlocked(user.getId(), userr.getId())) {
