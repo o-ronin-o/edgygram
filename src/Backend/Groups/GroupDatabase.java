@@ -79,7 +79,7 @@ public class GroupDatabase extends Database<HashMap<String, Group>> {
             return new HashMap<>();
         }
     }
-    // it saves the posts data 
+    // it saves the posts data
     public void savePostsData(HashMap<String, ArrayList<Post>> postsData) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("groupPosts.json"))) {
             gson.toJson(postsData, writer);

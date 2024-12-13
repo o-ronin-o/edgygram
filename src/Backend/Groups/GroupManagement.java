@@ -83,6 +83,7 @@ public class GroupManagement {
             groupDatabase.saveAll(groups);
         }
     }
+    // for further additions 
     public Group getGroupById(String groupId) {
         HashMap<String, Group> groups = groupDatabase.loadGroupData();
         return groups.get(groupId);
