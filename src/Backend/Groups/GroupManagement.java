@@ -117,7 +117,7 @@ public class GroupManagement {
         }
         return displayFormat;
     }
-    //  important for further utilization
+    //  important for further utilization..
     public ArrayList<Group> suggestGroups(User user) {
         HashMap<String, Group> allGroups = groupDatabase.loadGroupData();
         ArrayList<Group> groupList = new ArrayList<>(allGroups.values());
