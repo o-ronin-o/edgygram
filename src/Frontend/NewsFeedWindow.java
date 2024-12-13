@@ -54,7 +54,7 @@ public class NewsFeedWindow extends JFrame {
         Database<User> userDatabase =  UserDatabase.getInstance();
         FriendsManagement friendsManagement = new FriendsManagement(userDatabase, new FriendsDatabase());
         ContentDatabase contentDatabase = ContentDatabase.getInstance();
-        ArrayList<Content> posts = friendsManagement.getFriendsPosts(user);
+        ArrayList<Content> posts = contentDatabase.getAllPostsForUser(user);
         ArrayList<Content> stories = friendsManagement.getFriendsStories(user);
         setContentPane(Container);
         setTitle("NewsFeed");

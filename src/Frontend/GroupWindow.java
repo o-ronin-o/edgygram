@@ -36,6 +36,9 @@ public class GroupWindow extends JFrame {
         GroupDatabase gdb = new GroupDatabase();
         HashMap<String, ArrayList<Post>> postsMap =  gdb.loadPostsData();
         ArrayList<Post> groupPosts = postsMap.get(group.getGroupId());
+        if(groupPosts == null){
+            groupPosts = new ArrayList<>();
+        }
         UserDatabase userDatabase = UserDatabase.getInstance();
         ArrayList<User> users = userDatabase.getAll();
 
@@ -44,7 +47,7 @@ public class GroupWindow extends JFrame {
         setContentPane(panel1);
         setTitle("Group");
         setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setBounds(500,250,900, 600);
         panel1.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
@@ -90,13 +93,14 @@ public class GroupWindow extends JFrame {
 
         // setting up the add post panel
 
-
+        setupButtons(manageRequestsButton);
 
         postTextArea.setBackground(Color.decode("#24292e"));
         postTextArea.setBorder(new RoundedBorder(20));
         postTextArea.setText("Add a Post...");
         postTextArea.setForeground(Color.decode("#999999"));
 
+        ArrayList<Post> finalGroupPosts = groupPosts;
         postTextArea.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -145,14 +149,16 @@ public class GroupWindow extends JFrame {
 //                    ArrayList<Content> posts=db.getAllPosts();
 //                    posts.add(posty);
 //                    db.saveAllPosts(posts);
-                    groupPosts.add(posty);
-                    postsMap.put(group.getGroupId(), groupPosts);
+
+                    finalGroupPosts.add(posty);
+                    postsMap.put(group.getGroupId(), finalGroupPosts);
 
                     gdb.savePostsData(postsMap);
 
                 }
             }
         });
+        setupButtons(leaveGroupButton);
         postTextArea.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -177,7 +183,7 @@ public class GroupWindow extends JFrame {
         manageAdminsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new ManageAdminsWindow(group);
             }
         });
         removeMemberButton.addActionListener(new ActionListener() {
@@ -203,7 +209,7 @@ public class GroupWindow extends JFrame {
         manageRequestsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new ManageJoinRequestWindow(user,group);
             }
         });
 
@@ -222,6 +228,12 @@ public class GroupWindow extends JFrame {
                 dispose();
             }
         });
+        manageRequestsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
     public JButton setupButtons(JButton myButton) {
         myButton.setBackground(Color.decode("#24292e"));
@@ -233,7 +245,7 @@ public class GroupWindow extends JFrame {
         setContentPane(myPanel);
         setTitle("Group");
         setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(800,600);
         myPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
         myPanel.setBorder(new RoundedBorder(20));

@@ -30,7 +30,7 @@ public class ManageAdminsWindow extends JFrame {
         setContentPane(panel1);
         setTitle("Group");
         setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setBounds(500,250,900, 600);
         panel1.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));

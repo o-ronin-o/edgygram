@@ -3,6 +3,7 @@ package Backend;
 import Backend.Friends.FriendsDatabase;
 import Backend.Friends.FriendsManagement;
 import Backend.Groups.Group;
+import Backend.Groups.GroupDatabase;
 import Backend.Groups.GroupManagement;
 import Backend.Groups.GroupPostsDatabase;
 import com.google.gson.Gson;
@@ -10,6 +11,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -137,26 +139,29 @@ public class ContentDatabase extends Database<Content> {
     }
 
     public ArrayList<Content> getAllPostsForUser(User user) {
-        FriendsManagement friendsManagement= new FriendsManagement( UserDatabase.getInstance(),new FriendsDatabase());
+        FriendsManagement friendsManagement = new FriendsManagement(UserDatabase.getInstance(), new FriendsDatabase());
         GroupManagement groupManagement = GroupManagement.getInstance();
-        GroupPostsDatabase groupPostsDatabaseDatabase = GroupPostsDatabase.getInstance();
+        GroupDatabase groupDatabase = new GroupDatabase();
         HashMap<String, Group> allGroups = groupManagement.listAllGroups();
 
-        //load friends posts
+        // Load friends' posts
         ArrayList<Content> allContent = friendsManagement.getFriendsPosts(user);
 
         // Load group posts for each group the user is a member of
-        for(Group group: allGroups.values()){
-            if(groupManagement.isMember(group.getGroupId(), user)){
-                // load all posts in group posts file
-                ArrayList<Post> posts= groupPostsDatabaseDatabase.getAll();
-                for(Post post: posts){
-                    if(post.getGroupId().equals(group.getGroupId())){
-                        allContent.add(post);
-                    }
+        for (Group group : allGroups.values()) {
+            if (groupManagement.isMember(group.getGroupId(), user)) {
+                // Load all posts in the group's posts file
+                HashMap<String, ArrayList<Post>> postsMap = groupDatabase.loadPostsData();
+
+                // Get the posts for this group (using groupId as the key)
+                ArrayList<Post> posts = postsMap.get(group.getGroupId());
+                if (posts != null) {
+                    // Add the posts to allContent
+                    allContent.addAll(posts);
                 }
             }
         }
         return allContent;
     }
+
 }

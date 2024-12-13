@@ -17,7 +17,7 @@
     "email": "charlie@example.com",
     "bio": "",
     "dateOfBirth": "1997-03-20",
-    "status": "offline",
+    "status": "online",
     "profilePicture": "defaultProfile.jpeg",
     "coverPicture": "defaultCover.jpeg"
   },
