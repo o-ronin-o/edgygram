@@ -158,7 +158,7 @@ public class EditProfileWindow extends JFrame {
         doneButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Database<User> userDatabase = new UserDatabase();
+                Database<User> userDatabase =  UserDatabase.getInstance();
                 userDatabase.remove(user);
                 userDatabase.add(user);
                 new ProfileWindow(user,true);

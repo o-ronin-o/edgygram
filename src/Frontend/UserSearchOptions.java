@@ -24,7 +24,7 @@ public class UserSearchOptions extends JFrame {
         setContentPane(container);
         setVisible(true);
         setSize(400,400);
-        Database<User> userDatabase=new UserDatabase();
+        Database<User> userDatabase= UserDatabase.getInstance();
         FriendsDatabase friendsDatabase = new FriendsDatabase();
         FriendsManagement friendsManagement=new FriendsManagement(userDatabase,friendsDatabase);
         sendFriendRequestButton.addActionListener(new ActionListener() {
@@ -59,7 +59,7 @@ public class UserSearchOptions extends JFrame {
         });
     }
     public static void main(String[] args) {
-        UserDatabase userDatabase= new UserDatabase();
+        UserDatabase userDatabase=  UserDatabase.getInstance();
         ArrayList<User> users=userDatabase.getAll();
         System.out.println(users.get(0).getId()+",,," + users.get(1).getId());
         new UserSearchOptions(users.get(0),users.get(1));

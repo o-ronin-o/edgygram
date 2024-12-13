@@ -16,26 +16,41 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class ContentDatabase extends Database<Content> {
+    static ContentDatabase contentDatabase ;
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
     private final String postsFileName = "Posts.json";
     private final String storiesFileName = "Stories.json";
 
-    public ContentDatabase() {
-        super(null); // File name is not used directly
+    private ContentDatabase() {
+        super(null);
+
     }
+
+    public static ContentDatabase getInstance() {
+        if(contentDatabase==null){
+            contentDatabase=new ContentDatabase();
+        }
+        return contentDatabase;
+    }
+
+    /*public ContentDatabase() {
+        super(null); // File name is not used directly
+    }*/
 
     @Override
     public boolean add(Content item) {
         if (item instanceof Post) {
-            fileName=postsFileName;
-            ArrayList<Content> posts=load(new TypeToken<ArrayList<Post>>() {}.getType());
+            fileName = postsFileName;
+            ArrayList<Content> posts = load(new TypeToken<ArrayList<Post>>() {
+            }.getType());
             posts.add(item);
             save(posts);
             System.out.println("Added Post: " + item.getContentId());
         } else if (item instanceof Story) {
-            fileName=storiesFileName;
-            ArrayList<Content> stories = load(new TypeToken<ArrayList<Post>>() {}.getType());
-            stories.add( item);
+            fileName = storiesFileName;
+            ArrayList<Content> stories = load(new TypeToken<ArrayList<Post>>() {
+            }.getType());
+            stories.add(item);
             save(stories);
             scheduleRemoval((Story) item, 24); // Schedule removal in 24 hours
             System.out.println("Added Story: " + item.getContentId());
@@ -46,14 +61,16 @@ public class ContentDatabase extends Database<Content> {
     @Override
     public void remove(Content item) {
         if (item instanceof Post) {
-            fileName=postsFileName;
-            ArrayList<Content> posts = load(new TypeToken<ArrayList<Post>>() {}.getType());
+            fileName = postsFileName;
+            ArrayList<Content> posts = load(new TypeToken<ArrayList<Post>>() {
+            }.getType());
             posts.removeIf(c -> c.getContentId().equals(item.getContentId()));
             System.out.println("Removing Post: " + item.getContentId());
             save(posts);
-           } else if (item instanceof Story) {
-            fileName=storiesFileName;
-            ArrayList<Content> stories = load( new TypeToken<ArrayList<Story>>() {}.getType());
+        } else if (item instanceof Story) {
+            fileName = storiesFileName;
+            ArrayList<Content> stories = load(new TypeToken<ArrayList<Story>>() {
+            }.getType());
             stories.removeIf(c -> c.getContentId().equals(item.getContentId()));
             save(stories);
             System.out.println("Removed Story: " + item.getContentId());
@@ -62,11 +79,12 @@ public class ContentDatabase extends Database<Content> {
 
     @Override
     public ArrayList<Content> getAll() {
-        fileName=postsFileName;
+        fileName = postsFileName;
         ArrayList<Content> allContent = new ArrayList<>(load(new TypeToken<ArrayList<Post>>() {
         }.getType()));
-        fileName=storiesFileName;
-        allContent.addAll(load( new TypeToken<ArrayList<Story>>() {}.getType()));
+        fileName = storiesFileName;
+        allContent.addAll(load(new TypeToken<ArrayList<Story>>() {
+        }.getType()));
         return allContent;
     }
 
@@ -80,29 +98,36 @@ public class ContentDatabase extends Database<Content> {
         }
         return null;
     }
+
     public ArrayList<Content> getAllPosts() {
         fileName = postsFileName;
-        return load(new TypeToken<ArrayList<Post>>() {}.getType());
+        return load(new TypeToken<ArrayList<Post>>() {
+        }.getType());
     }
 
     public ArrayList<Content> getAllStories() {
-        fileName=storiesFileName;
-        return load(new TypeToken<ArrayList<Story>>() {}.getType());
+        fileName = storiesFileName;
+        return load(new TypeToken<ArrayList<Story>>() {
+        }.getType());
     }
-    public void saveAllPosts(ArrayList<Content> list){
+
+    public void saveAllPosts(ArrayList<Content> list) {
         fileName = "Posts.json";
         save(list);
     }
-    public void saveAllStories(ArrayList<Content> list){
+
+    public void saveAllStories(ArrayList<Content> list) {
         fileName = "Stories.json";
         save(list);
     }
-// بتمسح بعد المده اللي انت عايزها كل اللي عليك تديلها اوبجيكت الستوري
+
+    // بتمسح بعد المده اللي انت عايزها كل اللي عليك تديلها اوبجيكت الستوري
     public void scheduleRemoval(Story story, int delayInHours) {
         ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
         scheduler.schedule(() -> {
-            fileName=storiesFileName;
-            ArrayList<Content> stories = load( new TypeToken<ArrayList<Content>>() {}.getType());
+            fileName = storiesFileName;
+            ArrayList<Content> stories = load(new TypeToken<ArrayList<Content>>() {
+            }.getType());
             if (stories.removeIf(s -> s.getContentId().equals(story.getContentId()))) {
                 save(stories);
                 System.out.println("Removed Story: " + story.getContentId());

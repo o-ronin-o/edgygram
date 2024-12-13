@@ -26,7 +26,7 @@ public class ProfileWindow extends JFrame {
         //setting up the databases
         JDateChooser dateChooser = new JDateChooser();
         dateChooser.setDateFormatString("yyyy-MM-dd");
-        Database<Content> content = new ContentDatabase();
+        Database<Content> content = ContentDatabase.getInstance();
        // JOptionPane.showConfirmDialog(null, panel1, "Date of Birth", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         //User omar = new User("4343","Ronin","yomama","omar@gmail.com",dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),"online","\\Downloads\\download.jpg","\\Downloads\\cat.jpg");
         //setting up the main frame

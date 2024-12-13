@@ -23,8 +23,8 @@ public class SuggestedFriendsWindow extends JFrame{
         setResizable(false);
 
         //initialize main backend components
-        Database<User> userDatabase= new UserDatabase();
-        FriendsManagement friendsManagement= new FriendsManagement(new UserDatabase(),new FriendsDatabase());
+        Database<User> userDatabase=  UserDatabase.getInstance();
+        FriendsManagement friendsManagement= new FriendsManagement( UserDatabase.getInstance(),new FriendsDatabase());
         System.out.println("getting suggested ");
         ArrayList<User> suggestedFriends= friendsManagement.suggestFriends(user);
         ArrayList<String> suggestedFriendsData= friendsManagement.displayList(suggestedFriends);
@@ -50,7 +50,7 @@ public class SuggestedFriendsWindow extends JFrame{
                     int choice=JOptionPane.showConfirmDialog(SuggestedFriendsWindow.this,"Do you want to send a friend request to "+suggestionUsername+"?","Send a friend request",JOptionPane.YES_NO_OPTION);
                     if(choice==JOptionPane.YES_OPTION){
                         //get suggestion user object
-                        Database<User> userDatabase= new UserDatabase();
+                        Database<User> userDatabase=  UserDatabase.getInstance();
                         ArrayList<User> allUsers=userDatabase.getAll();
                         User suggestion=null;
                         for(User user : allUsers){
@@ -59,7 +59,7 @@ public class SuggestedFriendsWindow extends JFrame{
                                 break;
                             }
                         }
-                        FriendRequestManagement friendRequestManagement= new FriendRequestManagement(new UserDatabase(),new FriendsDatabase());
+                        FriendRequestManagement friendRequestManagement= new FriendRequestManagement( UserDatabase.getInstance(),new FriendsDatabase());
                         friendRequestManagement.sendFriendRequest(user,suggestion);
                     }
                     new SuggestedFriendsWindow(user,newsFeedWindow);
