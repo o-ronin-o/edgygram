@@ -22,7 +22,7 @@ public class ManageAdminsWindow extends JFrame {
     public ManageAdminsWindow(Group group) {
 
         GroupManagement g = GroupManagement.getInstance();
-        UserDatabase userDatabase = new UserDatabase();
+        UserDatabase userDatabase = UserDatabase.getInstance();
         ArrayList<User> users = userDatabase.getAll();
 
 

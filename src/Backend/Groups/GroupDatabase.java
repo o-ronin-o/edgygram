@@ -65,4 +65,27 @@ public class GroupDatabase extends Database<HashMap<String, Group>> {
             throw new RuntimeException("Failed to save groups data.", e); // Throw an error if saving fails
         }
     }
+    public HashMap<String, ArrayList<Post>> loadPostsData() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("groupPosts.json"))) {
+            File file = new File("groupPosts.json");
+            if (!file.exists()) {
+                return new HashMap<>();
+            }
+            Type type = new TypeToken<HashMap<String, ArrayList<Post>>>() {}.getType();
+            HashMap<String, ArrayList<Post>> postsMap = gson.fromJson(reader, type);
+            return postsMap == null ? new HashMap<>() : postsMap;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new HashMap<>();
+        }
+    }
+    public void savePostsData(HashMap<String, ArrayList<Post>> postsData) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("groupPosts.json"))) {
+            gson.toJson(postsData, writer);
+            writer.flush();
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to save posts data.", e);
+        }
+    }
+
 }

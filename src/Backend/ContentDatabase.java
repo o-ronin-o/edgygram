@@ -137,7 +137,7 @@ public class ContentDatabase extends Database<Content> {
     }
 
     public ArrayList<Content> getAllPostsForUser(User user) {
-        FriendsManagement friendsManagement= new FriendsManagement(new UserDatabase(),new FriendsDatabase());
+        FriendsManagement friendsManagement= new FriendsManagement( UserDatabase.getInstance(),new FriendsDatabase());
         GroupManagement groupManagement = GroupManagement.getInstance();
         GroupPostsDatabase groupPostsDatabaseDatabase = GroupPostsDatabase.getInstance();
         HashMap<String, Group> allGroups = groupManagement.listAllGroups();

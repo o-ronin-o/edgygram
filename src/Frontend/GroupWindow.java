@@ -31,12 +31,12 @@ public class GroupWindow extends JFrame {
 
 
 
-        ContentDatabase db = new ContentDatabase();
+        ContentDatabase db = ContentDatabase.getInstance();
         GroupManagement g = GroupManagement.getInstance();
         GroupDatabase gdb = new GroupDatabase();
         HashMap<String, ArrayList<Post>> postsMap =  gdb.loadPostsData();
         ArrayList<Post> groupPosts = postsMap.get(group.getGroupId());
-        UserDatabase userDatabase = new UserDatabase();
+        UserDatabase userDatabase = UserDatabase.getInstance();
         ArrayList<User> users = userDatabase.getAll();
 
         //setting up the main panel
@@ -54,7 +54,7 @@ public class GroupWindow extends JFrame {
 
         // setting up the posts section
         postScrollPane = setupScrollPane(postScrollPane, group, groupPosts);
-        ContentDatabase db = ContentDatabase.getInstance();
+         db = ContentDatabase.getInstance();
         panel1 = setupMainPanel(panel1);
 
         //setting up the cover panel

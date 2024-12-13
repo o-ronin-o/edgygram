@@ -13,7 +13,7 @@ public class GroupJoinRequestsManagement {
     private GroupDatabase groupDatabase;
     public GroupJoinRequestsManagement(Group group) {
         this.group = group;
-        this.userDatabase = new UserDatabase();
+        this.userDatabase =  UserDatabase.getInstance();
         this.groupDatabase = new GroupDatabase();
     }
     // send a join request
