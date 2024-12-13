@@ -429,7 +429,8 @@ public class NewsFeedWindow extends JFrame {
         Notificationsbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                NotificationsWindow notificationsWindow= new NotificationsWindow(user,NewsFeedWindow.this);
+              //  NotificationsWindow notificationsWindow= new NotificationsWindow(user,NewsFeedWindow.this);
+                new NewNotificationWindow(user);
             }
         });
         searchUsersButton.addActionListener(new ActionListener() {

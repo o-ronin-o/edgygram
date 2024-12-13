@@ -152,7 +152,14 @@ public class GroupWindow extends JFrame {
 
                     finalGroupPosts.add(posty);
                     postsMap.put(group.getGroupId(), finalGroupPosts);
-
+                    ArrayList<User> allusers= g.getMembersAsObject(group);
+                    for(User userr: allusers){
+                        String notfication= user.getUsername()+" posted in "+group.getGroupName()+"\n";
+                        if(userr.getId().equals(user.getId()))
+                            continue;
+                        userr.addtNotfications(notfication);
+                    }
+                    userDatabase.save(allusers);
                     gdb.savePostsData(postsMap);
 
                 }

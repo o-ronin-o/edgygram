@@ -9,26 +9,17 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class User {
-    @Expose
     private String id;
-    @Expose
     private String username;
-    @Expose
     private String password;
-    @Expose
     private String email;
-    @Expose
     private String bio;
-    @Expose
     private String dateOfBirth;
-    @Expose
     private String status;
-    @Expose
     private String profilePicture ;
-    @Expose
     private String coverPicture ;
-    @Expose
     private static final AtomicInteger counter = new AtomicInteger(0);
+    private ArrayList<String> notfications=new ArrayList<>();
 
 
 //    public User(String id, String username, String password, String email, String dateOfBirth, String status, String profilePicture, String CoverPicture, String bio) {
@@ -109,6 +100,23 @@ public class User {
         this.profilePicture = profilePicture;
     }
 
+    public ArrayList<String> getNotfications() {
+        return notfications;
+    }
+
+    public void addtNotfications(String notfication) {
+        notfications.add(notfication);
+    }
+    public void removeNotfications(String notification) {
+        System.out.println("the sent notfication is "+notification);
+        for (int i = 0; i < notfications.size(); i++) {
+            System.out.println("comparing with"+notfications.get(i));
+            if (notfications.get(i).equals(notification)) {
+                notfications.remove(i);
+                break;
+            }
+        }
+    }
 
 
     public static String generateID() {
@@ -128,6 +136,7 @@ public class User {
         private String status="offline";
         private String profilePicture="defaultProfile.jpeg" ;
         private String coverPicture="defaultCover.jpeg" ;
+        private ArrayList<String> notfications=new ArrayList<>();
 
         public UserBuilder Id(String id) {
             this.id = id;

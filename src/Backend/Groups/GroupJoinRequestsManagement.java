@@ -52,7 +52,7 @@ public class GroupJoinRequestsManagement {
     // Reject a join request
     public boolean rejectJoinRequest(String userId) {
         System.out.println("Attempting to reject join request for userId: " + userId);
-
+        System.out.println(group.getJoinRequests());
         if (group.getJoinRequests().remove(userId)) {
             saveGroupData();
             System.out.println("Join request rejected for userId: " + userId);

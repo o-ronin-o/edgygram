@@ -85,7 +85,7 @@ public class NotificationsWindow extends JFrame{
                         // Decline the friend request
                         friendRequestManagement.declineFriendRequest(sender, user);
                     }
-                }   
+                }
             }
         });
 
