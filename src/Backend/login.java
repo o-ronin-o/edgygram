@@ -22,7 +22,7 @@ public class login {
         else{
             user.setStatus("offline");
         }
-        Database<User> userDatabase= new UserDatabase();
+        Database<User> userDatabase=  UserDatabase.getInstance();
         ArrayList<User> users= userDatabase.getAll();
         for (User userr : users) {
             if (userr.getId().equals(user.getId())) {
