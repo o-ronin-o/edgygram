@@ -1,19 +1,16 @@
 package Frontend;
 
 import Backend.*;
-import Backend.Groups.GroupData;
-import Backend.Groups.GroupsDatabase;
+import Backend.Groups.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class GroupWindow extends JFrame {
@@ -25,17 +22,40 @@ public class GroupWindow extends JFrame {
     private JPanel groupCover;
     private JScrollPane postScrollPane;
     private JTextArea postTextArea;
+    private JButton leaveGroupButton;
     private String primaryAdminId;
     private static final AtomicInteger counter = new AtomicInteger(0);
 // المشكله في حوار البرايفسي ده
     // المشكله ان الاكسبوز هحتاج اعملها بردو لليوزر عشان
-    public GroupWindow(GroupData group,User user){
+    public GroupWindow(Group group, User user){
 
 
         ContentDatabase db = new ContentDatabase();
-        panel1 = setupMainPanel(panel1);
+        GroupManagement g = GroupManagement.getInstance();
+        GroupDatabase gdb = new GroupDatabase();
+        HashMap<String, ArrayList<Post>> postsMap =  gdb.loadPostsData();
+        ArrayList<Post> groupPosts = postsMap.get(group.getGroupId());
+        UserDatabase userDatabase = new UserDatabase();
+        ArrayList<User> users = userDatabase.getAll();
 
-        postScrollPane = setupScrollPane(postScrollPane, group);
+        //setting up the main panel
+        //panel1 = setupMainPanel(panel1);
+        setContentPane(panel1);
+        setTitle("Group");
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setBounds(500,250,900, 600);
+        panel1.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        panel1.setBorder(new RoundedBorder(20));
+
+        panel1.setBackground(Color.decode("#24292e"));
+
+        // setting up the posts section
+        postScrollPane = setupScrollPane(postScrollPane, group, groupPosts);
+
+        //setting up the cover panel
+         setUpCover(groupCover,group.getGroupName(),group.getGroupPicture());
 
         // setting up the buttons
         manageAdminsButton = setupButtons(manageAdminsButton);
@@ -43,12 +63,12 @@ public class GroupWindow extends JFrame {
         removeMemberButton = setupButtons(removeMemberButton);
         deleteGroupButton = setupButtons(deleteGroupButton);
 
-        System.out.println(user.getId());
+        //System.out.println(user.getId());
 
         //checking the role of the user
 
         if(group.isAdmin(user)){
-            if(group.isPrimaryAdmin(user)){
+            if(group.isPrimaryAdmin(user.getId())){
                 manageAdminsButton.setVisible(true);
                 deleteGroupButton.setVisible(true);
             }
@@ -82,7 +102,7 @@ public class GroupWindow extends JFrame {
                 } else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 
                     e.consume();
-                    Content posty = new Post("CID-" + counter.incrementAndGet(),user.getId(),postTextArea.getText(), LocalDateTime.now(),null,group.getGroupId(), user.getUsername(),"Post" );
+                    Post posty = new Post("CID-" + counter.incrementAndGet(),user.getId(),postTextArea.getText(), LocalDateTime.now(),null,group.getGroupId(), user.getUsername(),"Post" );
                     int i =JOptionPane.showConfirmDialog(panel1,"Sometimes picture spices up the post ya know,\nWanna add a pic?",
                             "adding wa pic",
                             JOptionPane.YES_NO_OPTION ,
@@ -119,9 +139,13 @@ public class GroupWindow extends JFrame {
                     }
 
                     JOptionPane.showMessageDialog(panel1,"Post added yummy ;-)");
-                    ArrayList<Content> posts=db.getAllPosts();
-                    posts.add(posty);
-                    db.saveAllPosts(posts);
+//                    ArrayList<Content> posts=db.getAllPosts();
+//                    posts.add(posty);
+//                    db.saveAllPosts(posts);
+                    groupPosts.add(posty);
+                    postsMap.put(group.getGroupId(), groupPosts);
+
+                    gdb.savePostsData(postsMap);
 
                 }
             }
@@ -147,7 +171,54 @@ public class GroupWindow extends JFrame {
         });
 
 
+        manageAdminsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
+            }
+        });
+        removeMemberButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String memberId = JOptionPane.showInputDialog(
+                        null,
+                        "Enter Member ID:",
+                        "Member ID Input",
+                        JOptionPane.QUESTION_MESSAGE
+                );
+
+
+                if (memberId != null && !memberId.trim().isEmpty()) {
+                    System.out.println("Member ID entered: " + memberId);
+                    g.removeUserFromGroup(group.getGroupId(),userDatabase.getById(memberId));
+                } else {
+                    System.out.println("No member ID entered or canceled.");
+                }
+
+            }
+        });
+        manageRequestsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        deleteGroupButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                HashMap<String, Group> groupToRemove = new HashMap<>();
+                groupToRemove.put(group.getGroupId(), group);
+                gdb.remove(groupToRemove);
+            }
+        });
+        leaveGroupButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                g.removeUserFromGroup(group.getGroupId(),userDatabase.getById(user.getId()));
+                dispose();
+            }
+        });
     }
     public JButton setupButtons(JButton myButton) {
         myButton.setBackground(Color.decode("#24292e"));
@@ -167,13 +238,14 @@ public class GroupWindow extends JFrame {
         myPanel.setBackground(Color.decode("#24292e"));
         return myPanel;
     }
-    public JScrollPane setupScrollPane(JScrollPane myScrollPane, GroupData group) {
+    public JScrollPane setupScrollPane(JScrollPane myScrollPane, Group group, ArrayList<Post> groupPosts) {
         JPanel postPanel = new JPanel();
         postPanel.setBackground(Color.decode("#24292e"));
         postPanel.setLayout(new BoxLayout(postPanel, BoxLayout.Y_AXIS));
-        for(Content post : group.getAllPosts()){
-                Content c = group.getById(post.getGroupId());
-                addPost(postPanel, c.getAuthorName()+" "+c.getPostString(post.getTimeStamp(),c.getContent()),c.getPicPath());
+
+        for(Content c : groupPosts){
+
+            addPost(postPanel, c.getAuthorName()+" "+c.getPostString(c.getTimeStamp(),c.getContent()),c.getPicPath());
         }
 
         myScrollPane.setViewportView(postPanel);
@@ -230,22 +302,41 @@ public class GroupWindow extends JFrame {
 
         postPanel.add(singlePostPanel);
     }
+    public void setUpCover(JPanel postPanel, String text , String imagePath){
+        // a jpanel for each post
+        JPanel singlePostPanel = new JPanel();
+        singlePostPanel.setLayout(new BorderLayout());
+        singlePostPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+
+        // a jtextarea for text
+        JTextArea textArea = new JTextArea(text);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setEditable(false);
+        textArea.setFont(new Font("Arial", Font.PLAIN, 14));
+        textArea.setBackground(Color.decode("#24292e"));
+        textArea.setForeground(Color.white);
+
+        // creating a jlabel for images
+        ImageIcon Img = new ImageIcon(imagePath);
+        Image scaledImage = Img.getImage().getScaledInstance(800, 200, Image.SCALE_SMOOTH);
+        JLabel imgLabel = new JLabel(new ImageIcon(scaledImage));
+
+        // now we add the component for the main singlePostPanel
+        singlePostPanel.add(textArea, BorderLayout.SOUTH);
+        singlePostPanel.add(imgLabel, BorderLayout.NORTH);
+        singlePostPanel.setBackground(Color.decode("#24292e"));
+
+        //now we add it to the post panel
+
+        postPanel.add(singlePostPanel);
+    }
 
     public static void main(String[] args) {
-        GroupsDatabase groupsDatabase = new GroupsDatabase();
-        ArrayList<GroupData> groups = groupsDatabase.getAll();
-        System.out.println(groups.get(0).getGroupName());
+        GroupDatabase groupsDatabase = new GroupDatabase();
+        HashMap<String, Group> groups = groupsDatabase.loadGroupData();
+        ArrayList<Group> allGroups = new ArrayList<>(groups.values());
 
-        if (groups.isEmpty()) {
-            System.out.println("No groups found in the database.");
-            return;
-        }
-
-//        GroupData group = groupsDatabase.getById("GID-1");
-//        if (group == null) {
-//            System.out.println("Group with ID 'GID-1' not found.");
-//            return;
-//        }
 
         UserDatabase userDatabase = new UserDatabase();
         ArrayList<User> users = userDatabase.getAll();
@@ -255,7 +346,7 @@ public class GroupWindow extends JFrame {
             return;
         }
 
-        new GroupWindow(groups.get(0), users.get(12));
+        new GroupWindow(allGroups.get(0), users.get(0));
 
     }
 }

@@ -151,7 +151,7 @@ public class Group {
 
     // Check if a user is an admin
     public boolean isAdmin(User user) {
-        return Admins.contains(user);
+        return Admins.contains(user.getId());
     }
 
 }
