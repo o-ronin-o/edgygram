@@ -18,7 +18,7 @@ public class TestFriendsDisplay extends JFrame {
         setContentPane(container);
         setVisible(true);
         setSize(300,400);
-        FriendsManagement friendsManagement= new FriendsManagement(new UserDatabase(),new FriendsDatabase());
+        FriendsManagement friendsManagement= new FriendsManagement( UserDatabase.getInstance(),new FriendsDatabase());
         ArrayList<User> friend= friendsManagement.getFriends(user);
         ArrayList<String> friendsData=friendsManagement.displayList(friend);
         // Create the list of panels
@@ -58,7 +58,7 @@ public class TestFriendsDisplay extends JFrame {
     }
 
     public static void main(String[] args) {
-        UserDatabase userDatabase= new UserDatabase();
+        UserDatabase userDatabase=  UserDatabase.getInstance();
         ArrayList<User> users=userDatabase.getAll();
         new TestFriendsDisplay(users.get(1));
     }

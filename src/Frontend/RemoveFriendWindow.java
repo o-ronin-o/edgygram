@@ -25,7 +25,7 @@ public class RemoveFriendWindow extends JFrame {
         setResizable(false);
         setLocationRelativeTo(newsFeedWindow);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        FriendsManagement friendsManagement= new FriendsManagement(new UserDatabase(),new FriendsDatabase());
+        FriendsManagement friendsManagement= new FriendsManagement( UserDatabase.getInstance(),new FriendsDatabase());
         ArrayList<User> friend= friendsManagement.getFriends(user);
         ArrayList<String> friendsData=friendsManagement.displayList(friend);
         // Create the list of panels
@@ -52,7 +52,7 @@ public class RemoveFriendWindow extends JFrame {
                     int choice = JOptionPane.showConfirmDialog(newsFeedWindow, "Do you want to remove " + friendUsername + " from your friends?", "Remove Friend", JOptionPane.YES_NO_OPTION);
                     if (choice == JOptionPane.YES_OPTION) {
                         //get the friend user object and remove it
-                        Database<User> database = new UserDatabase();
+                        Database<User> database =  UserDatabase.getInstance();
                         ArrayList<User> users=database.getAll();
                         User friend=null;
                         for(User userr : users ){
@@ -82,7 +82,7 @@ public class RemoveFriendWindow extends JFrame {
     }
 
     public static void main(String[] args) {
-        UserDatabase userDatabase= new UserDatabase();
+        UserDatabase userDatabase=  UserDatabase.getInstance();
         ArrayList<User> users=userDatabase.getAll();
         new RemoveFriendWindow(users.get(0),new NewsFeedWindow(users.get(0)));
     }

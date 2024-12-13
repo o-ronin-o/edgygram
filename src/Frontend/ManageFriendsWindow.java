@@ -58,7 +58,7 @@ public class ManageFriendsWindow extends JFrame {
                 String username=JOptionPane.showInputDialog(newsFeedWindow, "Enter Username", "Add friend", JOptionPane.PLAIN_MESSAGE);
                 if(username.equals("null"))
                     return;
-                Database<User> userDatabase= new UserDatabase();
+                Database<User> userDatabase=  UserDatabase.getInstance();
                 ArrayList<User> allUsers= userDatabase.getAll();
                 for(User userr:allUsers){
                     if(userr.getUsername().equals(username)){

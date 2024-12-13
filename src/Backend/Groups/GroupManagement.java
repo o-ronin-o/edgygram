@@ -27,19 +27,16 @@ public class GroupManagement {
         return instance;
     }
     public Group createGroup(String groupName, String groupDescription, String groupPicture, User primaryAdmin) {
-        //create a new group
-        Group newGroup=new Group(groupName,groupDescription,groupPicture,primaryAdmin.getId());
-        //load the groups data and add our group
+        Group newGroup = new Group(groupName, groupDescription, groupPicture, primaryAdmin.getId());
         HashMap<String, Group> groups = groupDatabase.loadGroupData();
         groups.put(newGroup.getGroupId(), newGroup);
         groupDatabase.saveAll(groups);
         return newGroup;
     }
-    // Add a user to a group
     public boolean addUsertoGroup(String groupId, User user) {
         HashMap<String, Group> groups = groupDatabase.loadGroupData();
         Group group = groups.get(groupId);
-        if(group!=null) {
+        if(group != null) {
             group.addMember(user);
             groupDatabase.saveAll(groups);
             return true;
@@ -69,23 +66,19 @@ public class GroupManagement {
 
         return false;
     }
-
-
-
     //make user admin
     public void makeAdmin(String groupId, User user) {
         HashMap<String, Group> groups = groupDatabase.loadGroupData();
         Group group = groups.get(groupId);
-        if(group!=null) {
+        if(group != null) {
             group.promoteToAdmin(user);
             groupDatabase.saveAll(groups);
         }
     }
-    // demote and admin to a regular user
     public void demoteAdmin(String groupId, User user) {
         HashMap<String, Group> groups = groupDatabase.loadGroupData();
         Group group = groups.get(groupId);
-        if(group!=null) {
+        if(group != null) {
             group.demoteFromAdmin(user);
             groupDatabase.saveAll(groups);
         }
@@ -98,54 +91,41 @@ public class GroupManagement {
         return groupDatabase.loadGroupData();
     }
     public ArrayList<User> getMembersAsObject(Group group) {
-        ArrayList<String> membersId= group.getGroupMembers();
+        ArrayList<String> membersId = group.getGroupMembers();
         ArrayList<User> members = new ArrayList<>();
-        Database<User> userDatabase= new UserDatabase();
+        Database<User> userDatabase = new UserDatabase();
         for (String memberId : membersId) {
-            User user = userDatabase.getById(memberId);  // get user by id
+            User user = userDatabase.getById(memberId);
             if (user != null) {
-                members.add(user);  // Add the User object to the list
+                members.add(user);
             }
         }
         return members;
     }
-
     public boolean isMember(String groupId, User user) {
         HashMap<String, Group> groups = groupDatabase.loadGroupData();
         Group group = groups.get(groupId);
-        if (group != null) {
-            if (group.getGroupMembers().contains(user.getId())) {
-                return true;
-            }
-        }
-        return false;
+        return group != null && group.getGroupMembers().contains(user.getId());
     }
-    public ArrayList<String> convertToDisplayFormat(ArrayList<Group> groups){
+    public ArrayList<String> convertToDisplayFormat(ArrayList<Group> groups) {
         ArrayList<String> displayFormat = new ArrayList<>();
         for (Group group : groups) {
-            displayFormat.add(group.getGroupPicture()+","+group.getGroupName());
+            displayFormat.add(group.getGroupPicture() + "," + group.getGroupName());
         }
         return displayFormat;
     }
     public ArrayList<Group> suggestGroups(User user) {
         HashMap<String, Group> allGroups = groupDatabase.loadGroupData();
         ArrayList<Group> groupList = new ArrayList<>(allGroups.values());
-
-        // Create a separate list to store groups to remove
         ArrayList<Group> groupsToRemove = new ArrayList<>();
 
         for (Group group : groupList) {
-            // Don't suggest if user is already a member or has requested to join
             if (group.getGroupMembers().contains(user.getId()) || group.getJoinRequests().contains(user.getId())) {
                 groupsToRemove.add(group);
             }
         }
-
-        // Remove the groups from the original list
         groupList.removeAll(groupsToRemove);
-        // Shuffle the list to suggest random groups
         Collections.shuffle(groupList);
-        // Return a sublist with the desired number of suggestions, or all if fewer than requested
         int suggestionsCount = Math.min(4, groupList.size());
         return new ArrayList<>(groupList.subList(0, suggestionsCount));
     }
@@ -166,4 +146,45 @@ public class GroupManagement {
     }
 
 
+    // Added Methods
+    public ArrayList<Group> getUserGroups(User user) {
+        ArrayList<Group> userGroups = new ArrayList<>();
+        HashMap<String, Group> allGroups = groupDatabase.loadGroupData();
+        for (Group group : allGroups.values()) {
+            if (group.getGroupMembers().contains(user.getId())) {
+                userGroups.add(group);
+            }
+        }
+        return userGroups;
+    }
+
+    public ArrayList<User> getNewMembers(Group groupId, User user) {
+        ArrayList<User> newMembers = new ArrayList<>();
+        HashMap<String, Group> groups = groupDatabase.loadGroupData();
+        Group group = groups.get(groupId);
+
+        if (group != null) {
+            ArrayList<String> groupMembers = group.getGroupMembers();
+            ArrayList<User> allMembers = getMembersAsObject(group);
+            boolean isUserFound = false;
+            for (User member : allMembers) {
+                if (member.getId().equals(user.getId())) {
+                    isUserFound = true;
+                } else if (isUserFound && groupMembers.contains(member.getId())) {
+                    newMembers.add(member);
+                }
+            }
+        }
+        return newMembers;
+    }
+
+    public Group getGroupByName(String groupName) {
+        HashMap<String, Group> allGroups = groupDatabase.loadGroupData();
+        for (Group group : allGroups.values()) {
+            if (group.getGroupName().equals(groupName)) {
+                return group;
+            }
+        }
+        return null;
+    }
 }

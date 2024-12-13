@@ -51,9 +51,9 @@ public class NewsFeedWindow extends JFrame {
 
         SwingUtilities.updateComponentTreeUI(this);
         //Setting up the databases
-        Database<User> userDatabase = new UserDatabase();
+        Database<User> userDatabase =  UserDatabase.getInstance();
         FriendsManagement friendsManagement = new FriendsManagement(userDatabase, new FriendsDatabase());
-        ContentDatabase contentDatabase = new ContentDatabase();
+        ContentDatabase contentDatabase = ContentDatabase.getInstance();
         ArrayList<Content> posts = friendsManagement.getFriendsPosts(user);
         ArrayList<Content> stories = friendsManagement.getFriendsStories(user);
         setContentPane(Container);
@@ -497,7 +497,7 @@ public class NewsFeedWindow extends JFrame {
         }
     }
     public static void main(String[] args) {
-        UserDatabase userDatabase= new UserDatabase();
+        UserDatabase userDatabase= UserDatabase.getInstance();
         ArrayList<User> users=userDatabase.getAll();
         new NewsFeedWindow(users.get(1));
     }

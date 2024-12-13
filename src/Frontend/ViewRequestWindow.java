@@ -23,7 +23,7 @@ public class ViewRequestWindow extends JFrame {
         setSize(400,400);
         setResizable(false);
         //initialize main backend components
-        Database<User> userDatabase=new UserDatabase();
+        Database<User> userDatabase= UserDatabase.getInstance();
         FriendRequestManagement requestManagement= new FriendRequestManagement((UserDatabase) userDatabase,new FriendsDatabase());
         ArrayList<FriendRequest> requests= requestManagement.getFriendRequests(user);//get all friend requests
         ArrayList<User> requestSenders=new ArrayList<>();
@@ -92,7 +92,7 @@ public class ViewRequestWindow extends JFrame {
     }
 
     public static void main(String[] args) {
-        UserDatabase userDatabase= new UserDatabase();
+        UserDatabase userDatabase=  UserDatabase.getInstance();
         ArrayList<User> users=userDatabase.getAll();
         new ViewRequestWindow(users.get(5),new NewsFeedWindow(users.get(5)));
     }

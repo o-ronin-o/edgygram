@@ -16,7 +16,7 @@ public class FriendsManagement {
         this.userDatabase = userDatabase;
         this.friendsDatabase = friendsDatabase;
         friendsMap = friendsDatabase.loadFriendData();
-        contentDatabase= new ContentDatabase();
+        this.contentDatabase= ContentDatabase.getInstance();
     }
 
     public ArrayList<User> suggestFriends(User user){

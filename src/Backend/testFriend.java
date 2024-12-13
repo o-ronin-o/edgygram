@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class testFriend {
     public static void main(String[] args) {
         // Initialize databases
-        UserDatabase userDatabase = new UserDatabase();
+        UserDatabase userDatabase =  UserDatabase.getInstance();
         FriendsDatabase friendsDatabase = new FriendsDatabase();
 
         // Initialize Friend Management and Request Management

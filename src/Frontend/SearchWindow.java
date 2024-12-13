@@ -48,7 +48,7 @@ public class SearchWindow extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 int index = suggestionList.getSelectedIndex();
                 if(index>=0){
-                    Database<User> userDatabase=new UserDatabase();
+                    Database<User> userDatabase= UserDatabase.getInstance();
                     ArrayList<User> allUsers= userDatabase.getAll();
                     for(User userr: allUsers){
                         if(userr.getUsername().equals(suggested.get(index).getUsername())){
@@ -80,7 +80,7 @@ public class SearchWindow extends JFrame {
         return panel;
     }
     public static void main(String[] args) {
-        UserDatabase userDatabase= new UserDatabase();
+        UserDatabase userDatabase=  UserDatabase.getInstance();
         ArrayList<User> users=userDatabase.getAll();
         new SearchWindow(users.get(0),"ank",new NewsFeedWindow(users.get(0)));
     }

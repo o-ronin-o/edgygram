@@ -32,7 +32,7 @@ public class GroupWindow extends JFrame {
     public GroupWindow(GroupData group,User user){
 
 
-        ContentDatabase db = new ContentDatabase();
+        ContentDatabase db = ContentDatabase.getInstance();
         panel1 = setupMainPanel(panel1);
 
         postScrollPane = setupScrollPane(postScrollPane, group);
@@ -247,7 +247,7 @@ public class GroupWindow extends JFrame {
 //            return;
 //        }
 
-        UserDatabase userDatabase = new UserDatabase();
+        UserDatabase userDatabase =  UserDatabase.getInstance();
         ArrayList<User> users = userDatabase.getAll();
 
         if (users.size() <= 12) {

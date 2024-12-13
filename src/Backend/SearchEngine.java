@@ -16,7 +16,7 @@ public class SearchEngine {
     private UserDatabase userDatabase;
 
     private SearchEngine() {
-        this.userDatabase = new UserDatabase();
+        this.userDatabase =  UserDatabase.getInstance();
     }
 
     //public method to provide access to the singleton instance
